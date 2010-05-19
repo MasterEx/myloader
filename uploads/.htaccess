@@ -1,0 +1,9 @@
+<Directory "./*">
+    Options Indexes FollowSymlinks
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+    RemoveType application/x-httpd-php .php .phtml
+    RemoveType text/html .html .htm
+</Directory>
+
