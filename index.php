@@ -1,5 +1,5 @@
 <?php
-   // VERSION 0.81
+   // VERSION 0.83
     
    $HOST_NAME="AmmarServer"; // Host Name
    $SCRIPT_WEB_BASE="http://ammarkov.ath.cx/uploads/";
@@ -13,7 +13,7 @@
 <meta name="keywords" content="personal uploader" />
 <meta name="description" content="" />
 <meta name="distribution" content="global" />
-<title>My Personal Uploader @ <?php echo $HOST_NAME; ?></title>
+<title>MyUploads @ <?php echo $HOST_NAME; ?></title>
 
 <style type="text/css">
 
@@ -48,7 +48,7 @@ a:active {color:#0000FF;}  /* selected link */
 </style>
 
 </head>
-<body><img id="Logo" src="images/logo.png">
+<body><img id="Logo" src="images/logo.png"> 
 <div><center><br><br>
 <div id="Banner">MyUploads @ <?php echo $HOST_NAME; ?></div>
 
