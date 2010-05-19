@@ -1,0 +1,54 @@
+About myloader
+--------------
+
+myloader is a PHP form for uploading files into your server. It is an easy way to share
+files with others. As it is implemented now it supports 20 MB files but it can be
+easily changed to support other file sizes.
+
+How to install it
+-----------------
+
+1) Upload myload directory somewhere to your server.
+
+2) chmod and chown the files so you'll have the above result:
+	drwxr-xr-x  3 www   wheel      512 May  6 06:48 myloader
+	-rwxr-xr-x  1 root  wheel  2005 May  6 12:44 index.php
+	drwxr-xr-x  2 www   wheel   512 May 12 20:00 uploads
+	-rwxr-xr-x  1 root  wheel  218 May  9 10:42 delfiles
+	-rwx------  1 root  wheel    1 May  6 07:55 index.html
+	-rw-r--r--  1 www   wheel  447 May  6 11:10 msg.html
+
+(timestamps are irrelevant)
+
+3) Add a cronjob for delfiles. It should run daily (a good hour should be around 20.00).
+Also change the path variable in delfiles script.
+
+4) Edit your Apache configuration and add the following lines:
+	php_admin_value upload_max_filesize 26214400
+	php_admin_value post_max_size 26214400
+	php_admin_value memory_limit 52439040
+	LimitRequestBody 26214400
+
+You may choose other sizes if you want.
+
+
+And also add:<br/>
+	<Directory "/absolute/path/myloader/uploads">
+		Options Indexes FollowSymlinks
+		AllowOverride None
+		Order allow,deny
+		Allow from all
+		RemoveType application/x-httpd-php .php .phtml
+		RemoveType text/html .html .htm
+	</Directory>
+	
+And change the absolute path to you path.
+
+You are ready to go!
+
+Requirements
+------------
+
+* Bash / *nix<br/>
+* PHP<br/>
+* A webserver<br/>

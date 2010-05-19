@@ -1,0 +1,12 @@
+#!/usr/local/bin/bash
+
+path="/var/www/tmp/myloader/uploads/"
+
+for dire in $(ls -F $path | grep \/); do
+	if [ `ls -ld $path$dire | cut -d' ' -f11` != `date | cut -d' ' -f4` ]; then
+		rm -rf $path$dire
+	fi
+done
+
+exit 0
+
