@@ -13,7 +13,7 @@
 <meta name="keywords" content="personal uploader" />
 <meta name="description" content="" />
 <meta name="distribution" content="global" />
-<title>My Personal Uploader</title>
+<title>My Personal Uploader @ <?php echo $HOST_NAME; ?></title>
 
 <style type="text/css">
 
@@ -62,21 +62,17 @@ a:active {color:#0000FF;}  /* selected link */
          echo "Files > ".($LOCAL_PHP_FILE_LIMIT/1024*1024)." are not permitted";
        }
           else
-       {
-          if(mkdir("./uploads/".$tmpdir, 0700))
-           { 
-             $base_path = "./uploads/".$tmpdir."/";
-             
+       { 
+             $base_path = "./uploads/";
+             $new_filename = $tmpdir."-".basename( $_FILES['uploadedfile']['name']);
+              
              //New file.php file sender 
-             $new_target_path = "file.php?i=";
-             $new_target_path = $new_target_path.$tmpdir."/".basename( $_FILES['uploadedfile']['name']);
+             $new_target_path = "file.php?i=".$new_filename; 
 
-             $target_path = $base_path.basename( $_FILES['uploadedfile']['name']);
-             $pieces = explode(".",$_FILES['uploadedfile']['name']);
+             $target_path = $base_path.$new_filename; 
               
              if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path))
               {
-               copy("./uploads/msg.html","./uploads/".$tmpdir."/index.html");
                echo "The file <b>".basename( $_FILES['uploadedfile']['name'])."</b> has been uploaded<br/>";
                
                echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a><br/>";
@@ -85,12 +81,7 @@ a:active {color:#0000FF;}  /* selected link */
                 else
               {
                 echo "There was an error uploading the file, please try again! 1 ";
-              }
-           }
-             else
-           {
-             echo "There was an error uploading the file, please try again! 2 ";
-           }
+              } 
        }
      echo '<a href="index.php">Upload a new file!</a>';
    }
