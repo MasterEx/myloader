@@ -8,7 +8,7 @@
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="el" xml:lang="el">
 <head>
-<META name="author" content="Periklis Ntanasis a.k.a. Master_ex">
+<META name="author" content="Periklis Ntanasis a.k.a. Master_ex , Ammar Qammaz a.k.a. AmmarkoV">
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
 <meta name="keywords" content="personal uploader" />
 <meta name="description" content="" />
@@ -115,7 +115,7 @@ a:active {color:#0000FF;}  /* selected link */
 <span id="Footnote">
 Every file should be < <?php $max_upload = (int)(ini_get('upload_max_filesize'));  echo $max_upload; ?> MB 
 and all the uploaded files are deleted in daily basis.<br>
-Written by <a href="http://periklis.is-a-geek.com/" target="_new">Master_Ex</a> , <a href="http://ammarkov.ath.cx/" target="_new">AmmarkoV</a><br><br>
+Written by <a href="http://periklis.is-a-geek.com/" title="Periklis Ntanasis" target="_new">Master_Ex</a> , <a href="http://ammarkov.ath.cx/" title="Ammar Qammaz" target="_new">AmmarkoV</a><br><br>
 Generated in <?php echo (microtime(true)-$time_enter); ?> seconds<br>
 </span>
 </center>
