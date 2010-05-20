@@ -4,4 +4,8 @@
    $SCRIPT_WEB_BASE="http://ammarkov.ath.cx/uploads/";
    $LOCAL_PHP_FILE_LIMIT=20  *1024*1024; // 20 MB
    $ENABLE_RANDOM_FILE = 1; // 1/0 Switch
+
+                    //    MB
+   $MAXIMUM_CACHE_QUOTA=   2024              * 1024 * 1024 ; // 2GB max quotta for uploads
+   $MAXIMUM_STAY_ON_SERVER_HOURS=0; // 0 Means indefinately 
 ?>
