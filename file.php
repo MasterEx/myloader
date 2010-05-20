@@ -50,7 +50,11 @@ if ($fd = fopen ($fullPath, "r"))
         default;
         header("Content-type: application/octet-stream"); 
     }
-    header("Content-Disposition: filename=\"".$path_parts["basename"]."\"");
+    $filename_parts= explode("-",$path_parts["basename"],2);
+    $hash_part=$filename_parts[0];
+    $filename_part=$filename_parts[1];
+    
+    header("Content-Disposition: filename=\"".$filename_part."\"");
     header("Content-length: $fsize");
     header("Cache-control: private"); //use this to open files directly
     while(!feof($fd)) {

@@ -1,9 +1,6 @@
-<Directory "./*">
-    Options Indexes FollowSymlinks
-    AllowOverride None
-    Order allow,deny
-    Allow from all
-    RemoveType application/x-httpd-php .php .phtml
-    RemoveType text/html .html .htm
-</Directory>
+    php_value engine off
+    RemoveHandler .php .phtml .php3
+    RemoveType .php .phtml .php3
+    php_flag engine off
+    allowoverride None
 
