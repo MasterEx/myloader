@@ -40,6 +40,7 @@
    {
      visibility:hidden;
    }
+ 
 
 a:link {color:#FF0000;}      /* unvisited link */
 a:visited {color:#CC0000;}  /* visited link */
@@ -50,7 +51,7 @@ a:active {color:#0000FF;}  /* selected link */
 </head>
 <body><img id="Logo" src="images/logo.png"> 
 <div><center><br><br>
-<div id="Banner">MyUploads @ <?php echo $HOST_NAME; ?></div>
+<div id="Banner">MyUploads <blink>@</blink> <?php echo $HOST_NAME; ?></div>
 
 <?php
   $WILL_CHECK_IF_UPLOAD_DIR_NEEDS_CLEANING=0;
