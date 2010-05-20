@@ -17,7 +17,8 @@ function link_not_found()
          </body></html>"; 
 }
 
-$path = $SCRIPT_WEB_BASE."/uploads/";
+$path = $_SERVER['DOCUMENT_ROOT']."/uploads/uploads/"; // change the path to fit your websites document structure
+// $path = $SCRIPT_WEB_BASE."/uploads/"; // <- Ayto den doulevei
 $fullPath = $path.$_GET['i'];
  
 if ($fd = fopen ($fullPath, "r")) 
