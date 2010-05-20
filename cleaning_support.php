@@ -1,6 +1,5 @@
 <?php
-  require("configuration.php");
-  require("stat_keeper.php");   
+  require("configuration.php"); 
  /*
      NOT TESTED YET!
  */

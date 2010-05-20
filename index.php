@@ -3,8 +3,7 @@
    $time_enter=microtime(true);
    require("configuration.php");  
    require("cleaning_support.php");  
-   require("stat_keeper.php");  //<- PROBLEM HERE 
-   
+   require("stat_keeper.php");   
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="el" xml:lang="el">
 <head>
@@ -125,7 +124,7 @@ Written by <a href="http://periklis.is-a-geek.com/" title="Periklis Ntanasis" ta
 
 <?php 
       $cache_size = intval(get_cache_size()); 
-      if ($cache_size>0) { echo $cache_size / 1024*1024;
+      if ($cache_size>0) { echo $cache_size / (1024*1024);
                            echo " MB of shared data <br>"; 
                          }
 ?>
