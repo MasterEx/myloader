@@ -1,10 +1,10 @@
 <?php
-   // VERSION 0.83
-    
-   $HOST_NAME="AmmarServer"; // Host Name
-   $SCRIPT_WEB_BASE="http://ammarkov.ath.cx/uploads/";
-   $LOCAL_PHP_FILE_LIMIT=20  *1024*1024; // 20 MB
+   // VERSION 0.86
    $time_enter=microtime(true);
+   require("configuration.php");  
+   require("cleaning_support.php");  
+
+   
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="el" xml:lang="el">
 <head>
@@ -109,7 +109,7 @@ a:active {color:#0000FF;}  /* selected link */
 Every file should be < <?php $max_upload = (int)(ini_get('upload_max_filesize'));  echo $max_upload; ?> MB 
 and all the uploaded files are deleted in daily basis.<br>
 Written by <a href="http://periklis.is-a-geek.com/" target="_new">Master_Ex</a> , <a href="http://ammarkov.ath.cx/" target="_new">AmmarkoV</a><br><br>
-Generated in <?php echo (microtime(true)-$time_enter); ?> ms<br>
+Generated in <?php echo (microtime(true)-$time_enter); ?> seconds<br>
 </span>
 </center>
 </div>

@@ -1,6 +1,2 @@
-    php_value engine off
-    RemoveHandler .php .phtml .php3
-    RemoveType .php .phtml .php3
-    php_flag engine off
+    Deny from all
     allowoverride None
-
