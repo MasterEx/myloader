@@ -76,7 +76,7 @@ a:active {color:#0000FF;}  /* selected link */
               {
                echo "The file <b>".basename( $_FILES['uploadedfile']['name'])."</b> has been uploaded<br/>";
                
-               add_to_cache_size($_FILES['uploadedfile']['size']); 
+               //TODO-> Fix add_to_cache_size($_FILES['uploadedfile']['size']); 
 
                echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a><br/>";
                $WILL_CHECK_IF_UPLOAD_DIR_NEEDS_CLEANING=1;
