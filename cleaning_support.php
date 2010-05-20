@@ -16,7 +16,7 @@
 		$target=$SCRIPT_WEB_BASE."uploads/";
 		$files=scandir($target);
 		$now=date("U");
-		foreach($files as $files)
+		foreach($files as $file)
 		{
 			if(strcmp($file,"index.html")==0 || strcmp($file,"check_x.png")==0)
 			{
