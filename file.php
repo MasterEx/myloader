@@ -1,4 +1,5 @@
 <?php
+require("configuration.php");
 
 /* THE MESSAGES CAN BE IMPROVED BUT SHOULD NOT TAKE MORE THAN 10 lines each in the php file*/
 function refuse_withoutcompression()
@@ -17,8 +18,8 @@ function link_not_found()
          </body></html>"; 
 }
 
-$path = $_SERVER['DOCUMENT_ROOT']."/uploads/uploads/"; // change the path to fit your websites document structure
-// $path = $SCRIPT_WEB_BASE."/uploads/"; // <- Ayto den doulevei
+//$path = $_SERVER['DOCUMENT_ROOT']."/uploads/uploads/"; // change the path to fit your websites document structure
+$path = $SCRIPT_WEB_BASE."/uploads/"; // <- Ayto den doulevei
 $fullPath = $path.$_GET['i'];
  
 if ($fd = fopen ($fullPath, "r")) 
