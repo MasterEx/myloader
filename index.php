@@ -59,7 +59,7 @@ a:active {color:#0000FF;}  /* selected link */
       $tmpdir = md5($_FILES['uploadedfile']['name'].date('l jS \of F Y h:i:s A'));
       if($_FILES['uploadedfile']['size']>$LOCAL_PHP_FILE_LIMIT)
        {
-         echo "Files > ".($LOCAL_PHP_FILE_LIMIT/1024*1024)." are not permitted";
+         echo "Files > ".($LOCAL_PHP_FILE_LIMIT/1024*1024)."MB are not permitted";
        }
           else
        { 
