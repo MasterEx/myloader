@@ -31,10 +31,11 @@ You may choose other sizes if you want.
 <b>
 Also be sure to add:<br/> AllowOverride All <br/> 
 To the apache configuration of your site , this is very important so that the .htaccess file in the /uploads/ directory can deny direct access , to php or executables that can put your system in risk , the .htaccess file contains two lines
-<br/> 
+<br/> </b>
 Deny from all <br/> 
 AllowOverride none<br/> 
-</b>
+
+<b>To check if your settings are ok open security_test.html from your site </b>
 
 Finally you will need to change configuration.php to your webpage setup!
 
