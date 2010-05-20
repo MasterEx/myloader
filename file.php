@@ -1,5 +1,5 @@
 <?php
-require("configuration.php");
+require("configuration.php"); // File.php is not based on index.php so we require configuration.php
 
 /* THE MESSAGES CAN BE IMPROVED BUT SHOULD NOT TAKE MORE THAN 10 lines each in the php file*/
 function refuse_withoutcompression()

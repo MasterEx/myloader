@@ -35,12 +35,7 @@
      padding-top:55px;
    }
 
-#Logo
-   {
-     visibility:hidden;
-   }
- 
-
+#Logo { visibility:hidden; }
 a:link {color:#FF0000;}      /* unvisited link */
 a:visited {color:#CC0000;}  /* visited link */
 a:hover {color:#FF00FF;}  /* mouse over link */
@@ -72,19 +67,19 @@ a:active {color:#0000FF;}  /* selected link */
 
              $target_path = $base_path.$new_filename; 
               
-             if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path))
+             if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'],$target_path))
               {
-               echo "The file <b>".basename( $_FILES['uploadedfile']['name'])."</b> has been uploaded<br/>";
+                 echo "The file <b>".basename( $_FILES['uploadedfile']['name'])."</b> has been uploaded<br/>";
                
-               //TODO-> Fix add_to_cache_size($_FILES['uploadedfile']['size']); 
+                 add_to_cache_size($_FILES['uploadedfile']['size']); 
 
-               echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a><br/>";
-               $WILL_CHECK_IF_UPLOAD_DIR_NEEDS_CLEANING=1;
+                 echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a><br/>";
+                 $WILL_CHECK_IF_UPLOAD_DIR_NEEDS_CLEANING=1;
    
               }
                 else
               {
-                echo "There was an error uploading the file, please try again! 1 ";
+                echo "There was an error uploading the file, please try again! ( the file could not be moved ) ";
               } 
        }
      echo '<a href="index.php">Upload a new file!</a>';

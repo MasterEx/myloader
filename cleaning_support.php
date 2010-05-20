@@ -1,5 +1,4 @@
-<?php
-  require("configuration.php"); 
+<?php 
  /*
      NOT TESTED YET!
  */
@@ -28,7 +27,7 @@
 			$filehours=($now - $fileseconds)/3600;
 			if($filehours>$MAXIMUM_STAY_ON_SERVER_HOURS)
 			{
-			   // TODO -> remove_from_cache_size(filesize($target.$file));	
+			   remove_from_cache_size(filesize($target.$file));	
                            unlink($target.$file);
 			}
 		}
