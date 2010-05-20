@@ -96,7 +96,13 @@ a:active {color:#0000FF;}  /* selected link */
            <input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"33554432\" />
            File to upload: <input name=\"uploadedfile\" type=\"file\" /> 
            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-           <input type=\"submit\" value=\"Upload File\" name=\"submit\" /> 
+           <input type=\"submit\" value=\"Upload File\" name=\"submit\" />"; 
+     if ($ENABLE_RANDOM_FILE==1) 
+         {
+          echo "&nbsp;&nbsp;<input type=\"button\" value=\"R\" name=\"submit\" onclick=\"window.location.href='random.php';return false\" />"; 
+         }
+ echo 
+   "
    </form>
    </td></tr> 
    </table>
