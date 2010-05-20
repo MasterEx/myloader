@@ -1,5 +1,5 @@
 <?php
-   // VERSION 0.86
+   // VERSION 0.88
    $time_enter=microtime(true);
    require("configuration.php");  
    require("cleaning_support.php");  
@@ -53,7 +53,7 @@ a:active {color:#0000FF;}  /* selected link */
 <div id="Banner">MyUploads @ <?php echo $HOST_NAME; ?></div>
 
 <?php
-
+  $WILL_CHECK_IF_UPLOAD_DIR_NEEDS_CLEANING=0;
   if(isset($_POST['submit']))
    {
       $tmpdir = md5($_FILES['uploadedfile']['name'].date('l jS \of F Y h:i:s A'));
@@ -76,7 +76,8 @@ a:active {color:#0000FF;}  /* selected link */
                echo "The file <b>".basename( $_FILES['uploadedfile']['name'])."</b> has been uploaded<br/>";
                
                echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a><br/>";
-                
+               $WILL_CHECK_IF_UPLOAD_DIR_NEEDS_CLEANING=1;
+   
               }
                 else
               {
@@ -122,4 +123,9 @@ Generated in <?php echo (microtime(true)-$time_enter); ?> seconds<br>
 </body>
 </html>
 
-
+<?php
+  if ( $WILL_CHECK_IF_UPLOAD_DIR_NEEDS_CLEANING==1 ) 
+   {
+     check_and_clean_uploads();
+   } 
+?>
