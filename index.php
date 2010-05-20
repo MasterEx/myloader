@@ -3,7 +3,7 @@
    $time_enter=microtime(true);
    require("configuration.php");  
    require("cleaning_support.php");  
-   require("stat_keeper.php");  
+   require("stat_keeper.php");  //<- PROBLEM HERE 
    
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="el" xml:lang="el">

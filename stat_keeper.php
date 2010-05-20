@@ -1,5 +1,6 @@
 <?php
- 
+
+
 function add_to_cache_size($new_file_size)
   {
    if (!file_exists ("cache_size.ini"))
@@ -68,6 +69,7 @@ function get_cache_size()
     fclose($file);  
     return intval($theData); 
    } 
+   return 0;
  }
 
 ?>
