@@ -164,6 +164,8 @@ Written by <a href="http://periklis.is-a-geek.com/" title="Periklis Ntanasis" ta
       if ($uploaded_bandwidth>0) { echo number_format($uploaded_bandwidth / (1024*1024),2);
                                    echo " MB of data uploaded <br>"; 
                                  }
+
+      echo "Is ".$HOST_NAME." slow , <a href=\"mirrors.php\" target=\"_new\">try another host</a><br>";
 ?>
 
 Generated in <?php echo number_format((microtime(true)-$time_enter),4); ?> seconds<br>
