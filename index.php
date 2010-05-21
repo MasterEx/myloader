@@ -1,5 +1,5 @@
 <?php
-   $VERSION="0.90";
+   $VERSION="0.92";
    $time_enter=microtime(true);
    require("configuration.php");  
    require("cleaning_support.php");  
@@ -51,7 +51,7 @@
 
 #BannerInside
    {
-     background-image:url('<?php  $num=rand(1,$BANNER_NUMBER); echo $SCRIPT_WEB_BASE."images/banner_".$num.".jpg";?>');
+     background-image:url('<?php  $num=rand(1,$BANNER_NUMBER); echo $SCRIPT_WEB_BASE."images/".$BANNER_PREFIX.$num.".jpg";?>');
      background-repeat:no-repeat;
      width:600px;
      height:148px;
@@ -63,7 +63,7 @@
 
 #BannerMask
    {
-     background-image:url('images/banner_mask.png');
+     background-image:url('<?php echo "images/".$BANNER_PREFIX."mask.png"; ?>');
      background-repeat:no-repeat;
      width:600px;
      height:148px;
