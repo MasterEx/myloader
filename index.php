@@ -4,7 +4,33 @@
    require("configuration.php");  
    require("cleaning_support.php");  
    require("stat_keeper.php");   
+
+/***************************************************************************
+* Copyright (C) 2010 by Periklis Ntanasis , Ammar Qammaz *
+* 
+* *
+* This program is free software; you can redistribute it and/or modify *
+* it under the terms of the GNU General Public License as published by *
+* the Free Software Foundation; either version 2 of the License, or *
+* (at your option) any later version. *
+* *
+* This program is distributed in the hope that it will be useful, *
+* but WITHOUT ANY WARRANTY; without even the implied warranty of *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the *
+* GNU General Public License for more details. *
+* *
+* You should have received a copy of the GNU General Public License *
+* along with this program; if not, write to the *
+* Free Software Foundation, Inc., *
+* 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA. *
+***************************************************************************/
+
 ?>
+
+
+
+
+
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="el" xml:lang="el">
 <head>
 <META name="author" content="Periklis Ntanasis a.k.a. Master_ex , Ammar Qammaz a.k.a. AmmarkoV">
@@ -114,7 +140,9 @@ a:active {color:#0000FF;}  /* selected link */
 Every file should be < <?php $max_upload = (int)(ini_get('upload_max_filesize'));  echo $max_upload; ?> MB 
 and all the uploaded files are deleted in daily basis.<br>
 Written by <a href="http://periklis.is-a-geek.com/" title="Periklis Ntanasis" target="_new">Master_Ex</a> , 
-           <a href="http://ammarkov.ath.cx/" title="Ammar Qammaz" target="_new">AmmarkoV</a><br><br>
+           <a href="http://ammarkov.ath.cx/" title="Ammar Qammaz" target="_new">AmmarkoV</a> , MyUploads is opensource get it 
+           <a href="http://github.com/MasterEx/myloader" title="GitHub repository for MyUploads project" target="_new">here</a>
+           <br><br>
 
 
 <?php 
