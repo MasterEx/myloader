@@ -6,6 +6,7 @@
    $ENABLE_RANDOM_FILE = 1; // 1/0 Switch
 
                     //    MB
+   $MAXIMUM_UPLOAD_BANDWIDTH_QUOTA=   1              * 1024 * 1024 ; // 1GB max quotta for uploads
    $MAXIMUM_CACHE_QUOTA=   2024              * 1024 * 1024 ; // 2GB max quotta for uploads
    $MAXIMUM_STAY_ON_SERVER_HOURS=0; // 0 Means indefinately 
 ?>

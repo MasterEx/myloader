@@ -76,9 +76,19 @@ a:active {color:#0000FF;}  /* selected link */
 <?php
   echo "<!-- Version ".$VERSION." -->";
   $WILL_CHECK_IF_UPLOAD_DIR_NEEDS_CLEANING=0;
+  $cache_size = intval(get_cache_size()); //we get the cache size here because it is needed for the bottom line and for quota checks
+      
+
   if(isset($_POST['submit']))
    {
       $tmpdir = md5($_FILES['uploadedfile']['name'].date('l jS \of F Y h:i:s A'));
+
+      if ( ($MAXIMUM_CACHE_QUOTA!=0) && ($cache_size>$MAXIMUM_CACHE_QUOTA) )
+       {
+         echo "<h2> ".$HOST_NAME." has exceeded its storage quota </h2>";
+         echo "<h4> We are sorry but you will have to wait until some of the older content is removed , thank you!</h4>";
+       } 
+          else
       if($_FILES['uploadedfile']['size']>$LOCAL_PHP_FILE_LIMIT)
        {
          echo "Files > ".($LOCAL_PHP_FILE_LIMIT/(1024*1024))."MB are not permitted";
@@ -146,13 +156,17 @@ Written by <a href="http://periklis.is-a-geek.com/" title="Periklis Ntanasis" ta
 
 
 <?php 
-      $cache_size = intval(get_cache_size()); 
-      if ($cache_size>0) { echo $cache_size / (1024*1024);
+      if ($cache_size>0) { echo number_format($cache_size / (1024*1024),2);
                            echo " MB of shared data <br>"; 
                          }
+
+      $uploaded_bandwidth=get_uploaded_bandwidth();
+      if ($uploaded_bandwidth>0) { echo number_format($uploaded_bandwidth / (1024*1024),2);
+                                   echo " MB of data uploaded <br>"; 
+                                 }
 ?>
 
-Generated in <?php echo (microtime(true)-$time_enter); ?> seconds<br>
+Generated in <?php echo number_format((microtime(true)-$time_enter),4); ?> seconds<br>
 
 </span>
 </center>

@@ -21,6 +21,65 @@
 * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA. *
 ***************************************************************************/
 
+function add_to_uploaded_bandwidth($new_file_size)
+{ 
+   //echo "Adding a new file of total ".$new_file_size." bytes ";
+   if (!file_exists ("upload_size.ini"))
+   {
+     // AUTO GENERATION OF FILE :)
+     echo "Auto Generation of file while adding to upload_size! :P ";
+     $file=fopen("upload_size.ini","w+");
+     fwrite($file,0); 
+     fclose($file);   
+     return 0;
+   }  else
+   {
+    $theData=0;  $the_count=0;    
+
+    $file=fopen("upload_size.ini","r") or exit("Internal Cache Counting error!");
+    if ($file) 
+    { 
+     $theData = fread($file, filesize("upload_size.ini")); 
+     fclose($file);  
+     $the_count=intval($theData)+intval($new_file_size);
+    } else
+    { echo "Could not retrieve new filesize from cache :S<br>"; }
+
+    $file=fopen("upload_size.ini","w");
+    if ($file) 
+    {  
+     fwrite($file, $the_count); 
+     fclose($file);  
+    } else 
+    { echo "Could not add new filesize to cache :S<br>"; }
+
+    return $the_count;
+   }
+ 
+  echo "Something Weird Happening , this function should return before reaching here :P ";
+  return 0;
+}
+
+function get_uploaded_bandwidth()
+ {
+   if (!file_exists ("upload_size.ini"))
+   {
+     // AUTO GENERATION OF FILE :)
+     echo "Auto Generation of file while getting upload_size! :P ";
+     $file=fopen("upload_size.ini","w+");
+     fwrite($file,0); 
+     fclose($file);   
+     return 0;
+   }  else
+   {
+    $file=fopen("upload_size.ini","r") or exit("Internal Cache Counting error!");
+    $theData = fread($file, filesize("upload_size.ini")); 
+    fclose($file);  
+    return intval($theData); 
+   } 
+   return 0;
+ }
+
 
 function add_to_cache_size($new_file_size)
 { 

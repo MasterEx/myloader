@@ -1,5 +1,6 @@
 <?php
 require("configuration.php"); // File.php is not based on index.php so we require configuration.php
+require("stat_keeper.php"); // File.php is not based on index.php so we require stat_keeper.php
 
 
 /***************************************************************************
@@ -81,11 +82,13 @@ if ($fd = fopen ($fullPath, "r"))
     header("Content-Disposition: filename=\"".$filename_part."\"");
     header("Content-length: $fsize");
     header("Cache-control: private"); //use this to open files directly
-    while(!feof($fd)) {
+    while(!feof($fd)) 
+    {
         $buffer = fread($fd, 2048);
         echo $buffer;
-    }
- fclose ($fd);
+    }   
+   fclose ($fd);
+   add_to_uploaded_bandwidth($fsize);
 } else
 { 
    link_not_found();
