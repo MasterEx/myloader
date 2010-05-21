@@ -158,6 +158,8 @@ Written by <a href="http://periklis.is-a-geek.com/" title="Periklis Ntanasis" ta
 <?php 
        echo "Is ".$HOST_NAME." slow ? , <a href=\"mirrors.php\" target=\"_new\">try another host</a><br><br>";
 
+if ( $ENABLE_SHOW_STATS == 1 )
+ {
       if ($cache_size>0) { echo number_format($cache_size / (1024*1024),2);
                            echo " MB of shared data <br>"; 
                          }
@@ -166,7 +168,7 @@ Written by <a href="http://periklis.is-a-geek.com/" title="Periklis Ntanasis" ta
       if ($uploaded_bandwidth>0) { echo number_format($uploaded_bandwidth / (1024*1024),2);
                                    echo " MB of data uploaded <br>"; 
                                  }
-
+ }
     
 ?>
 
