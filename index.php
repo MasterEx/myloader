@@ -38,7 +38,7 @@
 <meta name="keywords" content="personal uploader" />
 <meta name="description" content="" />
 <meta name="distribution" content="global" />
-<title>MyUploads @ <?php echo $HOST_NAME; ?></title>
+<title>MyLoader @ <?php echo $HOST_NAME; ?></title>
 
 <style type="text/css">
 
@@ -71,7 +71,7 @@ a:active {color:#0000FF;}  /* selected link */
 </head>
 <body><img id="Logo" src="images/logo.png"> 
 <div><center><br><br>
-<div id="Banner">MyUploads <blink>@</blink> <?php echo $HOST_NAME; ?></div>
+<div id="Banner">MyLoader <blink>@</blink> <?php echo $HOST_NAME; ?></div>
 
 <?php
   echo "<!-- Version ".$VERSION." -->";
@@ -152,8 +152,8 @@ a:active {color:#0000FF;}  /* selected link */
 Every file should be < <?php $max_upload = (int)(ini_get('upload_max_filesize'));  echo $max_upload; ?> MB 
 and all the uploaded files are deleted in daily basis.<br>
 Written by <a href="http://periklis.is-a-geek.com/" title="Periklis Ntanasis" target="_new">Master_Ex</a> , 
-           <a href="http://ammarkov.ath.cx/" title="Ammar Qammaz" target="_new">AmmarkoV</a> , MyUploads is opensource get it 
-           <a href="http://github.com/MasterEx/myloader" title="GitHub repository for MyUploads project" target="_new">here</a>
+           <a href="http://ammarkov.ath.cx/" title="Ammar Qammaz" target="_new">AmmarkoV</a> , MyLoader is opensource get it 
+           <a href="http://github.com/MasterEx/myloader" title="GitHub repository for MyLoader project" target="_new">here</a>
            <br><br>
 
 

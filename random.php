@@ -77,7 +77,7 @@
                      <center>";
             echo "<a href=\"".$SCRIPT_WEB_BASE."file.php?i=".$file."\">".$file."</a> is the Lucky file<br><br>";
             echo "<a href=\"random.php\">See another random file!</a><br><br>";
-            echo "<a href=\"index.php\">Return to MyUploader!</a><br><br>";
+            echo "<a href=\"index.php\">Return to MyLoader!</a><br><br>";
             $file_parts = pathinfo($file); 
             $ext = strtolower($file_parts["extension"]);
            
@@ -106,6 +106,6 @@
    {
       echo "<h2>No File found!</h2>";
       echo "<a href=\"random.php\">See another random file!</a><br><br>";
-      echo "<a href=\"index.php\">Return to MyUploader!</a><br><br>";
+      echo "<a href=\"index.php\">Return to MyLoader!</a><br><br>";
    }
 ?>

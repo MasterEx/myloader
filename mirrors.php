@@ -13,7 +13,8 @@
           <body>
             <h2>My Uploads mirror servers : </h2><br><hr>
                 <a href=\"http://periklis.is-a-geek.com/myloader\">http://periklis.is-a-geek.com/myloader</a><br>
-                <a href=\"http://ammarkov.ath.cx/uploads/\">http://ammarkov.ath.cx/uploads/</a><br>
+                <a href=\"http://ammarkov.ath.cx/myloader/\">http://ammarkov.ath.cx/myloader/</a><br>
+                <a href=\"http://c00kiemon5ter.ath.cx/myloader/\">http://c00kiemon5ter.ath.cx/myloader/</a><br>
                 <hr>
           </body>
         </html>
@@ -26,7 +27,7 @@
          <html>   
           <body>
             <h2>Mirroring is disabled!</h2><br>
-            <a href=\"index.php\">Click here to go to the main site</a> 
+            <a href=\"index.php\">Click here to go to MyLoader</a> 
           </body>
         </html>
        ";
