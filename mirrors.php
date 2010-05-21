@@ -1,4 +1,10 @@
 <?php
+  require("configuration.php");
+  if 
+  ( $ENABLE_MIRROR_LINK == 1 ) 
+   
+  {
+ 
   echo "
          <html>  
           <head>
@@ -12,4 +18,18 @@
           </body>
         </html>
        ";
+
+  } else
+
+  {
+     echo "
+         <html>   
+          <body>
+            <h2>Mirroring is disabled!</h2><br>
+            <a href=\"index.php\">Click here to go to the main site</a> 
+          </body>
+        </html>
+       ";
+  
+  }
 ?>
