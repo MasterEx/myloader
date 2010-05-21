@@ -40,13 +40,8 @@ function link_not_found()
           Your link is invalid , or maybe the file expired..
          </body></html>"; 
 }
-
-$path = $_SERVER['DOCUMENT_ROOT']."/uploads/uploads/"; // change the path to fit your websites document structure
-$oldfullPath = $path.$_GET['i'];
-
-//$path = $SCRIPT_WEB_BASE."uploads/"; // <- Ayto synexizei na min doulevei
-
-$fullPath =  $SCRIPT_LOCAL_BASE."uploads/".$_GET['i'];
+ 
+$fullPath =  $SCRIPT_LOCAL_BASE.$SCRIPT_CACHE_FOLDERNAME."/".$_GET['i'];
 
 if ($fd = fopen ($fullPath, "r")) 
 {

@@ -95,7 +95,7 @@ a:active {color:#0000FF;}  /* selected link */
        }
           else
        { 
-             $base_path = "./uploads/";
+             $base_path = "./".$SCRIPT_CACHE_FOLDERNAME."/";
              $new_filename = $tmpdir."-".basename( $_FILES['uploadedfile']['name']);
               
              //New file.php file sender 

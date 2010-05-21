@@ -45,8 +45,8 @@
     echo "<html><body>Random File Support is disabled</body></html>";
   } else
   { 
-     $dir_handle  =  @opendir("./uploads/")  or  die("Unable  to  open  $path");
-     $file_to_choose = rand(1,num_files("./uploads/",false)-3); // We want a number between 1 and filenum , we have 3 default files in
+     $dir_handle  =  @opendir("./".$SCRIPT_CACHE_FOLDERNAME."/")  or  die("Unable  to  open  $path");
+     $file_to_choose = rand(1,num_files("./".$SCRIPT_CACHE_FOLDERNAME."/",false)-3); // We want a number between 1 and filenum , we have 3 default files in
      $counter=0;
      while  ($file  =  readdir($dir_handle))  
       {
