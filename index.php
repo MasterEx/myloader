@@ -165,7 +165,7 @@ Written by <a href="http://periklis.is-a-geek.com/" title="Periklis Ntanasis" ta
                                    echo " MB of data uploaded <br>"; 
                                  }
 
-      echo "Is ".$HOST_NAME." slow , <a href=\"mirrors.php\" target=\"_new\">try another host</a><br>";
+      echo "Is ".$HOST_NAME." slow ? , <a href=\"mirrors.php\" target=\"_new\">try another host</a><br>";
 ?>
 
 Generated in <?php echo number_format((microtime(true)-$time_enter),4); ?> seconds<br>
