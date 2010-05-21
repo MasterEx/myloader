@@ -42,9 +42,12 @@ function link_not_found()
 }
 
 $path = $_SERVER['DOCUMENT_ROOT']."/uploads/uploads/"; // change the path to fit your websites document structure
-//$path = $SCRIPT_WEB_BASE."/uploads/"; // <- Ayto synexizei na min doulevei
-$fullPath = $path.$_GET['i'];
- 
+$oldfullPath = $path.$_GET['i'];
+
+//$path = $SCRIPT_WEB_BASE."uploads/"; // <- Ayto synexizei na min doulevei
+
+$fullPath =  $SCRIPT_LOCAL_BASE."uploads/".$_GET['i'];
+
 if ($fd = fopen ($fullPath, "r")) 
 {
     $fsize = filesize($fullPath);
@@ -91,7 +94,9 @@ if ($fd = fopen ($fullPath, "r"))
    add_to_uploaded_bandwidth($fsize);
 } else
 { 
-   link_not_found();
+   link_not_found();/* DEBUG ONLY :P
+   echo "<br><br>".$oldfullPath;
+   echo "<br><br>".$fullPath;*/
 }
 exit; 
 ?>
