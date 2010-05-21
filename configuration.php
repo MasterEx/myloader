@@ -4,7 +4,10 @@
    $SCRIPT_WEB_BASE="http://ammarkov.ath.cx/uploads/";
    $SCRIPT_LOCAL_BASE="/home/ammar/public_html/atech/uploads/";
    $SCRIPT_CACHE_FOLDERNAME="uploads";
+
    $LOCAL_PHP_FILE_LIMIT=20  *1024*1024; // 20 MB
+
+   $BANNER_NUMBER = 6;
    $ENABLE_SHOW_STATS = 1; // 1/0 Switch
    $ENABLE_RANDOM_FILE = 1; // 1/0 Switch
 
