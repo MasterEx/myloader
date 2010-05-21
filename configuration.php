@@ -8,6 +8,7 @@
    $LOCAL_PHP_FILE_LIMIT=20  *1024*1024; // 20 MB
 
    $BANNER_NUMBER = 6;
+   $ENABLE_MIRROR_LINK = 1; // 1/0 Switch
    $ENABLE_SHOW_STATS = 1; // 1/0 Switch
    $ENABLE_RANDOM_FILE = 1; // 1/0 Switch
 

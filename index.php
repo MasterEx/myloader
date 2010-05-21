@@ -1,5 +1,5 @@
 <?php
-   $VERSION="0.89";
+   $VERSION="0.90";
    $time_enter=microtime(true);
    require("configuration.php");  
    require("cleaning_support.php");  
@@ -87,6 +87,8 @@ a:active {color:#0000FF;}  /* selected link */
        {
          echo "<h2> ".$HOST_NAME." has exceeded its storage quota </h2>";
          echo "<h4> We are sorry but you will have to wait until some of the older content is removed , thank you!</h4>";
+         if ( $ENABLE_MIRROR_LINK == 1 )
+          { echo "<h5> You can also <a href=\"mirrors.php\">try another host</a></h5>"; } 
        } 
           else
       if($_FILES['uploadedfile']['size']>$LOCAL_PHP_FILE_LIMIT)
@@ -115,7 +117,7 @@ a:active {color:#0000FF;}  /* selected link */
               }
                 else
               {
-                echo "There was an error uploading the file, please try again! ( the file could not be moved ) ";
+                echo "There was an error uploading the file, please try again! ( the file could not be moved )<br> ";
               } 
        }
      echo '<a href="index.php">Upload a new file!</a>';
@@ -156,7 +158,12 @@ Written by <a href="http://periklis.is-a-geek.com/" title="Periklis Ntanasis" ta
 
 
 <?php 
+
+if ( $ENABLE_MIRROR_LINK == 1 )
+ {
        echo "Is ".$HOST_NAME." slow ? , <a href=\"mirrors.php\" target=\"_new\">try another host</a><br><br>";
+ }
+
 
 if ( $ENABLE_SHOW_STATS == 1 )
  {
