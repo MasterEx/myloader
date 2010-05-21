@@ -49,7 +49,7 @@
     font-style:italic; 
    }
 
-#Banner
+#BannerInside
    {
      background-image:url('<?php  $num=rand(1,$BANNER_NUMBER); echo $SCRIPT_WEB_BASE."images/banner_".$num.".jpg";?>');
      background-repeat:no-repeat;
@@ -57,8 +57,21 @@
      height:148px;
      color:#EEEEEE;
      font-size:33px;
-     font-weight:900; 
-     padding-top:55px;
+     font-weight:900;  
+     #clip:rect(0px,00px,600px,148px);
+   }
+
+#BannerMask
+   {
+     background-image:url('images/banner_mask.png');
+     background-repeat:no-repeat;
+     width:600px;
+     height:148px;
+     color:#EEEEEE;
+     font-size:33px;
+     font-weight:900;  
+     position:absolute;
+     z-index:100;
    }
 
 #Logo { visibility:hidden; }
@@ -71,7 +84,7 @@ a:active {color:#0000FF;}  /* selected link */
 </head>
 <body><img id="Logo" src="images/logo.png"> 
 <div><center><br><br>
-<div id="Banner">MyLoader <blink>@</blink> <?php echo $HOST_NAME; ?></div>
+<div width=600 height=148 id="BannerInside"><table width=600 height=148 id="BannerMask"><tr><td align="center">MyLoader <blink>@</blink> <?php echo $HOST_NAME; ?></td></tr></table></div>
 
 <?php
   echo "<!-- Version ".$VERSION." -->";
