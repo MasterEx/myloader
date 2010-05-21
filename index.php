@@ -51,7 +51,7 @@
 
 #Banner
    {
-     background-image:url('<?php  $num=rand(1,3); echo $SCRIPT_WEB_BASE."images/banner_".$num.".jpg";?>');
+     background-image:url('<?php  $num=rand(1,6); echo $SCRIPT_WEB_BASE."images/banner_".$num.".jpg";?>');
      background-repeat:no-repeat;
      width:600px;
      height:148px;
