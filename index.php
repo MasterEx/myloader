@@ -1,5 +1,5 @@
 <?php
-   $VERSION="0.925";
+   $VERSION="0.926";
    $time_enter=microtime(true);
    require("configuration.php");  
    require("cleaning_support.php");  
@@ -145,7 +145,7 @@
 ?>
 <br/><br/><br/><br/>
 <?php echo $BEFOREFOOTER_HTML_INJECTION;  
-  write_footer($time_enter,$HOST_NAME,$cache_size,$ENABLE_FILE_INDEXING,$ENABLE_MIRROR_LINK,$ENABLE_SHOW_STATS);
+  write_footer($time_enter,$HOST_NAME,$LOCAL_PHP_FILE_LIMIT,$cache_size,$ENABLE_FILE_INDEXING,$ENABLE_MIRROR_LINK,$ENABLE_SHOW_STATS);
  echo $AFTERFOOTER_HTML_INJECTION; ?>
 </center>
 </div>

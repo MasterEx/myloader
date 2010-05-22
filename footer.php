@@ -1,10 +1,10 @@
 <?php  
 
-function write_footer($starttime,$servername,$cache_size,$fileindex_sw,$mirrorlink_sw,$showstats_sw)
+function write_footer($starttime,$servername,$localfilelimit,$cache_size,$fileindex_sw,$mirrorlink_sw,$showstats_sw)
 {
  echo "<span id=\"Footnote\">Every file should be < ";
                         $max_upload = (int)(ini_get('upload_max_filesize')); 
-                        if ($max_upload>$LOCAL_PHP_FILE_LIMIT) $max_upload=$LOCAL_PHP_FILE_LIMIT;
+                        if ($max_upload>$localfilelimit) $max_upload=$localfilelimit;
                         echo $max_upload."MB and all the uploaded files are deleted in daily basis.<br>";
 
 
