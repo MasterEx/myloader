@@ -85,7 +85,7 @@
 ?>
 <br/><br/><b><a href="index.php">Go Back?</a></b><br/><br/>
  <?php
-   write_footer($time_enter);
+   write_footer($time_enter,$HOST_NAME,$ENABLE_FILE_INDEXING,$ENABLE_MIRROR_LINK,$ENABLE_SHOW_STATS);
   ?>
 </center>
 </body>

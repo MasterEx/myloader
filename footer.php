@@ -1,17 +1,13 @@
-<?php 
-require("configuration.php"); 
+<?php  
 
-function write_footer($starttime)
+function write_footer($starttime,$servername,$fileindex_sw,$mirrorlink_sw,$showstats_sw)
 {
  echo "<span id=\"Footnote\">Every file should be < ";
                         $max_upload = (int)(ini_get('upload_max_filesize')); 
                         if ($max_upload>$LOCAL_PHP_FILE_LIMIT) $max_upload=$LOCAL_PHP_FILE_LIMIT;
                         echo $max_upload."MB and all the uploaded files are deleted in daily basis.<br>";
 
-if($ENABLE_FILE_INDEXING==1)
-{
-	echo "View file list <a href=\"list.php\">here</a><br/>";
-}
+
 
 echo
 "
@@ -22,14 +18,17 @@ Written by <a href=\"http://periklis.is-a-geek.com/\" title=\"Periklis Ntanasis\
 ";
 
 
-
-if ( $ENABLE_MIRROR_LINK == 1 )
+if($fileindex_sw==1)
+{
+	echo "View file list <a href=\"list.php\">here</a><br/>";
+}
+if ( $mirrorlink_sw == 1 )
  {
-       echo "Is ".$HOST_NAME." slow ? , <a href=\"mirrors.php\" target=\"_blank\">try another host</a><br><br>";
+       echo "Is ".$servername." slow ? , <a href=\"mirrors.php\" target=\"_blank\">try another host</a><br><br>";
  }
 
 
-if ( $ENABLE_SHOW_STATS == 1 )
+if ( $showstats_sw == 1 )
  {
       if ($cache_size>0) { echo number_format($cache_size / (1024*1024),2);
                            echo " MB of shared data <br>"; 
