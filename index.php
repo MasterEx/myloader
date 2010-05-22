@@ -1,5 +1,5 @@
 <?php
-   $VERSION="0.921";
+   $VERSION="0.922";
    $time_enter=microtime(true);
    require("configuration.php");  
    require("cleaning_support.php");  
@@ -132,7 +132,7 @@ a:active {color:#0000FF;}  /* selected link */
                 echo "There was an error uploading the file, please try again! ( the file could not be moved )<br> ";
               } 
        }
-     echo '<a href="index.php">Upload a new file!</a>';
+     echo '<a href="index.php">Return to MyLoader!</a>';
    }
  else
 {  
@@ -148,7 +148,7 @@ a:active {color:#0000FF;}  /* selected link */
            <input type=\"submit\" value=\"Upload File\" name=\"submit\" />"; 
      if ($ENABLE_RANDOM_FILE==1) 
          {
-          echo "&nbsp;&nbsp;<input type=\"button\" value=\"R\" name=\"submit\" onclick=\"window.location.href='random.php';return false\" />"; 
+          echo "&nbsp;&nbsp;<input type=\"button\" value=\"".$RANDOM_FILE_BUTTON_LABEL."\" name=\"submit\" onclick=\"window.location.href='random.php';return false\" />"; 
          }
  echo 
    "
