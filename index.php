@@ -120,8 +120,7 @@ a:active {color:#0000FF;}  /* selected link */
               
              if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'],$target_path))
               {
-                 echo "The file <b>".basename( $_FILES['uploadedfile']['name'])."</b> has been uploaded<br/>";
-               
+                 echo "<br/>The file <b>".basename( $_FILES['uploadedfile']['name'])."</b> has been uploaded<br/>";
                  add_to_cache_size($_FILES['uploadedfile']['size']); 
 
                  echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a><br/>";
