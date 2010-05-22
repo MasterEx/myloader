@@ -32,7 +32,6 @@
 	global $MAXIMUM_STAY_ON_SERVER_HOURS, $SCRIPT_LOCAL_BASE;
 	if($MAXIMUM_STAY_ON_SERVER_HOURS!=0)
 	{
-		echo "run";
 		$target=$SCRIPT_LOCAL_BASE."uploads/";
 		$files=scandir($target);
 		$now=date("U");
@@ -44,13 +43,10 @@
 			}
 			$fileseconds=date("U", filemtime($target.$file));
 			$filehours=($now - $fileseconds)/3600;
-			echo "in";
 			if($filehours>$MAXIMUM_STAY_ON_SERVER_HOURS)
 			{
-				echo "not in";
 			   remove_from_cache_size(filesize($target.$file));	
                            unlink($target.$file);
-                           echo "not in2";
 			}
 		}
 	}
