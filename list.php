@@ -20,8 +20,9 @@
 * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA. *
 ***************************************************************************/
         $time_enter=microtime(true); 
-	require("configuration.php"); 
-        require("stat_keeper.php");  
+		require("configuration.php"); 
+        require("stat_keeper.php");
+		require("cleaning_support.php");  
         require("footer.php");  
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="el" xml:lang="el">
@@ -37,6 +38,10 @@
 <body>
 <center>
 <?php
+	if ( $WILL_CHECK_IF_UPLOAD_DIR_NEEDS_CLEANING==1 ) 
+	{
+		check_and_clean_uploads();
+	} 
 	if($ENABLE_FILE_INDEXING==1)
 	{
 ?>
