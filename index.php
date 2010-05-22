@@ -160,6 +160,12 @@ Every file should be < <?php $max_upload = (int)(ini_get('upload_max_filesize'))
                         echo $max_upload; 
                        ?> MB 
 and all the uploaded files are deleted in daily basis.<br>
+<?php
+if($ENABLE_FILE_INDEXING==1)
+{
+	echo 'View file list <a href="list.php">here</a><br/>';
+}
+?>
 Written by <a href="http://periklis.is-a-geek.com/" title="Periklis Ntanasis" target="_blank">Master_Ex</a> , 
            <a href="http://ammarkov.ath.cx/" title="Ammar Qammaz" target="_blank">AmmarkoV</a> , MyLoader is opensource get it 
            <a href="http://github.com/MasterEx/myloader" title="GitHub repository for MyLoader project" target="_blank">here</a>
