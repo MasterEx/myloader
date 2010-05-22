@@ -1,6 +1,6 @@
 <?php  
 
-function write_footer($starttime,$servername,$fileindex_sw,$mirrorlink_sw,$showstats_sw)
+function write_footer($starttime,$servername,$cache_size,$fileindex_sw,$mirrorlink_sw,$showstats_sw)
 {
  echo "<span id=\"Footnote\">Every file should be < ";
                         $max_upload = (int)(ini_get('upload_max_filesize')); 
