@@ -50,6 +50,7 @@
 	<tr>
 			<td>File name</td>
 			<td>Hours on server</td>
+			<td>~ Size (KB)</td>
 	</tr>
 <?php
 		$target=$SCRIPT_LOCAL_BASE."uploads/";
@@ -78,6 +79,7 @@
 			<tr>
 				<td bgcolor='.$color.'> <a href="file.php?i='.$file.'">'.$filename.'</a> </td>
 				<td bgcolor='.$color.'> '.intval($filehours).' </td>
+				<td bgcolor='.$color.'>'.intval(filesize($target.$file)/1024).'</td>
 			</tr>
 		';
 		}
