@@ -1,5 +1,5 @@
 <?php
-   $VERSION="0.92";
+   $VERSION="0.921";
    $time_enter=microtime(true);
    require("configuration.php");  
    require("cleaning_support.php");  

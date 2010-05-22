@@ -75,8 +75,7 @@
                    </head>
                    <body>
                      <center>";
-            echo "<a href=\"".$SCRIPT_WEB_BASE."file.php?i=".$file."\">".$file."</a> is the Lucky file<br><br>";
-            echo "<a href=\"random.php\">See another random file!</a><br><br>";
+            echo "<br><a href=\"random.php\">See another random file!</a><br><br>";
             echo "<a href=\"index.php\">Return to MyLoader!</a><br><br>";
             $file_parts = pathinfo($file); 
             $ext = strtolower($file_parts["extension"]);
@@ -87,10 +86,14 @@
                  ( $ext == "jpeg" )
                )
             {
-                 echo "<img src=\"".$SCRIPT_WEB_BASE."file.php?i=".$file."\"><br>";
+                 echo "<a href=\"".$SCRIPT_WEB_BASE."file.php?i=".$file."\"><img src=\"".$SCRIPT_WEB_BASE."file.php?i=".$file."\"></a><br><br>";
+                 echo "<a href=\"".$SCRIPT_WEB_BASE."file.php?i=".$file."\">".$file."</a><br><br>";
+            
             } else
             {
-                 echo "If you want you can download the file by clicking its link.. <br>Only png/gif/jpg/jpeg files will be embedded to this page for fast viewing :)";
+                 echo "If you want you can download the file by clicking its link.. <br>Only png/gif/jpg/jpeg files will be embedded to this page for fast viewing :)<br><br>";
+                 echo "<a href=\"".$SCRIPT_WEB_BASE."file.php?i=".$file."\"><img src=\"images/logo.png\"></a><br><br>";
+                 echo "<a href=\"".$SCRIPT_WEB_BASE."file.php?i=".$file."\">".$file."</a><br><br>"; 
             }
             echo "   </center>";
             echo " </body>
