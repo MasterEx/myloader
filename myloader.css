@@ -1,0 +1,17 @@
+#Footnote
+   {     
+    color:#000000;
+    font-size:9px;
+    font-style:italic; 
+   }
+ 
+#Logo 
+   { 
+     visibility:hidden; 
+   }
+
+a:link {color:#FF0000;}      /* unvisited link */
+a:visited {color:#CC0000;}  /* visited link */
+a:hover {color:#FF00FF;}  /* mouse over link */
+a:active {color:#0000FF;}  /* selected link */
+

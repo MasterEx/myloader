@@ -19,9 +19,10 @@
 * Free Software Foundation, Inc., *
 * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA. *
 ***************************************************************************/
-
+        $time_enter=microtime(true); 
 	require("configuration.php"); 
-
+        require("stat_keeper.php");  
+        require("footer.php");  
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="el" xml:lang="el">
 <head>
@@ -31,48 +32,7 @@
 <meta name="description" content="" />
 <meta name="distribution" content="global" />
 <title>MyLoader @ <?php echo $HOST_NAME; ?></title>
-
-<style type="text/css">
-
-#Footnote
-   {     
-    color:#000000;
-    font-size:9px;
-    font-style:italic; 
-   }
-
-#BannerInside
-   {
-     background-image:url('<?php  $num=rand(1,$BANNER_NUMBER); echo $SCRIPT_WEB_BASE."images/".$BANNER_PREFIX.$num.".jpg";?>');
-     background-repeat:no-repeat;
-     width:600px;
-     height:148px;
-     color:#EEEEEE;
-     font-size:33px;
-     font-weight:900;  
-     #clip:rect(0px,00px,600px,148px);
-   }
-
-#BannerMask
-   {
-     background-image:url('<?php echo "images/".$BANNER_PREFIX."mask.png"; ?>');
-     background-repeat:no-repeat;
-     width:600px;
-     height:148px;
-     color:#EEEEEE;
-     font-size:33px;
-     font-weight:900;  
-     position:absolute;
-     z-index:100;
-   }
-
-#Logo { visibility:hidden; }
-a:link {color:#FF0000;}      /* unvisited link */
-a:visited {color:#CC0000;}  /* visited link */
-a:hover {color:#FF00FF;}  /* mouse over link */
-a:active {color:#0000FF;}  /* selected link */
-</style>
-
+<link rel="stylesheet" type="text/css" href="myloader.css" />
 </head>
 <body>
 <center>
@@ -124,40 +84,9 @@ a:active {color:#0000FF;}  /* selected link */
 	
 ?>
 <br/><br/><b><a href="index.php">Go Back?</a></b><br/><br/>
-<span id="Footnote">
-Every file should be < <?php $max_upload = (int)(ini_get('upload_max_filesize'));  echo $max_upload; ?> MB 
-and all the uploaded files are deleted in daily basis.<br>
-Written by <a href="http://periklis.is-a-geek.com/" title="Periklis Ntanasis" target="_new">Master_Ex</a> , 
-           <a href="http://ammarkov.ath.cx/" title="Ammar Qammaz" target="_new">AmmarkoV</a> , MyLoader is opensource get it 
-           <a href="http://github.com/MasterEx/myloader" title="GitHub repository for MyLoader project" target="_new">here</a>
-           <br><br>
-
-
-<?php 
-
-if ( $ENABLE_MIRROR_LINK == 1 )
- {
-       echo "Is ".$HOST_NAME." slow ? , <a href=\"mirrors.php\" target=\"_new\">try another host</a><br><br>";
- }
-
-
-if ( $ENABLE_SHOW_STATS == 1 )
- {
-      if ($cache_size>0) { echo number_format($cache_size / (1024*1024),2);
-                           echo " MB of shared data <br>"; 
-                         }
-
-      $uploaded_bandwidth=get_uploaded_bandwidth();
-      if ($uploaded_bandwidth>0) { echo number_format($uploaded_bandwidth / (1024*1024),2);
-                                   echo " MB of data uploaded <br>"; 
-                                 }
- }
-    
-?>
-
-Generated in <?php echo number_format((microtime(true)-$time_enter),4); ?> seconds<br>
-
-</span>
+ <?php
+   write_footer($time_enter);
+  ?>
 </center>
 </body>
 </html>

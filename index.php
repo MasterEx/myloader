@@ -1,9 +1,10 @@
 <?php
-   $VERSION="0.923";
+   $VERSION="0.925";
    $time_enter=microtime(true);
    require("configuration.php");  
    require("cleaning_support.php");  
    require("stat_keeper.php");   
+   require("footer.php");   
 
 /***************************************************************************
 * Copyright (C) 2010 by Periklis Ntanasis , Ammar Qammaz *
@@ -37,14 +38,6 @@
 
 <link rel="stylesheet" type="text/css" href="myloader.css" />
 <style type="text/css">
-
-#Footnote
-   {     
-    color:#000000;
-    font-size:9px;
-    font-style:italic; 
-   }
-
 #BannerInside
    {
      background-image:url('<?php  $num=rand(1,$BANNER_NUMBER); echo $SCRIPT_WEB_BASE."images/".$BANNER_PREFIX.$num.".jpg";?>');
@@ -69,8 +62,6 @@
      position:absolute;
      z-index:100;
    }
-
-#Logo { visibility:hidden; }
 </style>
 <?php echo $HEAD_HTML_INJECTION; ?>
 </head>
@@ -153,50 +144,9 @@
 }
 ?>
 <br/><br/><br/><br/>
-<?php echo $BEFOREFOOTER_HTML_INJECTION; ?>
-<span id="Footnote">
-Every file should be < <?php $max_upload = (int)(ini_get('upload_max_filesize')); 
-                        if ($max_upload>$LOCAL_PHP_FILE_LIMIT) $max_upload=$LOCAL_PHP_FILE_LIMIT;
-                        echo $max_upload; 
-                       ?> MB 
-and all the uploaded files are deleted in daily basis.<br>
-<?php
-if($ENABLE_FILE_INDEXING==1)
-{
-	echo 'View file list <a href="list.php">here</a><br/>';
-}
-?>
-Written by <a href="http://periklis.is-a-geek.com/" title="Periklis Ntanasis" target="_blank">Master_Ex</a> , 
-           <a href="http://ammarkov.ath.cx/" title="Ammar Qammaz" target="_blank">AmmarkoV</a> , MyLoader is opensource get it 
-           <a href="http://github.com/MasterEx/myloader" title="GitHub repository for MyLoader project" target="_blank">here</a>
-           <br><br>
-
-
-<?php 
-
-if ( $ENABLE_MIRROR_LINK == 1 )
- {
-       echo "Is ".$HOST_NAME." slow ? , <a href=\"mirrors.php\" target=\"_blank\">try another host</a><br><br>";
- }
-
-
-if ( $ENABLE_SHOW_STATS == 1 )
- {
-      if ($cache_size>0) { echo number_format($cache_size / (1024*1024),2);
-                           echo " MB of shared data <br>"; 
-                         }
-
-      $uploaded_bandwidth=get_uploaded_bandwidth();
-      if ($uploaded_bandwidth>0) { echo number_format($uploaded_bandwidth / (1024*1024),2);
-                                   echo " MB of data uploaded <br>"; 
-                                 }
- }
-    
-?>
-
-Generated in <?php echo number_format((microtime(true)-$time_enter),4); ?> seconds<br>
-</span><br>
-<?php echo $AFTERFOOTER_HTML_INJECTION; ?>
+<?php echo $BEFOREFOOTER_HTML_INJECTION;  
+  write_footer($time_enter);
+ echo $AFTERFOOTER_HTML_INJECTION; ?>
 </center>
 </div>
 </body>
