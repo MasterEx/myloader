@@ -1,5 +1,7 @@
 <?php 
 
+/* configuration.php and stat_keeper.php are required before this */
+
 /***************************************************************************
 * Copyright (C) 2010 by Periklis Ntanasis , Ammar Qammaz *
 * 
@@ -25,35 +27,34 @@
      NOT TESTED YET!
  */
 
-/*
-                    //    MB
-   $MAXIMUM_CACHE_QUOTA=   2024              * 1024 * 1024 ; // 2GB max quotta for uploads
-   $MAXIMUM_STAY_ON_SERVER_HOURS=0; // 0 Means indefinately 
-   Moved to configuration :D
-*/
-
  function check_and_clean_uploads()
  {
+	global $MAXIMUM_STAY_ON_SERVER_HOURS, $SCRIPT_LOCAL_BASE;
 	if($MAXIMUM_STAY_ON_SERVER_HOURS!=0)
 	{
-		$target=$SCRIPT_WEB_BASE."uploads/";
+		echo "run";
+		$target=$SCRIPT_LOCAL_BASE."uploads/";
 		$files=scandir($target);
 		$now=date("U");
 		foreach($files as $file)
 		{
-			if(strcmp($file,"index.html")==0 || strcmp($file,"check_x.png")==0)
+			if(strcmp($file,"index.html")==0 || strcmp($file,"check_x.png")==0 || strcmp($file,".")==0 || strcmp($file,"..")==0 || strcmp($file,".htaccess")==0)
 			{
 				continue;
 			}
-			$fileseconds=date("U", filemtime($file));
+			$fileseconds=date("U", filemtime($target.$file));
 			$filehours=($now - $fileseconds)/3600;
+			echo "in";
 			if($filehours>$MAXIMUM_STAY_ON_SERVER_HOURS)
 			{
+				echo "not in";
 			   remove_from_cache_size(filesize($target.$file));	
                            unlink($target.$file);
+                           echo "not in2";
 			}
 		}
 	}
  }
+ 
 
 ?>

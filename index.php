@@ -1,9 +1,9 @@
 <?php
-   $VERSION="0.926";
+   $VERSION="0.927";
    $time_enter=microtime(true);
-   require("configuration.php");  
-   require("cleaning_support.php");  
+   require("configuration.php");   
    require("stat_keeper.php");   
+   require("cleaning_support.php");   
    require("footer.php");   
 
 /***************************************************************************
@@ -155,7 +155,6 @@
 <?php
   if ( $WILL_CHECK_IF_UPLOAD_DIR_NEEDS_CLEANING==1 ) 
    {
-    // Disabled for now , first make sure code in cleaning support is stable
-    // check_and_clean_uploads();
+		check_and_clean_uploads();
    } 
 ?>
