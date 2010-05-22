@@ -164,9 +164,9 @@ a:active {color:#0000FF;}  /* selected link */
 <span id="Footnote">
 Every file should be < <?php $max_upload = (int)(ini_get('upload_max_filesize'));  echo $max_upload; ?> MB 
 and all the uploaded files are deleted in daily basis.<br>
-Written by <a href="http://periklis.is-a-geek.com/" title="Periklis Ntanasis" target="_new">Master_Ex</a> , 
-           <a href="http://ammarkov.ath.cx/" title="Ammar Qammaz" target="_new">AmmarkoV</a> , MyLoader is opensource get it 
-           <a href="http://github.com/MasterEx/myloader" title="GitHub repository for MyLoader project" target="_new">here</a>
+Written by <a href="http://periklis.is-a-geek.com/" title="Periklis Ntanasis" target="_blank">Master_Ex</a> , 
+           <a href="http://ammarkov.ath.cx/" title="Ammar Qammaz" target="_blank">AmmarkoV</a> , MyLoader is opensource get it 
+           <a href="http://github.com/MasterEx/myloader" title="GitHub repository for MyLoader project" target="_blank">here</a>
            <br><br>
 
 
@@ -174,7 +174,7 @@ Written by <a href="http://periklis.is-a-geek.com/" title="Periklis Ntanasis" ta
 
 if ( $ENABLE_MIRROR_LINK == 1 )
  {
-       echo "Is ".$HOST_NAME." slow ? , <a href=\"mirrors.php\" target=\"_new\">try another host</a><br><br>";
+       echo "Is ".$HOST_NAME." slow ? , <a href=\"mirrors.php\" target=\"_blank\">try another host</a><br><br>";
  }
 
 
