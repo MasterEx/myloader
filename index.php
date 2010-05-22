@@ -72,7 +72,6 @@
 
 <?php
   echo "<!-- Version ".$VERSION." -->";
-  $WILL_CHECK_IF_UPLOAD_DIR_NEEDS_CLEANING=0;
   $cache_size = intval(get_cache_size()); //we get the cache size here because it is needed for the bottom line and for quota checks
       
 
