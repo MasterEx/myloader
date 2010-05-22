@@ -145,7 +145,7 @@
 ?>
 <br/><br/><br/><br/>
 <?php echo $BEFOREFOOTER_HTML_INJECTION;  
-  write_footer($time_enter,$HOST_NAME,$ENABLE_FILE_INDEXING,$ENABLE_MIRROR_LINK,$ENABLE_SHOW_STATS);
+  write_footer($time_enter,$HOST_NAME,$cache_size,$ENABLE_FILE_INDEXING,$ENABLE_MIRROR_LINK,$ENABLE_SHOW_STATS);
  echo $AFTERFOOTER_HTML_INJECTION; ?>
 </center>
 </div>
