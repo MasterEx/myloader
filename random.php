@@ -66,12 +66,7 @@
             $file_served=1;
             echo "<html>
                    <head>
-                     <style type=\"text/css\">
-                       a:link {color:#FF0000;}
-                       a:visited {color:#CC0000;}
-                       a:hover {color:#FF00FF;}
-                       a:active {color:#0000FF;} 
-                     </style>
+                     <link rel=\"stylesheet\" type=\"text/css\" href=\"myloader.css\" />
                    </head>
                    <body>
                      <center>";

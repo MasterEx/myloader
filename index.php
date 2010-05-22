@@ -1,5 +1,5 @@
 <?php
-   $VERSION="0.922";
+   $VERSION="0.923";
    $time_enter=microtime(true);
    require("configuration.php");  
    require("cleaning_support.php");  
@@ -26,11 +26,6 @@
 ***************************************************************************/
 
 ?>
-
-
-
-
-
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="el" xml:lang="el">
 <head>
 <META name="author" content="Periklis Ntanasis a.k.a. Master_ex , Ammar Qammaz a.k.a. AmmarkoV">
@@ -40,6 +35,7 @@
 <meta name="distribution" content="global" />
 <title>MyLoader @ <?php echo $HOST_NAME; ?></title>
 
+<link rel="stylesheet" type="text/css" href="myloader.css" />
 <style type="text/css">
 
 #Footnote
@@ -75,16 +71,13 @@
    }
 
 #Logo { visibility:hidden; }
-a:link {color:#FF0000;}      /* unvisited link */
-a:visited {color:#CC0000;}  /* visited link */
-a:hover {color:#FF00FF;}  /* mouse over link */
-a:active {color:#0000FF;}  /* selected link */
 </style>
-
+<?php echo $HEAD_HTML_INJECTION; ?>
 </head>
 <body><img id="Logo" src="images/logo.png"> 
 <div><center><br><br>
 <div width=600 height=148 id="BannerInside"><table width=600 height=148 id="BannerMask"><tr><td align="center">MyLoader <blink>@</blink> <?php echo $HOST_NAME; ?></td></tr></table></div>
+<?php echo $AFTERLOGO_HTML_INJECTION; ?>
 
 <?php
   echo "<!-- Version ".$VERSION." -->";
@@ -160,8 +153,12 @@ a:active {color:#0000FF;}  /* selected link */
 }
 ?>
 <br/><br/><br/><br/>
+<?php echo $BEFOREFOOTER_HTML_INJECTION; ?>
 <span id="Footnote">
-Every file should be < <?php $max_upload = (int)(ini_get('upload_max_filesize'));  echo $max_upload; ?> MB 
+Every file should be < <?php $max_upload = (int)(ini_get('upload_max_filesize')); 
+                        if ($max_upload>$LOCAL_PHP_FILE_LIMIT) $max_upload=$LOCAL_PHP_FILE_LIMIT;
+                        echo $max_upload; 
+                       ?> MB 
 and all the uploaded files are deleted in daily basis.<br>
 Written by <a href="http://periklis.is-a-geek.com/" title="Periklis Ntanasis" target="_blank">Master_Ex</a> , 
            <a href="http://ammarkov.ath.cx/" title="Ammar Qammaz" target="_blank">AmmarkoV</a> , MyLoader is opensource get it 
@@ -192,8 +189,8 @@ if ( $ENABLE_SHOW_STATS == 1 )
 ?>
 
 Generated in <?php echo number_format((microtime(true)-$time_enter),4); ?> seconds<br>
-
-</span>
+</span><br>
+<?php echo $AFTERFOOTER_HTML_INJECTION; ?>
 </center>
 </div>
 </body>

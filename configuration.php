@@ -10,13 +10,20 @@
 
    
    /* ------------ WEB-DESIGN :P  VARIABLES ------------ */
-   $BANNER_PREFIX = "banner_";
-   $BANNER_NUMBER = 7;
-   $ENABLE_MIRROR_LINK = 1; // 1/0 Switch
-   $ENABLE_SHOW_STATS = 1; // 1/0 Switch
-   $ENABLE_RANDOM_FILE = 1; // 1/0 Switch
-   $RANDOM_FILE_BUTTON_LABEL = "R";
+   $BANNER_PREFIX = "banner_"; //Change this to make your own banners while keeping the old ones , reminder : you will have to make a banner_mask.png too!
+   $BANNER_NUMBER = 7; // The total number of banners that exist
+   $ENABLE_MIRROR_LINK = 1; // 1/0 Switch - This switch will enable/disable the link to mirrors
+   $ENABLE_SHOW_STATS = 1; // 1/0 Switch - This switch will enable/disable the output of webserver statistics on the index
+   $ENABLE_RANDOM_FILE = 1; // 1/0 Switch - This switch will enable/disable the random file capability
+   $RANDOM_FILE_BUTTON_LABEL = "R"; // This variable changes the label on the random button , you may want to make it /b/ or something else :P
    
+   /* MODDING VARIABLES */
+   /* You can use these variables to make additions to the page i.e. javascripts,css,music embeds,w/e without altering index.php  */
+   $HEAD_HTML_INJECTION=" ";
+   $AFTERLOGO_HTML_INJECTION=" ";
+   $BEFOREFOOTER_HTML_INJECTION=" ";
+   $AFTERFOOTER_HTML_INJECTION=" ";
+
    /* ------------ BANDWIDTH RELATED VARIABLES ------------ */
                                  //      MB
    $MAXIMUM_UPLOAD_BANDWIDTH_QUOTA  =   1024           * 1024 * 1024 ; // 1GB max quotta for uploads

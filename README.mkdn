@@ -17,16 +17,21 @@ How to install it
 	
 You may choose other sizes if you want.
 
-<b>
-Also be sure to add:<br/> AllowOverride All <br/> 
-To the apache configuration of your site , this is very important so that the .htaccess file in the /uploads/ directory can deny direct access , to php or executables that can put your system in risk , the .htaccess file contains two lines
-<br/> </b>
-Deny from all <br/> 
-AllowOverride none<br/> 
+4)
+ The files uploaded will be moved to ./uploads/ , in order for your system to remain secure , you will need to configure apache to deny direct access to the folder ./uploads/<br/> 
+ The reason for this is because someone can upload a .php file and then run it and effectively gain access to all the files that apache can access..<br/> 
+ <br/> 
+ To overcome this there are two ways!
 
-<b>To check if your settings are ok open security_test.html from your site </b>
+ a)The first is with the .htaccess file that is provided by default in ./uploads/.htaccess , in order for .htaccess files to be acknowledged you will have to add  <b> AllowOverride All </b> to the apache configuration of your site , this will deny direct access , to php or executables that can put your system in risk<br/>
+If your apache has AllowOverride All you won`t need to do anything , it will work out of the box , if not you will need to change it to AllowOverride All
 
-Finally you will need to change configuration.php to make it match your webpage setup!
+ b)Your second option is to manually specify <b>Deny from all</b> and keep your <b>AllowOverride none</b> setting , if you are familiar with apache configuration this is better 
+
+<b>In any case to check if your settings are ok open security_test.html from your site</b>
+
+5)
+  Finally you will need to change configuration.php to make it match your webpage setup!
 
 You are ready to go!
 
@@ -34,6 +39,6 @@ You are ready to go!
 Requirements
 ------------
 
-* Bash / *nix<br/>
-* PHP<br/>
-* A webserver<br/>
+* Bash/SSH/FTP access to chmod the two directories<br/>
+* PHP5<br/>
+* Apache2<br/>
