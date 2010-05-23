@@ -33,6 +33,16 @@ function refuse_withoutcompression()
          </body></html>"; 
 }
 
+
+function refuse_overquotta()
+{
+  echo "<html><body> 
+          <h2>This server has exceeded its upload quotta</h2>";
+  if ($ENABLE_MIRROR_LINK==1) { echo "Please try <a href=\"mirrors.php\">one of the mirrors</a>.."; }
+  echo "        </body></html>"; 
+}
+
+
 function link_not_found()
 {
   echo "<html><body> 
@@ -41,6 +51,15 @@ function link_not_found()
          </body></html>"; 
 }
  
+
+
+
+if ( ($MAXIMUM_UPLOAD_BANDWIDTH_QUOTA!=0) && ( $MAXIMUM_UPLOAD_BANDWIDTH_QUOTA<get_uploaded_bandwidth() ) )
+{
+  // Upload guard quota
+  refuse_overquotta();
+} else
+{
 $fullPath =  $SCRIPT_LOCAL_BASE.$SCRIPT_CACHE_FOLDERNAME."/".$_GET['i'];
 
 if ($fd = fopen ($fullPath, "r")) 
@@ -92,6 +111,7 @@ if ($fd = fopen ($fullPath, "r"))
    link_not_found();/* DEBUG ONLY :P
    echo "<br><br>".$oldfullPath;
    echo "<br><br>".$fullPath;*/
+}
 }
 exit; 
 ?>

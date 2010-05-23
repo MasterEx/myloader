@@ -27,10 +27,10 @@
    $AFTERFOOTER_HTML_INJECTION=" ";
 
    /* ------------ BANDWIDTH RELATED VARIABLES ------------ */
-                                 //      MB
-   $MAXIMUM_UPLOAD_BANDWIDTH_QUOTA  =   1024           * 1024 * 1024 ; // 1GB max quotta for uploads
-   $MAXIMUM_CACHE_QUOTA             =   2024           * 1024 * 1024 ; // 2GB max quotta for uploads
-   $LOCAL_PHP_FILE_LIMIT            =   20             * 1024 * 1024; // 20 MB
+                                 //  DISABLE          MB
+   $MAXIMUM_UPLOAD_BANDWIDTH_QUOTA  =  0*            1024           * 1024 * 1024 ; // 1GB max quotta for uploads
+   $MAXIMUM_CACHE_QUOTA             =  0*            2024           * 1024 * 1024 ; // 2GB max quotta for uploads
+   $LOCAL_PHP_FILE_LIMIT            =  1*            20             * 1024 * 1024; // 20 MB
    $MAXIMUM_STAY_ON_SERVER_HOURS=0; // 0 Means indefinately
    
 ?>
