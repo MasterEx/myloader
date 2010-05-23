@@ -120,15 +120,24 @@
  else
 {  
  echo
-  "
-   <table >
+
+  "<table >
    <tr height=10><td><td></tr>
-   <tr><td>
+   <tr><td>";
+  
+ if ( ($MAXIMUM_CACHE_QUOTA!=0) && ($cache_size>$MAXIMUM_CACHE_QUOTA) )
+ { 
+   /* Server over cache quotta no use uploading anything*/
+   echo "<b>This Server has exceeded its cache quotta!</b>";
+ } else
+ {  
+ echo "
    <form enctype=\"multipart/form-data\" action=\"index.php\" method=\"POST\">
            <input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"33554432\" />
            File to upload: <input name=\"uploadedfile\" type=\"file\" /> 
            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
            <input type=\"submit\" value=\"Upload File\" name=\"submit\" />"; 
+ }
      if ($ENABLE_RANDOM_FILE==1) 
          {
           echo "&nbsp;&nbsp;<input type=\"button\" value=\"".$RANDOM_FILE_BUTTON_LABEL."\" name=\"submit\" onclick=\"window.location.href='random.php';return false\" />"; 
