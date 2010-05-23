@@ -60,10 +60,10 @@ if ( ($MAXIMUM_UPLOAD_BANDWIDTH_QUOTA!=0) && ( $MAXIMUM_UPLOAD_BANDWIDTH_QUOTA<g
   refuse_overquotta();
 } else
 {
-$fullPath =  $SCRIPT_LOCAL_BASE.$SCRIPT_CACHE_FOLDERNAME."/".$_GET['i'];
+ $fullPath =  $SCRIPT_LOCAL_BASE.$SCRIPT_CACHE_FOLDERNAME."/".$_GET['i'];
 
-if ($fd = fopen ($fullPath, "r")) 
-{
+ if ($fd = fopen ($fullPath, "r")) 
+ {
     $fsize = filesize($fullPath);
     $path_parts = pathinfo($fullPath);
     $ext = strtolower($path_parts["extension"]);
@@ -106,12 +106,12 @@ if ($fd = fopen ($fullPath, "r"))
     }   
    fclose ($fd);
    add_to_uploaded_bandwidth($fsize);
-} else
-{ 
+ } else
+ { 
    link_not_found();/* DEBUG ONLY :P
    echo "<br><br>".$oldfullPath;
    echo "<br><br>".$fullPath;*/
-}
+ }
 }
 exit; 
 ?>
