@@ -1,5 +1,5 @@
 <?php
-   $VERSION="0.929";
+   $VERSION="0.931";
    $time_enter=microtime(true);
    require("configuration.php");   
    require("stat_keeper.php");   
@@ -103,7 +103,12 @@
               
              if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'],$target_path))
               {
-                 echo "<br/>The file <b>".basename( $_FILES['uploadedfile']['name'])."</b> has been uploaded<br/>";
+                 echo "<br/>The file <b>".basename( $_FILES['uploadedfile']['name']);
+                 $thefilesize=filesize($target_path);
+                 if ( $thefilesize>1024*1024 ) { echo " ".number_format($thefilesize/(1024*1024),2)." MB ";  } else 
+                 if ( $thefilesize>1024 )      { echo " ".number_format($thefilesize/1024,2)." KB ";  } else 
+                                               { echo " ".$thefilesize." bytes ";  }    
+                 echo "</b> has been uploaded<br/>";
                  add_to_cache_size($_FILES['uploadedfile']['size']); 
 
                  echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a><br/>";

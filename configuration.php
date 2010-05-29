@@ -12,9 +12,9 @@
    /* ------------ WEB-DESIGN :P  VARIABLES ------------ */
    $BANNER_PREFIX = "banner_"; //Change this to make your own banners while keeping the old ones , reminder : you will have to make a banner_mask.png too!
    $BANNER_NUMBER = 7; // The total number of banners that exist
-   $ENABLE_MIRROR_LINK = 1; // 1/0 Switch - This switch will enable/disable the link to mirrors
-   $ENABLE_SHOW_STATS = 1; // 1/0 Switch - This switch will enable/disable the output of webserver statistics on the index
-   $ENABLE_RANDOM_FILE = 1; // 1/0 Switch - This switch will enable/disable the random file capability
+   $ENABLE_MIRROR_LINK =   1; // 1/0 Switch - This switch will enable/disable the link to mirrors
+   $ENABLE_SHOW_STATS =    1; // 1/0 Switch - This switch will enable/disable the output of webserver statistics on the index
+   $ENABLE_RANDOM_FILE =   1; // 1/0 Switch - This switch will enable/disable the random file capability
    $ENABLE_FILE_INDEXING = 1; // 1/0 Switch - This switch will enable/disable the file listing capability
    $WILL_CHECK_IF_UPLOAD_DIR_NEEDS_CLEANING = 0; // 1/0 Switch - This switch will enable/disable the file autodelete capability - $MAXIMUM_STAY_ON_SERVER_HOURS should have a value >0
    $RANDOM_FILE_BUTTON_LABEL = "R"; // This variable changes the label on the random button , you may want to make it /b/ or something else :P
