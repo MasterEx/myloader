@@ -94,7 +94,8 @@ function PrintFileInBox($weblink,$filename,$ext)
             } else
             {
                  echo "If you want you can download the file by clicking its link..";
-                 echo "<br>Only png/gif/jpg/jpeg files will be embedded to this page for fast viewing :)<br><br>";
+                 echo "<br>This file has a .".$ext." extention <br><br>";
+                 echo "<br>Only png/gif/jpg/jpeg files are embedded in the pages for fast viewing :)<br><br>";
 
                  echo "<a href=\"".$weblink."\">";
                  echo "<img src=\"images/logo.png\">";
@@ -110,13 +111,17 @@ function PrintFileInBox($weblink,$filename,$ext)
 
 function ServeFile($dirty_filename)
 { 
+  $dirty_filename=trim($dirty_filename,"/"); // Accept requests for http://xxx/file.php?i=hash-file.ext/ ( the last slash )
+  
+  //A triple = sign (===) is a comparison to see whether two variables / expresions / constants are equal AND have the same type 
+  //- i.e. both are strings or both are integers.
   $exploit_pos = strpos($dirty_filename,"/");
   if ($exploit_pos === false) { } else { tampered_data(); return; }
   $exploit_pos = strpos($dirty_filename,"\\");
   if ($exploit_pos === false) { } else { tampered_data(); return; }
 
   //FIX EXPLOITABLE HOLE THAT CAN SERVE THE WRONG FILE :P
-  $filename = filter_var(stripslashes(trim($dirty_filename,"/")),FILTER_SANITIZE_STRIPPED);
+  $filename = filter_var(stripslashes($dirty_filename),FILTER_SANITIZE_STRIPPED);
   str_ireplace("/",".",$filename);
   //FIX EXPLOITABLE HOLE THAT CAN SERVE THE WRONG FILE :P
   //DEBUG OUTPUT TO FIGURE OUT IF INPUT FILTERING WORKS OK echo $filename;
