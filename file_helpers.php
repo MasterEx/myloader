@@ -51,6 +51,15 @@ function link_not_found()
 }
  
 
+function tampered_data()
+{
+  echo "<html><body> 
+          <h2>Tampered Request ?</h2>
+            Get Lost..!
+         </body></html>"; 
+}
+
+
 function ExtentionIsExecutable($ext)
 {
   if ( ( $ext == "exe" )||
@@ -99,9 +108,20 @@ function PrintFileInBox($weblink,$filename,$ext)
 }
 
 
-function ServeFile($filename)
-{
-  global $MAXIMUM_UPLOAD_BANDWIDTH_QUOTA,$MAXIMUM_UPLOAD_BANDWIDTH_QUOTA,$SCRIPT_LOCAL_BASE,$SCRIPT_CACHE_FOLDERNAME;
+function ServeFile($dirty_filename)
+{ 
+  $exploit_pos = strpos($dirty_filename,"/");
+  if ($exploit_pos === false) { } else { tampered_data(); return; }
+  $exploit_pos = strpos($dirty_filename,"\\");
+  if ($exploit_pos === false) { } else { tampered_data(); return; }
+
+  //FIX EXPLOITABLE HOLE THAT CAN SERVE THE WRONG FILE :P
+  $filename = filter_var(stripslashes(trim($dirty_filename,"/")),FILTER_SANITIZE_STRIPPED);
+  str_ireplace("/",".",$filename);
+  //FIX EXPLOITABLE HOLE THAT CAN SERVE THE WRONG FILE :P
+  echo $filename;
+
+ global $MAXIMUM_UPLOAD_BANDWIDTH_QUOTA,$MAXIMUM_UPLOAD_BANDWIDTH_QUOTA,$SCRIPT_LOCAL_BASE,$SCRIPT_CACHE_FOLDERNAME;
 if ( ($MAXIMUM_UPLOAD_BANDWIDTH_QUOTA!=0) && ( $MAXIMUM_UPLOAD_BANDWIDTH_QUOTA<get_uploaded_bandwidth() ) )
 {
   // Upload guard quota
@@ -115,6 +135,11 @@ if ( ($MAXIMUM_UPLOAD_BANDWIDTH_QUOTA!=0) && ( $MAXIMUM_UPLOAD_BANDWIDTH_QUOTA<g
     $fsize = filesize($fullPath);
     $path_parts = pathinfo($fullPath);
     $ext = strtolower($path_parts["extension"]);
+    $filename_parts= explode("-",$path_parts["basename"],2);
+    $hash_part=$filename_parts[0];
+    if (!isset( $filename_parts[1]) ) { tampered_data(); return; }
+    $filename_part=$filename_parts[1];
+
     switch ($ext) 
     {
         case "pdf":
@@ -140,9 +165,7 @@ if ( ($MAXIMUM_UPLOAD_BANDWIDTH_QUOTA!=0) && ( $MAXIMUM_UPLOAD_BANDWIDTH_QUOTA<g
         default;
         header("Content-type: application/octet-stream"); 
     }
-    $filename_parts= explode("-",$path_parts["basename"],2);
-    $hash_part=$filename_parts[0];
-    $filename_part=$filename_parts[1];
+     
     
     header("Content-Disposition: filename=\"".$filename_part."\"");
     header("Content-length: $fsize");
