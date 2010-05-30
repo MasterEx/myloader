@@ -21,7 +21,7 @@
 * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA. *
 ***************************************************************************/
 
-
+        $file_served=0; 
 
         $file=$_GET["i"];
         if ( ( $file == "." )||
@@ -33,9 +33,12 @@
            /* These files are not uploaded from users :P */
         } else
         {  
+          $file_parts = pathinfo($file); 
+          $ext = strtolower($file_parts["extension"]);
+          if ( (ExtentionIsImage($ext)==1)||($DISABLE_PREVIEW_FOR_NON_IMAGE_FILES==0) )
+          {   
+        
             $file_served=1;
-            $file_parts = pathinfo($file); 
-            $ext = strtolower($file_parts["extension"]);
             
             //TITLE to make search easier!
             //$clear_name=$file_parts['filename'];
@@ -49,9 +52,8 @@
                      <link rel=\"stylesheet\" type=\"text/css\" href=\"myloader.css\" />
                    </head>
                    <body>
-                     <center>";
-            echo "<br><a href=\"random.php\">See More Random Files!</a> &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;";
-            echo "<a href=\"index.php\">Return to MyLoader!</a><br><br>";
+                     <center>"; 
+            echo "<br> <a href=\"index.php\">Return to MyLoader!</a><br><br>";
             $web_file_server=$SCRIPT_WEB_BASE."file.php?i=".$file;
              
             PrintFileInBox( $web_file_server,$file,$ext);
@@ -62,10 +64,12 @@
             echo " </body>
                   </html>";
             
-            
-        }
-      }
-  }
+           } else
+           { // if file not image no use in "displaying" it , better to send it at once
+             $file_served=1;
+             ServeFile($file);
+           }
+        }  
  
   if ( $file_served == 0 )
    {

@@ -97,7 +97,8 @@
              $new_filename = $tmpdir."-".basename( $_FILES['uploadedfile']['name']);
               
              //New file.php file sender 
-             $new_target_path = "file.php?i=".$new_filename; 
+             $direct_target_path = "file.php?i=".$new_filename; 
+             $new_target_path = "vfile.php?i=".$new_filename; 
 
              $target_path = $base_path.$new_filename; 
               
@@ -110,8 +111,21 @@
                                                { echo " ".$thefilesize." bytes ";  }    
                  echo "</b> has been uploaded<br/>";
                  add_to_cache_size($_FILES['uploadedfile']['size']); 
-
-                 echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a><br/>";
+                 
+                
+                 
+                 echo "<br/>";
+                 echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a><br/><br/>";
+                 echo "<table>";
+                 echo "<tr>
+                       <td>Link : </td>
+                       <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$new_target_path."\"></td>
+                       </tr>";
+                echo "<tr>
+                       <td>Direct Link : </td>
+                       <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$direct_target_path."\"></td>
+                       </tr>
+                      </table></br></br>";
                  $WILL_CHECK_IF_UPLOAD_DIR_NEEDS_CLEANING=1;
    
               }
