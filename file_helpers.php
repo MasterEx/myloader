@@ -119,7 +119,7 @@ function ServeFile($dirty_filename)
   $filename = filter_var(stripslashes(trim($dirty_filename,"/")),FILTER_SANITIZE_STRIPPED);
   str_ireplace("/",".",$filename);
   //FIX EXPLOITABLE HOLE THAT CAN SERVE THE WRONG FILE :P
-  echo $filename;
+  //DEBUG OUTPUT TO FIGURE OUT IF INPUT FILTERING WORKS OK echo $filename;
 
  global $MAXIMUM_UPLOAD_BANDWIDTH_QUOTA,$MAXIMUM_UPLOAD_BANDWIDTH_QUOTA,$SCRIPT_LOCAL_BASE,$SCRIPT_CACHE_FOLDERNAME;
 if ( ($MAXIMUM_UPLOAD_BANDWIDTH_QUOTA!=0) && ( $MAXIMUM_UPLOAD_BANDWIDTH_QUOTA<get_uploaded_bandwidth() ) )
