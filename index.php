@@ -1,5 +1,5 @@
 <?php
-   $VERSION="0.937";
+   $VERSION="0.938";
    $time_enter=microtime(true);
    require("configuration.php");   
    require("stat_keeper.php");   
@@ -37,6 +37,7 @@
 <title>MyLoader @ <?php echo $HOST_NAME; ?></title>
 
 <link rel="stylesheet" type="text/css" href="myloader.css" />
+<script src="myloader.js" language="javascript" type="text/javascript"></script>
 <style type="text/css">
 #BannerInside
    {
@@ -94,7 +95,7 @@
           else
        { 
              $base_path = "./".$SCRIPT_CACHE_FOLDERNAME."/";
-             $new_filename = $tmpdir."-".basename( $_FILES['uploadedfile']['name']);
+             $new_filename = $tmpdir."-".basename($_FILES['uploadedfile']['name']);
               
              //New file.php file sender 
              $direct_target_path = "file.php?i=".$new_filename; 
@@ -155,12 +156,26 @@
            <input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"33554432\" />
            File to upload: <input name=\"uploadedfile\" type=\"file\" /> 
            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-           <input type=\"submit\" value=\"Upload File\" name=\"submit\" />"; 
+           <input type=\"submit\" value=\"Upload File\" name=\"submit\" />";
+  
  }
      if ($ENABLE_RANDOM_FILE==1) 
          {
           echo "&nbsp;&nbsp;<input type=\"button\" value=\"".$RANDOM_FILE_BUTTON_LABEL."\" name=\"submit\" onclick=\"window.location.href='random.php';return false\" />"; 
          }
+    
+    if ($ENABLE_OTHER_UPLOAD_OPTS ==1 )
+    {
+    // MORE OPTIONS ARE INCLUDED HERE
+    echo "<br><span id=\"buttonmoreoptions\" class=\"is_on\" onclick=\"make_moreoptions_visible();\"><span id=\"Footnote\"><a href=\"#\" >More Upload Options</a></span></span>"; 
+    echo "<span id=\"moreoptions\" class=\"is_off\"><br>
+           URL :  <input name=\"website\" type=\"text\" /> 
+ 
+           <br><br><span id=\"Footnote\"><a href=\"#\" onclick=\"make_moreoptions_invisible()\" >Less Upload Options</a></span>
+          </span>"; 
+    // MORE OPTIONS ARE INCLUDED HERE
+    }
+
  echo 
    "
    </form>

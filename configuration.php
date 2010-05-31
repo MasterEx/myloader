@@ -13,6 +13,7 @@
    $BANNER_PREFIX = "banner_"; //Change this to make your own banners while keeping the old ones , reminder : you will have to make a banner_mask.png too!
    $BANNER_NUMBER = 7; // The total number of banners that exist
    $DISABLE_PREVIEW_FOR_NON_IMAGE_FILES = 1; // 1/0 Switch - This switch will enable/disable preview of file images ( they will be sent at once )
+   $ENABLE_OTHER_UPLOAD_OPTS =  1; // 1/0 Switch - This switch will enable/disable the use of other upload options
    $ENABLE_MIRROR_LINK =   1; // 1/0 Switch - This switch will enable/disable the link to mirrors
    $ENABLE_SHOW_STATS =    1; // 1/0 Switch - This switch will enable/disable the output of webserver statistics on the index
    $ENABLE_RANDOM_FILE =   1; // 1/0 Switch - This switch will enable/disable the random file capability

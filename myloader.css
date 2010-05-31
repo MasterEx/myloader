@@ -4,7 +4,20 @@
     font-size:9px;
     font-style:italic; 
    }
+
+span.is_on 
+ { 	visibility:visible; 
+        font-size:9px;
+        font-style:italic;  
+ }
  
+span.is_off 
+ { 	visibility:hidden; 
+        font-size:9px;
+        font-style:italic;     
+ } 
+ 
+
 #Logo 
    { 
      visibility:hidden; 
