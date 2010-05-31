@@ -92,7 +92,11 @@
        {
          echo "Files > ".($LOCAL_PHP_FILE_LIMIT/(1024*1024))."MB are not permitted";
        }
-          else
+      if($_FILES['uploadedfile']['size']==0)
+       {
+         echo "<h2>You provided no file to upload!</h2>";  
+       }
+          else    
        { 
              $base_path = "./".$SCRIPT_CACHE_FOLDERNAME."/";
              $new_filename = $tmpdir."-".basename($_FILES['uploadedfile']['name']);
