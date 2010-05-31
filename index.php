@@ -1,9 +1,10 @@
 <?php
-   $VERSION="0.938";
+   $VERSION="0.939";
    $time_enter=microtime(true);
    require("configuration.php");   
    require("stat_keeper.php");   
    require("cleaning_support.php");   
+   require("file_helpers.php");   
    require("footer.php");   
 
 /***************************************************************************
@@ -25,6 +26,8 @@
 * Free Software Foundation, Inc., *
 * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA. *
 ***************************************************************************/
+ 
+
 
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="el" xml:lang="el">
@@ -75,9 +78,21 @@
   echo "<!-- Version ".$VERSION." -->";
   $cache_size = intval(get_cache_size()); //we get the cache size here because it is needed for the bottom line and for quota checks
       
-
+  
   if(isset($_POST['submit']))
    {
+     if ($ENABLE_URL_UPLOAD == 1 )
+     {
+       if(isset($_POST['website'])) 
+            { 
+              if (strlen($_POST['website'])>4)  
+              {
+                echo "Website From URL Requested ".$_POST['website'];
+                DownloadFile($_POST['website']);
+              }
+            }
+     }
+  
       $tmpdir = md5($_FILES['uploadedfile']['name'].date('l jS \of F Y h:i:s A'));
 
       if ( ($MAXIMUM_CACHE_QUOTA!=0) && ($cache_size>$MAXIMUM_CACHE_QUOTA) )
@@ -168,7 +183,7 @@
           echo "&nbsp;&nbsp;<input type=\"button\" value=\"".$RANDOM_FILE_BUTTON_LABEL."\" name=\"submit\" onclick=\"window.location.href='random.php';return false\" />"; 
          }
     
-    if ($ENABLE_OTHER_UPLOAD_OPTS ==1 )
+    if ($ENABLE_URL_UPLOAD ==1 )
     {
     // MORE OPTIONS ARE INCLUDED HERE
     echo "<br><span id=\"buttonmoreoptions\" class=\"is_on\" onclick=\"make_moreoptions_visible();\"><span id=\"Footnote\"><a href=\"#\" >More Upload Options</a></span></span>"; 

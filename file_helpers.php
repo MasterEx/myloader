@@ -108,6 +108,29 @@ function PrintFileInBox($weblink,$filename,$ext)
  
 }
 
+function DownloadFile($dirty_url)
+{ 
+  if ( ( $ENABLE_URL_UPLOAD == 1 ) && (0 /*DEBUG SAFETY SWITCH :P*/) )
+  {
+   /*
+           TODO ADD REGULAR EXPRESSION TO CLEAN URL!
+   */
+   $url = $dirty_url;
+   $file=fopen($SCRIPT_CACHE_FOLDERNAME."/todownload.wwwlist","w+");
+   if ($file)
+   {
+     fwrite($file,$url."\n"); 
+     fclose($file);   
+   
+     exec("wget -i ".$SCRIPT_CACHE_FOLDERNAME."/todownload.wwwlist");
+   }
+   echo "WEB DOWNLOAD NOT IMPLEMENTED ( YET )";
+ }
+}
+
+
+
+
 
 function ServeFile($dirty_filename)
 { 
