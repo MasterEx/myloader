@@ -4,7 +4,6 @@
    require("configuration.php");   
    require("stat_keeper.php");   
    require("cleaning_support.php");   
-   require("file_helpers.php");   
    require("footer.php");   
 
 /***************************************************************************
@@ -28,6 +27,26 @@
 ***************************************************************************/
  
 
+function DownloadFile($dirty_url)
+{ return;
+  if ( ($ENABLE_URL_UPLOAD == 1 ) && (0 /*DEBUG SAFETY SWITCH :P*/) )
+  {
+   /*
+           TODO ADD REGULAR EXPRESSION TO CLEAN URL!
+   */
+   $url = $dirty_url;
+   $file=fopen($SCRIPT_CACHE_FOLDERNAME."/todownload.wwwlist","w+");
+   if ($file)
+   {
+     fwrite($file,$url."\n"); 
+     fclose($file);   
+   
+     exec("wget -i ".$SCRIPT_CACHE_FOLDERNAME."/todownload.wwwlist");
+   }
+   echo "WEB DOWNLOAD NOT IMPLEMENTED ( YET )";
+ } else
+   echo "WEB DOWNLOAD NOT IMPLEMENTED AND SKIPPED( YET )";
+}
 
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="el" xml:lang="el">
