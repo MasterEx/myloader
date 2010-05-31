@@ -92,7 +92,8 @@
 ?>
 <br/><br/><b><a href="index.php">Go Back?</a></b><br/><br/>
  <?php
-   write_footer($time_enter,$HOST_NAME,$LOCAL_PHP_FILE_LIMIT,$cache_size,$ENABLE_FILE_INDEXING,$ENABLE_MIRROR_LINK,$ENABLE_SHOW_STATS);
+     $cache_size = intval(get_cache_size()); //we get the cache size here because it is needed for the bottom line and for quota checks
+     write_footer($time_enter,$HOST_NAME,$LOCAL_PHP_FILE_LIMIT,$cache_size,$ENABLE_FILE_INDEXING,$ENABLE_MIRROR_LINK,$ENABLE_SHOW_STATS);
   ?>
 </center>
 </body>

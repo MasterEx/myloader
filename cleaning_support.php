@@ -22,13 +22,30 @@
 * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA. *
 ***************************************************************************/
 
+function check_if_its_too_soon_after_last_clean_operation()
+{ 
+  if (!file_exists ("last_cleanup.ini"))
+   {
+     // AUTO GENERATION OF FILE :)
+     echo "Auto Generation of cleanup file!";
+     $file=fopen("last_cleanup.ini","w+");
+     fwrite($file,""); 
+     fclose($file);   
+     return 0; // NO FILE EXISTS MEANS NO CLEANUP HAS BEEN CALLED ( EVER )
+   }
+     else 
+   { 
+     /* TODO ADD CODE THAT CHECKS IF IT IS TOO SOON BY USING A FILE TO STORE LAST CLEAN UP DATE&TIME! */ 
+   }
+  return 0;
+}
 
- /*
-     NOT TESTED YET!
- */
 
- function check_and_clean_uploads()
+function check_and_clean_uploads()
  {
+   if ( check_if_its_too_soon_after_last_clean_operation() == 1 ) return;
+
+
 	global $MAXIMUM_STAY_ON_SERVER_HOURS, $SCRIPT_LOCAL_BASE;
 	if($MAXIMUM_STAY_ON_SERVER_HOURS!=0)
 	{
