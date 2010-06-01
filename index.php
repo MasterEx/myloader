@@ -1,5 +1,5 @@
 <?php
-   $VERSION="0.9401";
+   $VERSION="0.9402";
    $time_enter=microtime(true);
    require("configuration.php");   
    require("stat_keeper.php");   
