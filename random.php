@@ -75,10 +75,11 @@
              $filename_part=$filename_parts[1];                     
 
             echo "<html>
-                   <head>
+					<head>
                      <title>".$filename_part."</title>
-                     <link rel=\"stylesheet\" type=\"text/css\" href=\"myloader.css\" />
-                   </head>
+                     <link rel=\"stylesheet\" type=\"text/css\" href=\"myloader.css\" />";
+			echo 	 $HEAD_HTML_INJECTION;
+            echo " </head>
                    <body>
                      <center>";
             echo "<br><a href=\"random.php\">See More Random Files!</a> &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;";

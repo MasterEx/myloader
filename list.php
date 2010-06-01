@@ -34,6 +34,7 @@
 <meta name="distribution" content="global" />
 <title>MyLoader @ <?php echo $HOST_NAME; ?></title>
 <link rel="stylesheet" type="text/css" href="myloader.css" />
+<?php echo $HEAD_HTML_INJECTION; ?>
 </head>
 <body>
 <center>
