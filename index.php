@@ -85,10 +85,13 @@ function DownloadFile($dirty_url)
      position:absolute;
      z-index:100;
    }
+
+#invisible
+  { visibility:hidden; }
 </style>
 <?php echo $HEAD_HTML_INJECTION; ?>
 </head>
-<body><img id="Logo" src="images/logo.png"> 
+<body><img id="invisible" src="images/host_logo.png"> 
 <div><center><br><br>
 <div width=600 height=148 id="BannerInside"><table width=600 height=148 id="BannerMask"><tr><td align="center">MyLoader <blink>@</blink> <?php echo $HOST_NAME; ?></td></tr></table></div>
 <?php echo $AFTERLOGO_HTML_INJECTION; ?>

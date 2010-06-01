@@ -50,6 +50,10 @@
                    <head>
                      <title>".$filename_part."</title>
                      <link rel=\"stylesheet\" type=\"text/css\" href=\"myloader.css\" />
+                     <style type=\"text/css\">
+                      #invisible
+                      { visibility:hidden; }
+                     </style>
                    </head>
                    <body>
                      <center>"; 
@@ -58,8 +62,8 @@
              
             PrintFileInBox( $web_file_server,$file,$ext);
                         
-            echo "<br><br><br><br><a href=\"index.php\">Return to MyLoader!</a>";
-            
+            echo "<br><br><br><br><a href=\"index.php\">Return to MyLoader!</a><br>";
+            echo "<img src=\"images/host_logo.png\" id=\"invisible\">";
             echo "   </center>";
             echo " </body>
                   </html>";
