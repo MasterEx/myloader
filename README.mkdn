@@ -7,7 +7,7 @@ files with others.
 How to install it
 -----------------
 
-1) Upload myload directory somewhere to your server.
+1) Upload myloader directory somewhere to your server.
 
 2) chmod 777 myloader and chmod 777 myloader/uploads to make both directories writeable by apache
 
