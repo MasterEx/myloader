@@ -66,8 +66,11 @@
           { 
             $file_served=1;
             $file_parts = pathinfo($file); 
-            $ext = strtolower($file_parts["extension"]);
-            
+            //$ext = strtolower($file_parts["extension"]);
+            $ext="bin";
+            if (!isset($file_parts["extension"])) { /* EXTENTION REMAINS BIN :P */  } else
+                                                  { $ext = strtolower($file_parts["extension"]); }  
+          
             //TITLE to make search easier!
             //$clear_name=$file_parts['filename'];
              $filename_parts= explode("-",$file_parts["filename"],2);

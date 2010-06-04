@@ -34,7 +34,11 @@
         } else
         {  
           $file_parts = pathinfo($file); 
-          $ext = strtolower($file_parts["extension"]);
+          //$ext = strtolower($file_parts["extension"]);
+          $ext="bin";
+          if (!isset($file_parts["extension"])) { /* EXTENTION REMAINS BIN :P */  } else
+                                                { $ext = strtolower($file_parts["extension"]); }
+
           if ( (ExtentionIsImage($ext)==1)||($DISABLE_PREVIEW_FOR_NON_IMAGE_FILES==0) )
           {   
         
