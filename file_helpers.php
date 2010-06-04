@@ -143,12 +143,16 @@ if ( ($MAXIMUM_UPLOAD_BANDWIDTH_QUOTA!=0) && ( $MAXIMUM_UPLOAD_BANDWIDTH_QUOTA<g
  {
     $fsize = filesize($fullPath);
     $path_parts = pathinfo($fullPath);
-    $ext = strtolower($path_parts["extension"]);
+    
+    $ext="bin";
+    if (!isset($path_parts["extension"])) { /* EXTENTION REMAINS BIN :P */  } else
+                                          { $ext = strtolower($path_parts["extension"]); }
     $filename_parts= explode("-",$path_parts["basename"],2);
     $hash_part=$filename_parts[0];
     if (!isset( $filename_parts[1]) ) { tampered_data(); return; }
     $filename_part=$filename_parts[1];
-
+    
+    
     switch ($ext) 
     {
         case "pdf":
