@@ -1,5 +1,5 @@
 <?php
-   $VERSION="0.9402";
+   $VERSION="0.9405";
    $time_enter=microtime(true);
    require("configuration.php");   
    require("stat_keeper.php");   
@@ -194,7 +194,7 @@ function DownloadFile($dirty_url)
  {  
  echo "
    <form enctype=\"multipart/form-data\" action=\"index.php\" method=\"POST\">
-           <input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"33554432\" />
+           <input type=\"hidden\" name=\"rawresponse\" value=\"NO\" />
            File to upload: <input name=\"uploadedfile\" type=\"file\" /> 
            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
            <input type=\"submit\" value=\"Upload File\" name=\"submit\" />";

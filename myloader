@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "Uploading to  http://ammarkov.ath.cx/myloader/index.php"
+curl -F uploadedfile=@$1 -F rawresponse=YES -F submit="Upload File" http://ammarkov.ath.cx/myloader/index.php
+exit 0
