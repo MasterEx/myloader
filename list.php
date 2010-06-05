@@ -106,7 +106,7 @@
 							{
 								table.sort(sortByHoursD);
 								document.getElementById('filehead').innerHTML = "<td>File name<a onclick=\"showFiles(1)\"> &#8634;</a></td>";
-								document.getElementById('filehead').innerHTML +="<td>Hours on server<a  onclick=\"showFiles(5\"> &uarr;</a></td>";
+								document.getElementById('filehead').innerHTML +="<td>Hours on server<a  onclick=\"showFiles(3)\"> &uarr;</a></td>";
 								document.getElementById('filehead').innerHTML += "<td>~ Size (KB)<a onclick=\"showFiles(5)\"> &#8634;</a></td>";
 							}
 							else if(choice==5)
