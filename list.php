@@ -45,47 +45,143 @@
 	} 
 	if($ENABLE_FILE_INDEXING==1)
 	{
-?>
-
-	<table>	
-	<tr>
-			<td>File name</td>
-			<td>Hours on server</td>
-			<td>~ Size (KB)</td>
-	</tr>
+?>	
+			<script type="text/javascript">
+			
+			function sortByNameA(a,b) {				
+				var x = a[0].toLowerCase();
+				var y = b[0].toLowerCase();
+				return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+			}
+			function sortByNameD(a,b) {				
+				var x = a[0].toLowerCase();
+				var y = b[0].toLowerCase();
+				return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+			}
+			function sortByHoursA(a,b) {				
+				var x = a[2];
+				var y = b[2];
+				return (x-y);
+			}
+			function sortByHoursD(a,b) {				
+				var x = a[2];
+				var y = b[2];
+				return (y-x);
+			}
+			function sortBySizeA(a,b) {				
+				var x = a[3];
+				var y = b[3];
+				return (x-y);
+			}
+			function sortBySizeD(a,b) {				
+				var x = a[3];
+				var y = b[3];
+				return (y-x);
+			}
+			function showFiles(choice) {
+				var color = "#FFFFFF";
+				var flag = 0;
+							if(choice==1)
+							{								
+								table.sort(sortByNameA);
+								document.getElementById('filehead').innerHTML = "<td>File name<a onclick=\"showFiles(2)\"> &darr;</a></td>";
+								document.getElementById('filehead').innerHTML += "<td>Hours on server<a onclick=\"showFiles(3)\"> &#8634;</a></td>";
+								document.getElementById('filehead').innerHTML += "<td>~ Size (KB)<a onclick=\"showFiles(5)\"> &#8634;</a></td>";
+							}
+							else if(choice==2)
+							{
+								table.sort(sortByNameD);
+								document.getElementById('filehead').innerHTML = "<td>File name<a  onclick=\"showFiles(1)\"> &uarr;</a></td>";
+								document.getElementById('filehead').innerHTML += "<td>Hours on server<a onclick=\"showFiles(3)\"> &#8634;</a></td>";
+								document.getElementById('filehead').innerHTML += "<td>~ Size (KB)<a onclick=\"showFiles(5)\"> &#8634;</a></td>";
+							}
+							else if(choice==3)
+							{
+								table.sort(sortByHoursA);
+								document.getElementById('filehead').innerHTML = "<td>File name<a onclick=\"showFiles(1)\"> &#8634;</a></td>";
+								document.getElementById('filehead').innerHTML += "<td>Hours on server<a onclick=\"showFiles(4)\"> &darr;</a></td>";
+								document.getElementById('filehead').innerHTML += "<td>~ Size (KB)<a onclick=\"showFiles(5)\"> &#8634;</a></td>";
+							}
+							else if(choice==4)
+							{
+								table.sort(sortByHoursD);
+								document.getElementById('filehead').innerHTML = "<td>File name<a onclick=\"showFiles(1)\"> &#8634;</a></td>";
+								document.getElementById('filehead').innerHTML +="<td>Hours on server<a  onclick=\"showFiles(5\"> &uarr;</a></td>";
+								document.getElementById('filehead').innerHTML += "<td>~ Size (KB)<a onclick=\"showFiles(5)\"> &#8634;</a></td>";
+							}
+							else if(choice==5)
+							{
+								table.sort(sortBySizeA);
+								document.getElementById('filehead').innerHTML = "<td>File name<a onclick=\"showFiles(1)\"> &#8634;</a></td>";
+								document.getElementById('filehead').innerHTML += "<td>Hours on server<a onclick=\"showFiles(3)\"> &#8634;</a></td>";
+								document.getElementById('filehead').innerHTML += "<td>~ Size (KB)<a onclick=\"showFiles(6)\"> &darr;</a></td>";
+							}
+							else if(choice==6)
+							{
+								table.sort(sortBySizeD);
+								document.getElementById('filehead').innerHTML = "<td>File name<a onclick=\"showFiles(1)\"> &#8634;</a></td>";
+								document.getElementById('filehead').innerHTML += "<td>Hours on server<a onclick=\"showFiles(3)\"> &#8634;</a></td>";
+								document.getElementById('filehead').innerHTML += "<td>~ Size (KB)<a  onclick=\"showFiles(5)\"> &uarr;</a></td>";
+							}
+						for(var i=0;i<table.length;i++)
+						{
+							if(flag)
+							{
+								color="#FFFFFF";
+								flag=0;
+							}
+							else
+							{
+								color="#CCCCCC";
+								flag=1;
+							}
+							if(i==0)
+							{
+								document.getElementById('tablerow').innerHTML = "<tr>";
+							}
+							else
+							{
+								document.getElementById('tablerow').innerHTML += "<tr>";
+							}
+								document.getElementById('tablerow').innerHTML += "<td bgcolor='"+color+"'> <a href=\"file.php?i="+table[i][1]+"\">"+table[i][0]+"</a> </td><td bgcolor='"+color+"'>"+table[i][2]+"</td><td bgcolor='"+color+"'>"+table[i][3]+"</td>";
+							document.getElementById('tablerow').innerHTML += "</tr>";
+						}
+			}
 <?php
 		$target=$SCRIPT_LOCAL_BASE."uploads/";
 		$files=scandir($target);
 		$now=date("U");
 		$switch=0;
+		$i=0;
+		echo '			var table = new Array();';
 		foreach($files as $file)
 		{
 			if(strcmp($file,"index.html")==0 || strcmp($file,"check_x.png")==0 || strcmp($file,".")==0 || strcmp($file,"..")==0 || strcmp($file,".htaccess")==0)
 			{
 				continue;
 			}
-			if($switch==1)
-			{
-				$color="#FFFFFF";
-				$switch=0;
-			} else
-			{
-				$color="#CCCCCC";
-				$switch=1;
-			}
 			$fileseconds=date("U", filemtime($target.$file));
 			$filehours=($now - $fileseconds)/3600;
 			$filename=substr($file,33);
-			echo '
-			<tr>
-				<td bgcolor='.$color.'> <a href="file.php?i='.$file.'">'.$filename.'</a> </td>
-				<td bgcolor='.$color.'> '.intval($filehours).' </td>
-				<td bgcolor='.$color.'>'.intval(filesize($target.$file)/1024).'</td>
-			</tr>
-		';
+			echo '			
+			var line=new Array(4);
+				line[0]="'.$filename.'";
+				line[1]="'.$file.'";
+				line[2]="'.intval($filehours).'";
+				line[3]="'.intval(filesize($target.$file)/1024).'";
+				table['.$i.']=line;			
+			';				
+			$i++;
 		}
-?>
-	</table>
+?>		
+		</script>
+		<table>
+			<thead ><tr id="filehead"></tr></thead>
+			<tbody id="tablerow"></tbody>
+		</table>
+		<script type="text/javascript">
+		showFiles(1);
+		</script>
 
 <?php
 	}
