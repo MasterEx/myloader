@@ -12,7 +12,7 @@ function write_footer($starttime,$servername,$localfilelimit,$cache_size,$filein
 echo
 "
 Written by <a href=\"http://periklis.is-a-geek.com/\" title=\"Periklis Ntanasis\" target=\"_blank\">Master_Ex</a> , 
-           <a href=\"http://ammarkov.ath.cx/\" title=\"Ammar Qammaz\" target=\"_blank\">AmmarkoV</a> , MyLoader is opensource get it 
+           <a href=\"http://ammarkov.ath.cx/\" title=\"Ammar Qammaz\" target=\"_blank\">AmmarkoV</a> , MyLoader is <a href=\"http://en.wikipedia.org/wiki/Free_and_open_source_software\">f.o.s.s.</a> get it 
            <a href=\"http://github.com/MasterEx/myloader\" title=\"GitHub repository for MyLoader project\" target=\"_blank\">here</a>
            <br><br>
 ";
