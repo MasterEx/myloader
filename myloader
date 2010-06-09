@@ -1,7 +1,15 @@
 #!/bin/bash
-server=http://ammarkov.ath.cx
-target=$server/myloader
+
+#You may set a second argument with an alternative server
+if [ $# -gt 1 ]
+then
+	target=$2
+else
+	server=http://ammarkov.ath.cx
+	target=$server/myloader
+fi
 echo "Uploading to $target"
 pattern="$target/file.php\?i=[a-z0-9]*-$1"
-curl -F uploadedfile=@$1 -F rawresponse=YES -F submit="Upload File" $target/index.php | egrep -o $pattern
+echo "You may download $1 from here:"
+curl -s --show-error -F uploadedfile=@$1 -F rawresponse=YES -F submit="Upload File" $target/index.php | egrep -o $pattern
 exit 0
