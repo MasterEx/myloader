@@ -11,7 +11,7 @@ How to install it
 
 2) chmod 777 myloader and chmod 777 myloader/uploads to make both directories writeable by apache
 
-3) Edit your Apache configuration and add the following lines to change the max default size of uploads permitted by php:
+3) Edit your Apache/PHP configuration and add the following lines in php.ini ( in ubuntu it is positioned in /etc/php5/apache2/php.ini ) to change the max default size of uploads permitted by php:
 	php_admin_value upload_max_filesize 20M
 	php_admin_value post_max_size 20M
 	

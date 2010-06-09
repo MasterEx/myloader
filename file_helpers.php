@@ -73,6 +73,9 @@ function ExtentionIsImage($ext)
 {
   if ( ( $ext == "png" )||
        ( $ext == "gif" )||
+       ( $ext == "svg" )||( $ext == "svgz" )|| 
+       ( $ext == "bmp" )||( $ext == "ico" )||
+       ( $ext == "ppm" )||( $ext == "pbm" )||
        ( $ext == "jpg" )||
        ( $ext == "jpeg" )
      ) return 1;
@@ -165,16 +168,38 @@ if ( ($MAXIMUM_UPLOAD_BANDWIDTH_QUOTA!=0) && ( $MAXIMUM_UPLOAD_BANDWIDTH_QUOTA<g
         case "gif":
         header("Content-type: image/gif"); // add here more headers for diff. extensions         
         break;
+
         case "jpg":
         header("Content-type: image/jpg"); // add here more headers for diff. extensions         
         break;
         case "jpeg":
         header("Content-type: image/jpg"); // add here more headers for diff. extensions         
         break;
+
+
+        case "svg":
+        header("Content-type: image/svg+xml"); // add here more headers for diff. extensions
+        break;         
+        case "svgz":
+        header("Content-type: image/svg-xml"); // add here more headers for diff. extensions         
+        break;
+
+
+        case "pbm":
+        header("Content-type: image/x-portable-bitmap"); // add here more headers for diff. extensions
+        break;         
+        case "ppm":
+        header("Content-type: image/x-portable-pixmap"); // add here more headers for diff. extensions         
+        break;
+
+        case "ico":
+        header("Content-type: image/x-ico"); // add here more headers for diff. extensions         
+        break;
         case "bmp":
          refuse_withoutcompression();
         exit;      
         break;
+
         default;
         header("Content-type: application/octet-stream"); 
     }
