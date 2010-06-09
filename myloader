@@ -1,4 +1,7 @@
 #!/bin/bash
-echo "Uploading to  http://ammarkov.ath.cx/myloader/index.php"
-curl -F uploadedfile=@$1 -F rawresponse=YES -F submit="Upload File" http://ammarkov.ath.cx/myloader/index.php
+server=http://ammarkov.ath.cx
+target=$server/myloader
+echo "Uploading to $target"
+pattern="$target/file.php\?i=[a-z0-9]*-$1"
+curl -F uploadedfile=@$1 -F rawresponse=YES -F submit="Upload File" $target/index.php | egrep -o $pattern
 exit 0
