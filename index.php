@@ -25,9 +25,8 @@
 * Free Software Foundation, Inc., *
 * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA. *
 ***************************************************************************/
- 
 
-function DownloadFile($dirty_url)
+function DownloadFile($url)
 {
 	global $ENABLE_URL_UPLOAD,$SCRIPT_LOCAL_BASE,$SCRIPT_CACHE_FOLDERNAME,$SCRIPT_WEB_BASE;
 	
@@ -36,15 +35,17 @@ function DownloadFile($dirty_url)
 		/*
 			   TODO ADD REGULAR EXPRESSION TO CLEAN URL!
 		*/
-		$url = $dirty_url;
+		if(!strstr($url, "http://"))
+		{
+			$url = "http://".$url;
+		}
 		$destination_folder = $SCRIPT_CACHE_FOLDERNAME."/";
 		$newfname = basename($url);
+		$new_filename=md5($newfname.date('l jS \of F Y h:i:s A'))."-".$newfname;
 
 		$file = fopen ($url, "rb");
 		if ($file) {
-			$new_filename=md5($newfname.date('l jS \of F Y h:i:s A'))."-".$newfname;
 			$newf = fopen ($destination_folder.$new_filename, "wb");
-
 			if ($newf)
 			while(!feof($file)) {
 				fwrite($newf, fread($file, 1024 * 8 ), 1024 * 8 );
@@ -58,20 +59,27 @@ function DownloadFile($dirty_url)
 		if ($newf) {
 			fclose($newf);
 		}
-		$direct_target_path = "file.php?i=".$new_filename; 
-		$new_target_path = "vfile.php?i=".$new_filename; 
-		echo "<br/>";
-                 echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a><br/><br/>";
-                 echo "<table>";
-                 echo "<tr>
-                       <td>Link : </td>
-                       <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$new_target_path."\"></td>
-                       </tr>";
-                echo "<tr>
-                       <td>Direct Link : </td>
-                       <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$direct_target_path."\"></td>
-                       </tr>
-                      </table></br></br>";
+		if(file_exists($SCRIPT_LOCAL_BASE.$destination_folder.$new_filename))
+		{
+			$direct_target_path = "file.php?i=".$new_filename; 
+			$new_target_path = "vfile.php?i=".$new_filename; 
+			echo "<br/>";
+					 echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a><br/><br/>";
+					 echo "<table>";
+					 echo "<tr>
+						   <td>Link : </td>
+						   <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$new_target_path."\"></td>
+						   </tr>";
+					echo "<tr>
+						   <td>Direct Link : </td>
+						   <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$direct_target_path."\"></td>
+						   </tr>
+						  </table></br></br>";
+	  }
+	  else
+	  {
+		  echo "</br><h2>Sorry, there was an error during the upload!</br>Please check if the url is valid and try again!</h2></br>";
+	  }					  
 	} else
 	echo "</br>Sorry, there was an error during the upload!</br>";
 }
@@ -133,11 +141,8 @@ function DownloadFile($dirty_url)
    {
      if ($ENABLE_URL_UPLOAD == 1 && (strlen($_POST['website'])>0))
      {
-		  if (strlen($_POST['website'])>4)  
-		  {
 			echo "Website From URL Requested ".$_POST['website'];
 			DownloadFile($_POST['website']);
-		  }
      }
      else
      {
@@ -178,9 +183,7 @@ function DownloadFile($dirty_url)
 					 if ( $thefilesize>1024 )      { echo " ".number_format($thefilesize/1024,2)." KB ";  } else 
 												   { echo " ".$thefilesize." bytes ";  }    
 					 echo "</b> has been uploaded<br/>";
-					 add_to_cache_size($_FILES['uploadedfile']['size']); 
-					 
-					
+					 add_to_cache_size($_FILES['uploadedfile']['size']); 					
 					 
 					 echo "<br/>";
 					 echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a><br/><br/>";
