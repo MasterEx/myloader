@@ -28,24 +28,52 @@
  
 
 function DownloadFile($dirty_url)
-{ return;
-  if ( ($ENABLE_URL_UPLOAD == 1 ) && (0 /*DEBUG SAFETY SWITCH :P*/) )
-  {
-   /*
-           TODO ADD REGULAR EXPRESSION TO CLEAN URL!
-   */
-   $url = $dirty_url;
-   $file=fopen($SCRIPT_CACHE_FOLDERNAME."/todownload.wwwlist","w+");
-   if ($file)
-   {
-     fwrite($file,$url."\n"); 
-     fclose($file);   
-   
-     exec("wget -i ".$SCRIPT_CACHE_FOLDERNAME."/todownload.wwwlist");
-   }
-   echo "WEB DOWNLOAD NOT IMPLEMENTED ( YET )";
- } else
-   echo "WEB DOWNLOAD NOT IMPLEMENTED AND SKIPPED( YET )";
+{
+	global $ENABLE_URL_UPLOAD,$SCRIPT_LOCAL_BASE,$SCRIPT_CACHE_FOLDERNAME,$SCRIPT_WEB_BASE;
+	
+	if ( ($ENABLE_URL_UPLOAD == 1 ) )
+	{
+		/*
+			   TODO ADD REGULAR EXPRESSION TO CLEAN URL!
+		*/
+		$url = $dirty_url;
+		$destination_folder = $SCRIPT_CACHE_FOLDERNAME."/";
+		$newfname = basename($url);
+
+		$file = fopen ($url, "rb");
+		if ($file) {
+			$new_filename=md5($newfname.date('l jS \of F Y h:i:s A'))."-".$newfname;
+			$newf = fopen ($destination_folder.$new_filename, "wb");
+
+			if ($newf)
+			while(!feof($file)) {
+				fwrite($newf, fread($file, 1024 * 8 ), 1024 * 8 );
+			}
+		}
+
+		if ($file) {
+			fclose($file);
+		}
+
+		if ($newf) {
+			fclose($newf);
+		}
+		$direct_target_path = "file.php?i=".$new_filename; 
+		$new_target_path = "vfile.php?i=".$new_filename; 
+		echo "<br/>";
+                 echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a><br/><br/>";
+                 echo "<table>";
+                 echo "<tr>
+                       <td>Link : </td>
+                       <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$new_target_path."\"></td>
+                       </tr>";
+                echo "<tr>
+                       <td>Direct Link : </td>
+                       <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$direct_target_path."\"></td>
+                       </tr>
+                      </table></br></br>";
+	} else
+	echo "</br>Sorry, there was an error during the upload!</br>";
 }
 
 ?>
@@ -103,79 +131,78 @@ function DownloadFile($dirty_url)
   
   if(isset($_POST['submit']))
    {
-     if ($ENABLE_URL_UPLOAD == 1 )
+     if ($ENABLE_URL_UPLOAD == 1 && (strlen($_POST['website'])>0))
      {
-       if(isset($_POST['website'])) 
-            { 
-              if (strlen($_POST['website'])>4)  
-              {
-                echo "Website From URL Requested ".$_POST['website'];
-                DownloadFile($_POST['website']);
-              }
-            }
+		  if (strlen($_POST['website'])>4)  
+		  {
+			echo "Website From URL Requested ".$_POST['website'];
+			DownloadFile($_POST['website']);
+		  }
      }
-  
-      $tmpdir = md5($_FILES['uploadedfile']['name'].date('l jS \of F Y h:i:s A'));
+     else
+     {
+		  $tmpdir = md5($_FILES['uploadedfile']['name'].date('l jS \of F Y h:i:s A'));
 
-      if ( ($MAXIMUM_CACHE_QUOTA!=0) && ($cache_size>$MAXIMUM_CACHE_QUOTA) )
-       {
-         echo "<h2> ".$HOST_NAME." has exceeded its storage quota </h2>";
-         echo "<h4> We are sorry but you will have to wait until some of the older content is removed , thank you!</h4>";
-         if ( $ENABLE_MIRROR_LINK == 1 )
-          { echo "<h5> You can also <a href=\"mirrors.php\">try another host</a></h5>"; } 
-       } 
-          else
-      if($_FILES['uploadedfile']['size']>$LOCAL_PHP_FILE_LIMIT)
-       {
-         echo "Files > ".($LOCAL_PHP_FILE_LIMIT/(1024*1024))."MB are not permitted";
-       }
-      if($_FILES['uploadedfile']['size']==0)
-       {
-         echo "<h2>You provided no file to upload!</h2>";  
-       }
-          else    
-       { 
-             $base_path = "./".$SCRIPT_CACHE_FOLDERNAME."/";
-             $new_filename = $tmpdir."-".basename($_FILES['uploadedfile']['name']);
-              
-             //New file.php file sender 
-             $direct_target_path = "file.php?i=".$new_filename; 
-             $new_target_path = "vfile.php?i=".$new_filename; 
+		  if ( ($MAXIMUM_CACHE_QUOTA!=0) && ($cache_size>$MAXIMUM_CACHE_QUOTA) )
+		   {
+			 echo "<h2> ".$HOST_NAME." has exceeded its storage quota </h2>";
+			 echo "<h4> We are sorry but you will have to wait until some of the older content is removed , thank you!</h4>";
+			 if ( $ENABLE_MIRROR_LINK == 1 )
+			  { echo "<h5> You can also <a href=\"mirrors.php\">try another host</a></h5>"; } 
+		   } 
+			  else
+		  if($_FILES['uploadedfile']['size']>$LOCAL_PHP_FILE_LIMIT)
+		   {
+			 echo "Files > ".($LOCAL_PHP_FILE_LIMIT/(1024*1024))."MB are not permitted";
+		   }
+		  if($_FILES['uploadedfile']['size']==0)
+		   {
+			 echo "<h2>You provided no file to upload!</h2>";  
+		   }
+			  else    
+		   { 
+				 $base_path = "./".$SCRIPT_CACHE_FOLDERNAME."/";
+				 $new_filename = $tmpdir."-".basename($_FILES['uploadedfile']['name']);
+				  
+				 //New file.php file sender 
+				 $direct_target_path = "file.php?i=".$new_filename; 
+				 $new_target_path = "vfile.php?i=".$new_filename; 
 
-             $target_path = $base_path.$new_filename; 
-              
-             if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'],$target_path))
-              {
-                 echo "<br/>The file <b>".basename( $_FILES['uploadedfile']['name']);
-                 $thefilesize=filesize($target_path);
-                 if ( $thefilesize>1024*1024 ) { echo " ".number_format($thefilesize/(1024*1024),2)." MB ";  } else 
-                 if ( $thefilesize>1024 )      { echo " ".number_format($thefilesize/1024,2)." KB ";  } else 
-                                               { echo " ".$thefilesize." bytes ";  }    
-                 echo "</b> has been uploaded<br/>";
-                 add_to_cache_size($_FILES['uploadedfile']['size']); 
-                 
-                
-                 
-                 echo "<br/>";
-                 echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a><br/><br/>";
-                 echo "<table>";
-                 echo "<tr>
-                       <td>Link : </td>
-                       <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$new_target_path."\"></td>
-                       </tr>";
-                echo "<tr>
-                       <td>Direct Link : </td>
-                       <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$direct_target_path."\"></td>
-                       </tr>
-                      </table></br></br>";
-                 $WILL_CHECK_IF_UPLOAD_DIR_NEEDS_CLEANING=1;
-   
-              }
-                else
-              {
-                echo "There was an error uploading the file, please try again! ( the file could not be moved )<br> ";
-              } 
-       }
+				 $target_path = $base_path.$new_filename; 
+				  
+				 if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'],$target_path))
+				  {
+					 echo "<br/>The file <b>".basename( $_FILES['uploadedfile']['name']);
+					 $thefilesize=filesize($target_path);
+					 if ( $thefilesize>1024*1024 ) { echo " ".number_format($thefilesize/(1024*1024),2)." MB ";  } else 
+					 if ( $thefilesize>1024 )      { echo " ".number_format($thefilesize/1024,2)." KB ";  } else 
+												   { echo " ".$thefilesize." bytes ";  }    
+					 echo "</b> has been uploaded<br/>";
+					 add_to_cache_size($_FILES['uploadedfile']['size']); 
+					 
+					
+					 
+					 echo "<br/>";
+					 echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a><br/><br/>";
+					 echo "<table>";
+					 echo "<tr>
+						   <td>Link : </td>
+						   <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$new_target_path."\"></td>
+						   </tr>";
+					echo "<tr>
+						   <td>Direct Link : </td>
+						   <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$direct_target_path."\"></td>
+						   </tr>
+						  </table></br></br>";
+					 $WILL_CHECK_IF_UPLOAD_DIR_NEEDS_CLEANING=1;
+	   
+				  }
+					else
+				  {
+					echo "There was an error uploading the file, please try again! ( the file could not be moved )<br> ";
+				  } 
+		   }
+	   }
      echo '<a href="index.php">Return to MyLoader!</a>';
    }
  else
