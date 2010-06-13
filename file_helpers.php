@@ -224,4 +224,48 @@ exit;
 }
 
 
+//This function returns the size of a remote file
+//it was found here: http://codesnippets.joyent.com/posts/show/1214
+function get_remote_file_size($url, $readable = true){
+   $parsed = parse_url($url);
+   $host = $parsed["host"];
+   $fp = @fsockopen($host, 80, $errno, $errstr, 20);
+   if(!$fp) return false;
+   else {
+       @fputs($fp, "HEAD $url HTTP/1.1\r\n");
+       @fputs($fp, "HOST: $host\r\n");
+       @fputs($fp, "Connection: close\r\n\r\n");
+       $headers = "";
+       while(!@feof($fp))$headers .= @fgets ($fp, 128);
+   }
+   @fclose ($fp);
+   $return = false;
+   $arr_headers = explode("\n", $headers);
+   foreach($arr_headers as $header) {
+			// follow redirect
+			$s = 'Location: ';
+			if(substr(strtolower ($header), 0, strlen($s)) == strtolower($s)) {
+				$url = trim(substr($header, strlen($s)));
+				return get_remote_file_size($url, $readable);
+			}
+			
+			// parse for content length
+       $s = "Content-Length: ";
+       if(substr(strtolower ($header), 0, strlen($s)) == strtolower($s)) {
+           $return = trim(substr($header, strlen($s)));
+           break;
+       }
+   }
+   if($return && $readable) {
+			$size = round($return / 1024, 2);
+			$sz = "KB"; // Size In KB
+			if ($size > 1024) {
+				$size = round($size / 1024, 2);
+				$sz = "MB"; // Size in MB
+			}
+			$return = "$size $sz";
+   }
+   return $return;
+}
+
 ?>
