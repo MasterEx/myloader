@@ -1,8 +1,7 @@
 <?php
    $VERSION="0.941";
    $time_enter=microtime(true);
-   require("configuration.php");   
-   require("stat_keeper.php");   
+   require("file_helpers.php"); 
    require("cleaning_support.php");   
    require("footer.php");   
 
@@ -28,7 +27,7 @@
 
 function DownloadFile($url)
 {
-	global $ENABLE_URL_UPLOAD,$SCRIPT_LOCAL_BASE,$SCRIPT_CACHE_FOLDERNAME,$SCRIPT_WEB_BASE;
+	global $ENABLE_URL_UPLOAD,$SCRIPT_LOCAL_BASE,$SCRIPT_CACHE_FOLDERNAME,$SCRIPT_WEB_BASE,$LOCAL_PHP_FILE_LIMIT;
 	
 	if ( ($ENABLE_URL_UPLOAD == 1 ) )
 	{
@@ -39,49 +38,56 @@ function DownloadFile($url)
 		{
 			$url = "http://".$url;
 		}
-		$destination_folder = $SCRIPT_CACHE_FOLDERNAME."/";
-		$newfname = basename($url);
-		$new_filename=md5($newfname.date('l jS \of F Y h:i:s A'))."-".$newfname;
-
-		$file = fopen ($url, "rb");
-		if ($file) {
-			$newf = fopen ($destination_folder.$new_filename, "wb");
-			if ($newf)
-			while(!feof($file)) {
-				fwrite($newf, fread($file, 1024 * 8 ), 1024 * 8 );
-			}
-		}
-
-		if ($file) {
-			fclose($file);
-		}
-
-		if ($newf) {
-			fclose($newf);
-		}
-		if(file_exists($SCRIPT_LOCAL_BASE.$destination_folder.$new_filename))
+		if(get_remote_file_size($url)>$LOCAL_PHP_FILE_LIMIT)
 		{
-			$direct_target_path = "file.php?i=".$new_filename; 
-			$new_target_path = "vfile.php?i=".$new_filename; 
-			echo "<br/>";
-					 echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a><br/><br/>";
-					 echo "<table>";
-					 echo "<tr>
-						   <td>Link : </td>
-						   <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$new_target_path."\"></td>
-						   </tr>";
-					echo "<tr>
-						   <td>Direct Link : </td>
-						   <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$direct_target_path."\"></td>
-						   </tr>
-						  </table></br></br>";
-	  }
-	  else
-	  {
-		  echo "</br><h2>Sorry, there was an error during the upload!</br>Please check if the url is valid and try again!</h2></br>";
-	  }					  
-	} else
-	echo "</br>Sorry, there was an error during the upload!</br>";
+			echo "</br>Files > ".($LOCAL_PHP_FILE_LIMIT/(1024*1024))."MB are not permitted</br>";
+		}
+		else
+		{
+			$destination_folder = $SCRIPT_CACHE_FOLDERNAME."/";
+			$newfname = basename($url);
+			$new_filename=md5($newfname.date('l jS \of F Y h:i:s A'))."-".$newfname;
+
+			$file = fopen ($url, "rb");
+			if ($file) {
+				$newf = fopen ($destination_folder.$new_filename, "wb");
+				if ($newf)
+				while(!feof($file)) {
+					fwrite($newf, fread($file, 1024 * 8 ), 1024 * 8 );
+				}
+			}
+
+			if ($file) {
+				fclose($file);
+			}
+
+			if ($newf) {
+				fclose($newf);
+			}
+			if(file_exists($SCRIPT_LOCAL_BASE.$destination_folder.$new_filename))
+			{
+				$direct_target_path = "file.php?i=".$new_filename; 
+				$new_target_path = "vfile.php?i=".$new_filename; 
+				echo "<br/>";
+						 echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a><br/><br/>";
+						 echo "<table>";
+						 echo "<tr>
+							   <td>Link : </td>
+							   <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$new_target_path."\"></td>
+							   </tr>";
+						echo "<tr>
+							   <td>Direct Link : </td>
+							   <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$direct_target_path."\"></td>
+							   </tr>
+							  </table></br></br>";
+				add_to_cache_size(get_remote_file_size($url)); 
+			}
+			else
+			{
+			  echo "</br><h2>Sorry, there was an error during the upload!</br>Please check if the url is valid and try again!</h2></br>";
+			}
+		}					  
+	}
 }
 
 ?>
