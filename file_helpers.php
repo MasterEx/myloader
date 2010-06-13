@@ -256,14 +256,10 @@ function get_remote_file_size($url, $readable = true){
            break;
        }
    }
+   //this part is modified to return size in bytes
    if($return && $readable) {
-			$size = round($return / 1024, 2);
-			$sz = "KB"; // Size In KB
-			if ($size > 1024) {
-				$size = round($size / 1024, 2);
-				$sz = "MB"; // Size in MB
-			}
-			$return = "$size $sz";
+			$size = $return;
+			$return = $size;
    }
    return $return;
 }
