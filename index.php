@@ -1,5 +1,5 @@
 <?php
-   $VERSION="0.941";
+   $VERSION="0.95";
    $time_enter=microtime(true);
    require("file_helpers.php"); 
    require("cleaning_support.php");   
@@ -176,8 +176,8 @@ function DownloadFile($url)
 				 $new_filename = $tmpdir."-".basename($_FILES['uploadedfile']['name']);
 				  
 				 //New file.php file sender 
-				 $direct_target_path = "file.php?i=".$new_filename; 
-				 $new_target_path = "vfile.php?i=".$new_filename; 
+				 $direct_target_path = "file.php?i=".urlencode($new_filename); 
+				 $new_target_path = "vfile.php?i=".urlencode($new_filename); 
 
 				 $target_path = $base_path.$new_filename; 
 				  

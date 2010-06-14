@@ -143,7 +143,7 @@
 							{
 								document.getElementById('tablerow').innerHTML += "<tr>";
 							}
-								document.getElementById('tablerow').innerHTML += "<td bgcolor='"+color+"'> <a href=\"vfile.php?i="+table[i][1]+"\">"+table[i][0]+"</a> </td><td bgcolor='"+color+"'>"+table[i][2]+"</td><td bgcolor='"+color+"'>"+table[i][3]+"</td>";
+								document.getElementById('tablerow').innerHTML += "<td bgcolor='"+color+"'> <a href=\"vfile.php?i="+escape(table[i][1])+"\">"+table[i][0]+"</a> </td><td bgcolor='"+color+"'>"+table[i][2]+"</td><td bgcolor='"+color+"'>"+table[i][3]+"</td>";
 							document.getElementById('tablerow').innerHTML += "</tr>";
 						}
 			}

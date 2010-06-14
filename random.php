@@ -87,7 +87,7 @@
                      <center>";
             echo "<br><a href=\"random.php\">See More Random Files!</a> &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;";
             echo "<a href=\"index.php\">Return to MyLoader!</a><br><br>";
-            $web_file_server=$SCRIPT_WEB_BASE."file.php?i=".$file;
+            $web_file_server=$SCRIPT_WEB_BASE."file.php?i=".urlencode($file);
              
             PrintFileInBox( $web_file_server,$file,$ext);
                         
