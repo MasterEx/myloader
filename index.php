@@ -1,5 +1,5 @@
 <?php
-   $VERSION="0.95";
+   $VERSION="0.951";
    $time_enter=microtime(true);
    require("file_helpers.php"); 
    require("cleaning_support.php");   
@@ -192,8 +192,13 @@ function DownloadFile($url)
 					 add_to_cache_size($_FILES['uploadedfile']['size']); 					
 					 
 					 echo "<br/>";
-					 echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a><br/><br/>";
-					 echo "<table>";
+					 echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a>";
+					 $gdocsExtensions = array("pdf","ppt","pptx","tiff");
+					 if (in_array(end(explode(".",strtolower($_FILES['uploadedfile']['name']))),$gdocsExtensions)) 
+					 {
+						echo " - @<a href=\"http://docs.google.com/viewer?url=".urlencode($SCRIPT_WEB_BASE.$direct_target_path)."\">GoogleDocs</a>";
+					 }
+					 echo "<br/><br/><table>";
 					 echo "<tr>
 						   <td>Link : </td>
 						   <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$new_target_path."\"></td>
