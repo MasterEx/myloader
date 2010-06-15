@@ -146,10 +146,14 @@
 							s = table[i][1];
 							ext = s.substring(s.length-4).toLowerCase();
 							gdoc ="";
-							if(ext==".pdf" || ext=="tiff" || ext==".ppt" || ext=="pptx")
-							{
-								gdoc = "<a target=\"_blank\" href=\"http://docs.google.com/viewer?url="+table[i][4]+"\"><img src=\"images/gdocs.jpg\" height=\"15\" width=\"13\" /></a>";
-							}
+							<?php
+							if($ENABLE_GOOGLEDOCS_LINK == 1)
+							{?>
+								if(ext==".pdf" || ext=="tiff" || ext==".ppt" || ext=="pptx")
+								{
+									gdoc = "<a target=\"_blank\" href=\"http://docs.google.com/viewer?url="+table[i][4]+"\"><img src=\"images/gdocs.jpg\" height=\"15\" width=\"13\" /></a>";
+								}<?php
+							}?>
 								document.getElementById('tablerow').innerHTML += "<td bgcolor='"+color+"'> "+gdoc+"<a href=\"vfile.php?i="+escape(table[i][1])+"\">"+table[i][0]+"</a> </td><td bgcolor='"+color+"'>"+table[i][2]+"</td><td bgcolor='"+color+"'>"+table[i][3]+"</td>";
 							document.getElementById('tablerow').innerHTML += "</tr>";
 						}

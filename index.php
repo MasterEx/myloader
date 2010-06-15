@@ -193,10 +193,13 @@ function DownloadFile($url)
 					 
 					 echo "<br/>";
 					 echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a>";
-					 $gdocsExtensions = array("pdf","ppt","pptx","tiff");
-					 if (in_array(end(explode(".",strtolower($_FILES['uploadedfile']['name']))),$gdocsExtensions)) 
+					 if($ENABLE_GOOGLEDOCS_LINK == 1)
 					 {
-						echo " - @<a href=\"http://docs.google.com/viewer?url=".urlencode($SCRIPT_WEB_BASE.$direct_target_path)."\">GoogleDocs</a>";
+						 $gdocsExtensions = array("pdf","ppt","pptx","tiff");
+						 if (in_array(end(explode(".",strtolower($_FILES['uploadedfile']['name']))),$gdocsExtensions)) 
+						 {
+							echo " - @<a href=\"http://docs.google.com/viewer?url=".urlencode($SCRIPT_WEB_BASE.$direct_target_path)."\">GoogleDocs</a>";
+						 }
 					 }
 					 echo "<br/><br/><table>";
 					 echo "<tr>
