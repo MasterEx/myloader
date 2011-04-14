@@ -180,7 +180,7 @@
 				line[1]="'.$file.'";
 				line[2]="'.intval($filehours).'";
 				line[3]="'.intval(filesize($target.$file)/1024).'";
-				line[4]="'.urlencode("http://periklis.is-a-geek.com/myloader/file.php?i=".urlencode($file)).'";
+				line[4]="'.urlencode($SCRIPT_WEB_BASE."file.php?i=".urlencode($file)).'";
 				table['.$i.']=line;			
 			';				
 			$i++;
