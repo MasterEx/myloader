@@ -5,13 +5,17 @@ function write_footer($starttime,$servername,$localfilelimit,$cache_size,$filein
  echo "<span id=\"Footnote\">Every file should be < ";
                         $max_upload = (int)(ini_get('upload_max_filesize')); 
                         if ($max_upload>$localfilelimit) $max_upload=$localfilelimit;
-                        echo $max_upload."MB and all the uploaded files are deleted in daily basis.<br>";
-
+                        echo $max_upload."MB ";
+                        if ($WILL_CHECK_IF_UPLOAD_DIR_NEEDS_CLEANING)
+                        {
+							echo "and all the uploaded files are deleted in daily basis";
+						}
+						echo ".<br>";
 
 
 echo
 "
-Written by <a href=\"http://periklis.is-a-geek.com/\" title=\"Periklis Ntanasis\" target=\"_blank\">Master_Ex</a> , 
+Written by <a href=\"https://github.com/MasterEx\" title=\"Periklis Ntanasis\" target=\"_blank\">Master_Ex</a> , 
            <a href=\"http://ammarkov.ath.cx/\" title=\"Ammar Qammaz\" target=\"_blank\">AmmarkoV</a> , MyLoader is <a href=\"http://en.wikipedia.org/wiki/Free_and_open_source_software\">f.o.s.s.</a> get it 
            <a href=\"http://github.com/MasterEx/myloader\" title=\"GitHub repository for MyLoader project\" target=\"_blank\">here</a>
            <br><br>
@@ -24,7 +28,7 @@ if($fileindex_sw==1)
 }
 if ( $mirrorlink_sw == 1 )
  {
-       echo "Is ".$servername." slow ? , <a href=\"mirrors.php\" target=\"_blank\">try another host</a><br><br>";
+       echo "Is ".$servername." slow ? , <a href=\"http://masterex.github.com/myloader/\" target=\"_blank\">try another host</a><br><br>";
  }
 
 
