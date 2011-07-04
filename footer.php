@@ -2,6 +2,7 @@
 
 function write_footer($starttime,$servername,$localfilelimit,$cache_size,$fileindex_sw,$mirrorlink_sw,$showstats_sw)
 {
+ require("configuration.php");
  echo "<span id=\"Footnote\">Every file should be < ";
                         $max_upload = (int)(ini_get('upload_max_filesize')); 
                         if ($max_upload>$localfilelimit) $max_upload=$localfilelimit;
