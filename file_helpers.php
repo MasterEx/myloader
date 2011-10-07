@@ -200,6 +200,40 @@ if ( ($MAXIMUM_UPLOAD_BANDWIDTH_QUOTA!=0) && ( $MAXIMUM_UPLOAD_BANDWIDTH_QUOTA<g
     
     switch ($ext) 
     {
+
+       // VIDEO 
+        case "mp4":
+        header("Content-type: video/mp4"); // add here more headers for diff. extensions         
+        break;
+        case "mpeg4":
+        header("Content-type: video/mp4"); // add here more headers for diff. extensions         
+        break;
+        case "ogv":
+        header("Content-type: video/ogv"); // add here more headers for diff. extensions         
+        break;
+        case "avi":
+        header("Content-type: video/avi"); // add here more headers for diff. extensions         
+        break;
+        case "webm":
+        header("Content-type: video/webm"); // add here more headers for diff. extensions         
+        break;
+
+
+       // AUDIO 
+        case "mp3":
+        header("Content-type: audio/mp3"); // add here more headers for diff. extensions         
+        break;
+        case "ogg":
+        header("Content-type: audio/ogg"); // add here more headers for diff. extensions         
+        break;
+        case "wav":
+        header("Content-type: audio/wav"); // add here more headers for diff. extensions         
+        break; 
+
+
+
+
+
         case "pdf":
         header("Content-type: application/pdf"); // add here more headers for diff. extensions
         header("Content-Disposition: attachment; filename=\"".$path_parts["basename"]."\""); // use 'attachment' to force a download
