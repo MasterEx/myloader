@@ -1,5 +1,5 @@
 <?php
-   $VERSION="0.951";
+   $VERSION="0.952";
    $time_enter=microtime(true);
    require("file_helpers.php"); 
    require("cleaning_support.php");   
@@ -25,120 +25,41 @@
 * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA. *
 ***************************************************************************/
 
-function DownloadFile($url)
-{
-	global $ENABLE_URL_UPLOAD,$SCRIPT_LOCAL_BASE,$SCRIPT_CACHE_FOLDERNAME,$SCRIPT_WEB_BASE,$LOCAL_PHP_FILE_LIMIT;
-	
-	if ( ($ENABLE_URL_UPLOAD == 1 ) )
-	{
-		/*
-			   TODO ADD REGULAR EXPRESSION TO CLEAN URL!
-		*/
-		if(!strstr($url, "http://"))
-		{
-			$url = "http://".$url;
-		}
-		if(get_remote_file_size($url)>$LOCAL_PHP_FILE_LIMIT)
-		{
-			echo "</br>Files > ".($LOCAL_PHP_FILE_LIMIT/(1024*1024))."MB are not permitted</br>";
-		}
-		else
-		{
-			$destination_folder = $SCRIPT_CACHE_FOLDERNAME."/";
-			$newfname = basename($url);
-			$new_filename=md5($newfname.date('l jS \of F Y h:i:s A'))."-".$newfname;
-
-			$file = fopen ($url, "rb");
-			if ($file) {
-				$newf = fopen ($destination_folder.$new_filename, "wb");
-				if ($newf)
-				while(!feof($file)) {
-					fwrite($newf, fread($file, 1024 * 8 ), 1024 * 8 );
-				}
-			}
-
-			if ($file) {
-				fclose($file);
-			}
-
-			if ($newf) {
-				fclose($newf);
-			}
-			if(file_exists($SCRIPT_LOCAL_BASE.$destination_folder.$new_filename))
-			{
-				$direct_target_path = "file.php?i=".$new_filename; 
-				$new_target_path = "vfile.php?i=".$new_filename; 
-				echo "<br/>";
-						 echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a><br/><br/>";
-						 echo "<table>";
-						 echo "<tr>
-							   <td>Link : </td>
-							   <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$new_target_path."\"></td>
-							   </tr>";
-						echo "<tr>
-							   <td>Direct Link : </td>
-							   <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$direct_target_path."\"></td>
-							   </tr>
-							  </table></br></br>";
-				add_to_cache_size(get_remote_file_size($url)); 
-			}
-			else
-			{
-			  echo "</br><h2>Sorry, there was an error during the upload!</br>Please check if the url is valid and try again!</h2></br>";
-			}
-		}					  
-	}
-}
 
 ?>
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="el" xml:lang="el">
+<!DOCTYPE html>
+<html>
 <head>
-<META name="author" content="Periklis Ntanasis a.k.a. Master_ex , Ammar Qammaz a.k.a. AmmarkoV">
+<meta name="author" content="Ammar Qammaz" >
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
 <meta name="keywords" content="personal uploader" />
-<meta name="description" content="" />
-<meta name="distribution" content="global" />
+<meta name="description" content="" /> 
 <title>MyLoader @ <?php echo $HOST_NAME; ?></title>
 
 <link rel="stylesheet" type="text/css" href="myloader.css" />
-<script src="myloader.js" language="javascript" type="text/javascript"></script>
+<script src="myloader.js" type="text/javascript"></script>
 <style type="text/css">
-#BannerInside
-   {
-     background-image:url('<?php  $num=rand(1,$BANNER_NUMBER); echo $SCRIPT_WEB_BASE."images/".$BANNER_PREFIX.$num.".jpg";?>');
-     background-repeat:no-repeat;
-     width:600px;
-     height:148px;
-     color:#EEEEEE;
-     font-size:33px;
-     font-weight:900;  
-     #clip:rect(0px,00px,600px,148px);
-   }
 
-#BannerMask
-   {
-     background-image:url('<?php echo "images/".$BANNER_PREFIX."mask.png"; ?>');
-     background-repeat:no-repeat;
-     width:600px;
-     height:148px;
-     color:#EEEEEE;
-     font-size:33px;
-     font-weight:900;  
-     position:absolute;
-     z-index:100;
-   }
-
-#invisible
-  { visibility:hidden; }
 </style>
 <?php echo $HEAD_HTML_INJECTION; ?>
 </head>
-<body><img id="invisible" src="images/host_logo.png"> 
-<div><center><br><br>
-<div width=600 height=148 id="BannerInside"><table width=600 height=148 id="BannerMask"><tr><td align="center">MyLoader <blink>@</blink> <?php echo $HOST_NAME; ?></td></tr></table></div>
-<?php echo $AFTERLOGO_HTML_INJECTION; ?>
+<body>
 
-<?php
+<img id="invisible" src="images/host_logo.png" alt="MyLoader <?php echo $HOST_NAME; ?>" > 
+<!-- This , here exists in order for url shortners to be able to output the logo of the MyLoader Service :) -->
+
+<div class="MainTab" >
+ 
+<br><br>
+
+
+<?php 
+  
+  // THE FOLLOWING CALL PRODUCES THE NICE WEB-DESIGN THINGY ( :P ) WITH THE BLINKING @ IN THE MIDDLE 
+  write_nice_logo($HOST_NAME,$BANNER_NUMBER,$SCRIPT_WEB_BASE,$BANNER_PREFIX);
+    
+    
+  echo $AFTERLOGO_HTML_INJECTION; 
   echo "<!-- Version ".$VERSION." -->";
   $cache_size = intval(get_cache_size()); //we get the cache size here because it is needed for the bottom line and for quota checks
       
@@ -201,16 +122,18 @@ function DownloadFile($url)
 							echo " - @<a href=\"http://docs.google.com/viewer?url=".urlencode($SCRIPT_WEB_BASE.$direct_target_path)."\">GoogleDocs</a>";
 						 }
 					 }
-					 echo "<br/><br/><table>";
-					 echo "<tr>
-						   <td>Link : </td>
-						   <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$new_target_path."\"></td>
+					 echo "<br/><br/> 
+                     <table id=\"StayCentered\">					      
+					       <tr>
+						     <td>Link : </td>
+						     <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$new_target_path."\"></td>
 						   </tr>";
 					echo "<tr>
-						   <td>Direct Link : </td>
-						   <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$direct_target_path."\"></td>
+						     <td>Direct Link : </td>
+						     <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$direct_target_path."\"></td>
 						   </tr>
-						  </table></br></br>";
+						  </table>
+						  </br></br>";
 					 $WILL_CHECK_IF_UPLOAD_DIR_NEEDS_CLEANING=1;
 	   
 				  }
@@ -226,8 +149,8 @@ function DownloadFile($url)
 {  
  echo
 
-  "<table >
-   <tr height=10><td><td></tr>
+  "<br>
+   <table id=\"StayCentered\" > 
    <tr><td>";
   
  if ( ($MAXIMUM_CACHE_QUOTA!=0) && ($cache_size>$MAXIMUM_CACHE_QUOTA) )
@@ -236,8 +159,8 @@ function DownloadFile($url)
    echo "<b>This Server has exceeded its cache quotta!</b>";
  } else
  {  
- echo "
-   <form enctype=\"multipart/form-data\" action=\"index.php\" method=\"POST\">
+ echo "  
+   <form   enctype=\"multipart/form-data\" action=\"index.php\" method=\"POST\">
            <input type=\"hidden\" name=\"rawresponse\" value=\"NO\" />
            File to upload: <input name=\"uploadedfile\" type=\"file\" /> 
            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -270,11 +193,11 @@ function DownloadFile($url)
  
 }
 ?>
-<br/><br/><br/><br/>
+<br/><br/> 
 <?php echo $BEFOREFOOTER_HTML_INJECTION;  
   write_footer($time_enter,$HOST_NAME,$LOCAL_PHP_FILE_LIMIT,$cache_size,$ENABLE_FILE_INDEXING,$ENABLE_MIRROR_LINK,$ENABLE_SHOW_STATS);
  echo $AFTERFOOTER_HTML_INJECTION; ?>
-</center>
+ 
 </div>
 </body>
 </html>

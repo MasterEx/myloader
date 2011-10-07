@@ -50,14 +50,11 @@
              $hash_part=$filename_parts[0];
              $filename_part=$filename_parts[1];                     
 
-            echo "<html>
+            echo "<!DOCTYPE html>
+                  <html>
                    <head>
                      <title>".$filename_part."</title>
-                     <link rel=\"stylesheet\" type=\"text/css\" href=\"myloader.css\" />
-                     <style type=\"text/css\">
-                      #invisible
-                      { visibility:hidden; }
-                     </style>
+                     <link rel=\"stylesheet\" type=\"text/css\" href=\"myloader.css\" /> 
                    </head>
                    <body>
                      <center>"; 

@@ -4,7 +4,7 @@
    
    /* ------------ SERVER SETUP VARIABLES ------------ */
    $HOST_NAME="AmmarServer"; // Host Name
-   $SCRIPT_WEB_BASE="http://ammarkov.ath.cx/myloader/";
+   $SCRIPT_WEB_BASE="http://ammar.gr/myloader/";
    $SCRIPT_LOCAL_BASE="/home/ammar/public_html/atech/myloader/";
    $SCRIPT_CACHE_FOLDERNAME="uploads";
 

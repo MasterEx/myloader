@@ -25,9 +25,10 @@
 		require("cleaning_support.php");  
         require("footer.php");  
 ?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="el" xml:lang="el">
 <head>
-<META name="author" content="Periklis Ntanasis a.k.a. Master_ex , Ammar Qammaz a.k.a. AmmarkoV">
+<meta name="author" content="Ammar Qammaz" >
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
 <meta name="keywords" content="personal uploader" />
 <meta name="description" content="" />

@@ -26,7 +26,8 @@ require("stat_keeper.php"); // File.php is not based on index.php so we require 
 /* THE MESSAGES CAN BE IMPROVED BUT SHOULD NOT TAKE MORE THAN 10 lines each in the php file*/
 function refuse_withoutcompression()
 {
-  echo "<html><body> 
+  echo "<!DOCTYPE html>
+         <html><body> 
           <h2>Please dont send uncompressed images :P</h2>
           I refuse to waste good bandwidth to upload this file..
          </body></html>"; 
@@ -35,7 +36,8 @@ function refuse_withoutcompression()
 
 function refuse_overquotta()
 { global $ENABLE_MIRROR_LINK;
-  echo "<html><body> 
+  echo "<!DOCTYPE html>
+         <html><body> 
           <h2>This server has exceeded its upload quotta</h2>";
   if ($ENABLE_MIRROR_LINK==1) { echo "Please try <a href=\"mirrors.php\">one of the mirrors</a>.."; }
   echo "        </body></html>"; 
@@ -44,7 +46,8 @@ function refuse_overquotta()
 
 function link_not_found()
 {
-  echo "<html><body> 
+  echo "<!DOCTYPE html>
+          <html><body> 
           <h2>Could not find file / File Expired ?</h2>
           Your link is invalid , or maybe the file expired..
          </body></html>"; 
@@ -53,7 +56,8 @@ function link_not_found()
 
 function tampered_data()
 {
-  echo "<html><body> 
+  echo "<!DOCTYPE html>
+         <html><body> 
           <h2>Tampered Request ?</h2>
             Get Lost..!
          </body></html>"; 
@@ -75,19 +79,38 @@ function ExtentionIsImage($ext)
        ( $ext == "gif" )||
        ( $ext == "svg" )||( $ext == "svgz" )|| 
        ( $ext == "bmp" )||( $ext == "ico" )||
-       ( $ext == "ppm" )||( $ext == "pbm" )||
+      //PPM , and pbm files are not opened by firefox :P ( $ext == "ppm" )||( $ext == "pbm" )||
        ( $ext == "jpg" )||
        ( $ext == "jpeg" )
      ) return 1;
   return 0;
 }
 
+function ExtentionIsVideo($ext)
+{
+  if ( ( $ext == "avi" )||
+       ( $ext == "ogv" )||
+       ( $ext == "webm" )||
+       ( $ext == "mpeg4" )||( $ext == "mp4" )|| 
+       ( $ext == "mpeg" )||( $ext == "mpg" ) 
+     ) return 1;
+  return 0;
+}
+
+function ExtentionIsAudio($ext)
+{
+  if ( ( $ext == "ogg" )|| ( $ext == "mp3" )||( $ext == "wav" ) 
+     ) return 1;
+  return 0;
+}
+
+
 function PrintFileInBox($weblink,$filename,$ext)
 {
   if ( ExtentionIsImage($ext)==1 )
             {
                  echo "<a href=\"".$weblink."\">";
-                 echo "<img src=\"".$weblink."\" width=\"70%\">";
+                 echo "<img src=\"".$weblink."\" width=\"70%\" alt=\"Uploaded Image\" >";
                  echo "</a><br><br>";
                  
                  echo "<a href=\"".$weblink."\">";
@@ -95,10 +118,29 @@ function PrintFileInBox($weblink,$filename,$ext)
                  echo "</a><br><br>";
             
             } else
+  if ( ExtentionIsVideo($ext)==1 )
+            { 
+                 echo"<video width=\"320\" src=\"".$weblink."\"  controls autobuffer autoplay>
+                       <p> Try this page on HTML5 capable brosers</p>
+                      </video>
+                        <br><a  href=\"".$weblink."\">Download the video file</a><br><br>";
+            } else 
+  if ( ExtentionIsAudio($ext)==1 )
+            { 
+                  echo"<audio controls=\"controls\">";
+                  
+                  if  ( $ext == "ogg" )  {  echo "<source src=\"".$weblink."\" type=\"audio/ogg\" />"; } else
+                  if  ( $ext == "wav" )  {  echo "<source src=\"".$weblink."\" type=\"audio/wav\" />"; } else
+                  if  ( $ext == "mp3" )  {  echo "<source src=\"".$weblink."\" type=\"audio/mp3\" />"; } 
+                  
+                  echo " <p> Try this page on HTML5 capable brosers</p>
+                        </audio> 
+                        <br><a  href=\"".$weblink."\">Download the audio file</a><br><br>";
+            } else
             {
                  echo "If you want you can download the file by clicking its link..";
                  echo "<br>This file has a .".$ext." extention <br><br>";
-                 echo "<br>Only png/gif/jpg/jpeg files are embedded in the pages for fast viewing :)<br><br>";
+                 echo "<br>Only png/gif/jpg/jpeg , audio and video files are embedded in the pages for fast viewing :)<br><br>";
 
                  echo "<a href=\"".$weblink."\">";
                  echo "<img src=\"images/logo.png\">";
@@ -263,5 +305,71 @@ function get_remote_file_size($url, $readable = true){
    }
    return $return;
 }
+
+function DownloadFile($url)
+{
+	global $ENABLE_URL_UPLOAD,$SCRIPT_LOCAL_BASE,$SCRIPT_CACHE_FOLDERNAME,$SCRIPT_WEB_BASE,$LOCAL_PHP_FILE_LIMIT;
+	
+	if ( ($ENABLE_URL_UPLOAD == 1 ) )
+	{
+		/*
+			   TODO ADD REGULAR EXPRESSION TO CLEAN URL!
+		*/
+		if(!strstr($url, "http://"))
+		{
+			$url = "http://".$url;
+		}
+		if(get_remote_file_size($url)>$LOCAL_PHP_FILE_LIMIT)
+		{
+			echo "</br>Files > ".($LOCAL_PHP_FILE_LIMIT/(1024*1024))."MB are not permitted</br>";
+		}
+		else
+		{
+			$destination_folder = $SCRIPT_CACHE_FOLDERNAME."/";
+			$newfname = basename($url);
+			$new_filename=md5($newfname.date('l jS \of F Y h:i:s A'))."-".$newfname;
+
+			$file = fopen ($url, "rb");
+			if ($file) {
+				$newf = fopen ($destination_folder.$new_filename, "wb");
+				if ($newf)
+				while(!feof($file)) {
+					fwrite($newf, fread($file, 1024 * 8 ), 1024 * 8 );
+				}
+			}
+
+			if ($file) {
+				fclose($file);
+			}
+
+			if ($newf) {
+				fclose($newf);
+			}
+			if(file_exists($SCRIPT_LOCAL_BASE.$destination_folder.$new_filename))
+			{
+				$direct_target_path = "file.php?i=".$new_filename; 
+				$new_target_path = "vfile.php?i=".$new_filename; 
+				echo "<br/>";
+						 echo "You can access the file <a href='$new_target_path' target=\"_new\">here</a><br/><br/>";
+						 echo "<table>";
+						 echo "<tr>
+							   <td>Link : </td>
+							   <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$new_target_path."\"></td>
+							   </tr>";
+						echo "<tr>
+							   <td>Direct Link : </td>
+							   <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$direct_target_path."\"></td>
+							   </tr>
+							  </table></br></br>";
+				add_to_cache_size(get_remote_file_size($url)); 
+			}
+			else
+			{
+			  echo "</br><h2>Sorry, there was an error during the upload!</br>Please check if the url is valid and try again!</h2></br>";
+			}
+		}					  
+	}
+}
+
 
 ?>
