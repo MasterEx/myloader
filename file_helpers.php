@@ -123,10 +123,21 @@ function PrintFileInBox($weblink,$filename,$ext)
             } else
   if ( ( ExtentionIsVideo($ext)==1 ) && ($HTML5_VIDEO==1) )
             { 
-                 echo"<video width=\"320\" src=\"".$weblink."\"  controls autobuffer autoplay>
+            
+                 echo "<video poster=\"images/video_logo.png\" autoplay controls>"; 
+                  if  ( $ext == "ogv" )  {  echo "<source src=\"".$weblink."\" type='video/ogg; codecs=\"theora, vorbis\"' />"; } else
+                  if  ( $ext == "webm")  {  echo "<source src=\"".$weblink."\" type='video/webm; codecs=\"vp8, vorbis\"'  />"; } else
+                  if  ( $ext == "mp4" )  {  echo "<source src=\"".$weblink."\" type='video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"' />"; }                
+                 
+                 echo "</video> <br><a  href=\"".$weblink."\">Download the video file</a><br><br>";               
+            
+            
+            /*  video is a weird thing , due to the multitude of codecs , etc.. this is another instance of the code 
+                 echo"<video width=\"320\" src=\"".$weblink."\"  controls autoplay>
                        <p> Try this page on HTML5 capable brosers</p>
                       </video>
-                        <br><a  href=\"".$weblink."\">Download the video file</a><br><br>";
+                  
+                        */
             } else 
   if ( (ExtentionIsAudio($ext)==1) && ($HTML5_AUDIO==1) )
             { 
@@ -146,7 +157,7 @@ function PrintFileInBox($weblink,$filename,$ext)
                  echo "<br>Only png/gif/jpg/jpeg , audio and video files are embedded in the pages for fast viewing :)<br><br>";
 
                  echo "<a href=\"".$weblink."\">";
-                 echo "<img src=\"images/logo.png\">";
+                 echo "<img src=\"images/host_logo.png\">";
                  echo "</a><br><br>";
 
                  echo "<a href=\"".$weblink."\">";
@@ -212,7 +223,7 @@ if ( ($MAXIMUM_UPLOAD_BANDWIDTH_QUOTA!=0) && ( $MAXIMUM_UPLOAD_BANDWIDTH_QUOTA<g
         header("Content-type: video/mp4"); // add here more headers for diff. extensions         
         break;
         case "ogv":
-        header("Content-type: video/ogv"); // add here more headers for diff. extensions         
+        header("Content-type: video/ogg"); // add here more headers for diff. extensions         
         break;
         case "avi":
         header("Content-type: video/avi"); // add here more headers for diff. extensions         

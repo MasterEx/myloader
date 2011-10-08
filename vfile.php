@@ -39,7 +39,10 @@
           if (!isset($file_parts["extension"])) { /* EXTENTION REMAINS BIN :P */  } else
                                                 { $ext = strtolower($file_parts["extension"]); }
 
-          if ( (ExtentionIsImage($ext)==1)||($DISABLE_PREVIEW_FOR_NON_IMAGE_FILES==0) )
+          if ( (ExtentionIsImage($ext)==1)||
+               (ExtentionIsVideo($ext)==1)||
+               (ExtentionIsAudio($ext)==1)||
+               ($DISABLE_PREVIEW_FOR_NON_VIEWABLE_FILES==0) )
           {   
         
             $file_served=1;
