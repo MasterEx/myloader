@@ -141,7 +141,7 @@ function PrintFileInBox($weblink,$filename,$ext)
             } else 
   if ( (ExtentionIsAudio($ext)==1) && ($HTML5_AUDIO==1) )
             { 
-                  echo"<audio controls=\"controls\">";
+                  echo"<audio autoplay controls>";
                   
                   if  ( $ext == "ogg" )  {  echo "<source src=\"".$weblink."\" type=\"audio/ogg\" />"; } else
                   if  ( $ext == "wav" )  {  echo "<source src=\"".$weblink."\" type=\"audio/wav\" />"; } else
