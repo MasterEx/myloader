@@ -1,5 +1,5 @@
 <?php
-   $VERSION="0.952";
+   $VERSION="0.953";
    $time_enter=microtime(true);
    require("file_helpers.php"); 
    require("cleaning_support.php");   
@@ -66,6 +66,10 @@
   
   if(isset($_POST['submit']))
    {
+     //THIS IS DONE TO ENABLE GREEK ETC CHARACTERS TO BE SAVED WITH NO PROBLEMS 
+     //The text is converted to question marks ( ? ) which can be further improved , but the upload works..!  	
+     $incoming_file_name = utf8_decode($_FILES['uploadedfile']['name']);	
+   	
      if ($ENABLE_URL_UPLOAD == 1 && (strlen($_POST['website'])>0))
      {
 			echo "Website From URL Requested ".$_POST['website'];
@@ -73,7 +77,7 @@
      }
      else
      {
-		  $tmpdir = md5($_FILES['uploadedfile']['name'].date('l jS \of F Y h:i:s A'));
+		  $tmpdir = md5($incoming_file_name.date('l jS \of F Y h:i:s A'));
 
 		  if ( ($MAXIMUM_CACHE_QUOTA!=0) && ($cache_size>$MAXIMUM_CACHE_QUOTA) )
 		   {
@@ -92,9 +96,11 @@
 			 echo "<h2>You provided no file to upload!</h2>";  
 		   }
 			  else    
-		   { 
+		   {   
+		       
+		       
 				 $base_path = "./".$SCRIPT_CACHE_FOLDERNAME."/";
-				 $new_filename = $tmpdir."-".basename($_FILES['uploadedfile']['name']);
+				 $new_filename = $tmpdir."-".basename($incoming_file_name);
 				  
 				 //New file.php file sender 
 				 $direct_target_path = "file.php?i=".urlencode($new_filename); 
@@ -104,7 +110,7 @@
 				  
 				 if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'],$target_path))
 				  {
-					 echo "<br/>The file <b>".basename( $_FILES['uploadedfile']['name']);
+					 echo "<br/>The file <b>".basename($incoming_file_name);
 					 $thefilesize=filesize($target_path);
 					 if ( $thefilesize>1024*1024 ) { echo " ".number_format($thefilesize/(1024*1024),2)." MB ";  } else 
 					 if ( $thefilesize>1024 )      { echo " ".number_format($thefilesize/1024,2)." KB ";  } else 
@@ -117,7 +123,7 @@
 					 if($ENABLE_GOOGLEDOCS_LINK == 1)
 					 {
 						 $gdocsExtensions = array("pdf","ppt","pptx","tiff");
-						 if (in_array(end(explode(".",strtolower($_FILES['uploadedfile']['name']))),$gdocsExtensions)) 
+						 if (in_array(end(explode(".",strtolower($incoming_file_name))),$gdocsExtensions)) 
 						 {
 							echo " - @<a href=\"http://docs.google.com/viewer?url=".urlencode($SCRIPT_WEB_BASE.$direct_target_path)."\">GoogleDocs</a>";
 						 }
