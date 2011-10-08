@@ -59,7 +59,7 @@
                      <title>".$filename_part."</title>
                      <link rel=\"stylesheet\" type=\"text/css\" href=\"myloader.css\" />";
                      
-            if ( $HTML5_COMPATIBILITY_AUDIO_VIDEO == 1 )
+            if ( ( $HTML5_COMPATIBILITY_AUDIO_VIDEO == 1 ) && ( ((ExtentionIsVideo($ext)==1) && $HTML5_VIDEO) || ((ExtentionIsAudio($ext)==1) && $HTML5_AUDIO) ) )
                 { echo "<script src=\"http://html5media.googlecode.com/svn/trunk/src/html5media.min.js\"></script>"; }
             
             echo " </head>

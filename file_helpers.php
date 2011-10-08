@@ -97,6 +97,13 @@ function ExtentionIsVideo($ext)
   return 0;
 }
 
+function ExtentionIsFlash($ext)
+{
+  if ( ( $ext == "swf" )
+     ) return 1;
+  return 0;
+}
+
 function ExtentionIsAudio($ext)
 {
   if ( ( $ext == "ogg" )|| ( $ext == "mp3" )||( $ext == "wav" ) 
@@ -107,7 +114,7 @@ function ExtentionIsAudio($ext)
 
 function PrintFileInBox($weblink,$filename,$ext)
 {
-  global $HTML5_VIDEO , $HTML5_AUDIO;
+  global $HTML5_VIDEO , $HTML5_AUDIO , $FLASH_EMBEDS;
  	
 	
   if ( ExtentionIsImage($ext)==1 )
@@ -151,6 +158,17 @@ function PrintFileInBox($weblink,$filename,$ext)
                         </audio> 
                         <br><a  href=\"".$weblink."\">Download the audio file</a><br><br>";
             } else
+  if ( (ExtentionIsFlash($ext)==1) && ($FLASH_EMBEDS==1) )
+            { 
+              echo"<object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\"
+                           codebase=\"http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0\" width=\"640\" height=\"480\">
+                           <param name=\"movie\" value=\"".$weblink."\">
+                           <param name=\"quality\" value=\"high\">
+                           <embed src=\"".$weblink."\" quality=\"high\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\" type=\"application/x-shockwave-flash\" width=\"640\" height=\"480\"></embed>
+                   </object>
+                     <br><a  href=\"".$weblink."\">Download the flash file</a><br><br>"; 
+            } else           
+          
             {
                  echo "If you want you can download the file by clicking its link..";
                  echo "<br>This file has a .".$ext." extention <br><br>";

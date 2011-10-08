@@ -12,12 +12,13 @@
    /* ------------ WEB-DESIGN :P  VARIABLES ------------ */
    $BANNER_PREFIX = "banner_"; //Change this to make your own banners while keeping the old ones , reminder : you will have to make a banner_mask.png too!
    $BANNER_NUMBER = 7; // The total number of banners that exist
-   $DISABLE_PREVIEW_FOR_NON_IMAGE_FILES = 1; // 1/0 Switch - This switch will enable/disable preview of file images ( they will be sent at once )
+   $DISABLE_PREVIEW_FOR_NON_VIEWABLE_FILES = 1; // 1/0 Switch - This switch will enable/disable preview of file images ( they will be sent at once )
    $ENABLE_URL_UPLOAD =    1; // 1/0 Switch - This switch will enable/disable the use of other upload options
    $ENABLE_MIRROR_LINK =   1; // 1/0 Switch - This switch will enable/disable the link to mirrors
    $ENABLE_SHOW_STATS =    1; // 1/0 Switch - This switch will enable/disable the output of webserver statistics on the index
    $ENABLE_RANDOM_FILE =   1; // 1/0 Switch - This switch will enable/disable the random file capability
    $ENABLE_FILE_INDEXING = 1; // 1/0 Switch - This switch will enable/disable the file listing capability   
+   $FLASH_EMBEDS = 1; // 1/0 Switch - This switch will enable/disable automatic embedded flash in the pages  
    $HTML5_VIDEO = 1; // 1/0 Switch - This switch will enable/disable video tag usage , in some years when html5 will be common place , these 3 switches may not be needed any longer :P
    $HTML5_AUDIO = 1; // 1/0 Switch - This switch will enable/disable audio tag usage 
    $HTML5_COMPATIBILITY_AUDIO_VIDEO = 1; // 1/0 Switch - This switch will enable/disable audio video compatibility ( See https://github.com/etianen/html5media )
