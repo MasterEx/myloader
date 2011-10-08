@@ -107,6 +107,9 @@ function ExtentionIsAudio($ext)
 
 function PrintFileInBox($weblink,$filename,$ext)
 {
+  global $HTML5_VIDEO , $HTML5_AUDIO;
+ 	
+	
   if ( ExtentionIsImage($ext)==1 )
             {
                  echo "<a href=\"".$weblink."\">";
@@ -118,14 +121,14 @@ function PrintFileInBox($weblink,$filename,$ext)
                  echo "</a><br><br>";
             
             } else
-  if ( ExtentionIsVideo($ext)==1 )
+  if ( ( ExtentionIsVideo($ext)==1 ) && ($HTML5_VIDEO==1) )
             { 
                  echo"<video width=\"320\" src=\"".$weblink."\"  controls autobuffer autoplay>
                        <p> Try this page on HTML5 capable brosers</p>
                       </video>
                         <br><a  href=\"".$weblink."\">Download the video file</a><br><br>";
             } else 
-  if ( ExtentionIsAudio($ext)==1 )
+  if ( (ExtentionIsAudio($ext)==1) && ($HTML5_AUDIO==1) )
             { 
                   echo"<audio controls=\"controls\">";
                   

@@ -54,8 +54,12 @@
                   <html>
                    <head>
                      <title>".$filename_part."</title>
-                     <link rel=\"stylesheet\" type=\"text/css\" href=\"myloader.css\" /> 
-                   </head>
+                     <link rel=\"stylesheet\" type=\"text/css\" href=\"myloader.css\" />";
+                     
+            if ( $HTML5_COMPATIBILITY_AUDIO_VIDEO == 1 )
+                { echo "<script src=\"http://html5media.googlecode.com/svn/trunk/src/html5media.min.js\"></script>"; }
+            
+            echo " </head>
                    <body>
                      <center>"; 
             echo "<br> <a href=\"index.php\">Return to MyLoader!</a><br><br>";
