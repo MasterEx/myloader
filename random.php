@@ -43,7 +43,7 @@
 
  if ( $ENABLE_RANDOM_FILE  == 0 )
   {
-    echo "<html><body>Random File Support is disabled</body></html>";
+    echo "<!DOCTYPE html><html><body>Random File Support is disabled</body></html>";
   } else
   { 
      $dir_handle  =  @opendir("./".$SCRIPT_CACHE_FOLDERNAME."/")  or  die("Unable  to  open  $path");
@@ -77,10 +77,14 @@
              $hash_part=$filename_parts[0];
              $filename_part=$filename_parts[1];                     
 
-            echo "<html>
+            echo "<!DOCTYPE html><html>
 					<head>
                      <title>".$filename_part."</title>
                      <link rel=\"stylesheet\" type=\"text/css\" href=\"myloader.css\" />";
+                     
+            if ( ( $HTML5_COMPATIBILITY_AUDIO_VIDEO == 1 ) && ( (ExtentionIsVideo($ext)==1 && $HTML5_VIDEO==1) || (ExtentionIsAudio($ext)==1 && $HTML5_AUDIO==1) ) )
+                { echo "<script src=\"http://html5media.googlecode.com/svn/trunk/src/html5media.min.js\"></script>"; }
+                                     
 			echo 	 $HEAD_HTML_INJECTION;
             echo " </head>
                    <body>
