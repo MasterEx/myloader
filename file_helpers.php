@@ -56,11 +56,21 @@ function link_not_found()
 
 function tampered_data()
 {
+  error_reporting (0);	
+  global $HOST_NAME;	
   echo "<!DOCTYPE html>
-         <html><body> 
-          <h2>Tampered Request ?</h2>
-            Get Lost..!
+         <html>
+          <body> 
+            <h2>Tampered Request</h2>
+             <a href=\"#\" onclick=\"window.home();\">Get Lost</a> , this incident along with your IP has been logged..!
          </body></html>"; 
+  
+  $ip = "unknown IP..";
+  if ($_SERVER['HTTP_X_FORWARD_FOR'])
+   {  $ip = $_SERVER['HTTP_X_FORWARD_FOR']; } else
+   {  $ip = $_SERVER['REMOTE_ADDR']; }
+           
+  error_log("MyLoader service @ ".$HOST_NAME." encountered tampering attempt with an asked file name by IP ".$ip." ..", 0);
 }
 
 
@@ -204,10 +214,19 @@ function ServeFile($dirty_filename)
   //FIX EXPLOITABLE HOLE THAT CAN SERVE THE WRONG FILE :P
   $filename = filter_var(stripslashes($dirty_filename),FILTER_SANITIZE_STRIPPED);
   str_ireplace("/",".",$filename);
+  $filename = strip_tags($filename,0);
   //FIX EXPLOITABLE HOLE THAT CAN SERVE THE WRONG FILE :P
   //DEBUG OUTPUT TO FIGURE OUT IF INPUT FILTERING WORKS OK echo $filename;
 
- global $MAXIMUM_UPLOAD_BANDWIDTH_QUOTA,$MAXIMUM_UPLOAD_BANDWIDTH_QUOTA,$SCRIPT_LOCAL_BASE,$SCRIPT_CACHE_FOLDERNAME;
+global $MAXIMUM_UPLOAD_BANDWIDTH_QUOTA,$MAXIMUM_UPLOAD_BANDWIDTH_QUOTA,$SCRIPT_LOCAL_BASE,$SCRIPT_CACHE_FOLDERNAME;
+
+
+if ($filename!=$dirty_filename) 
+{
+   //The filename was really dirty , refuse service 
+	tampered_data();
+	
+} else
 if ( ($MAXIMUM_UPLOAD_BANDWIDTH_QUOTA!=0) && ( $MAXIMUM_UPLOAD_BANDWIDTH_QUOTA<get_uploaded_bandwidth() ) )
 {
   // Upload guard quota

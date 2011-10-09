@@ -69,6 +69,9 @@
      //THIS IS DONE TO ENABLE GREEK ETC CHARACTERS TO BE SAVED WITH NO PROBLEMS 
      //The text is converted to question marks ( ? ) which can be further improved , but the upload works..!  	
      $incoming_file_name = utf8_decode($_FILES['uploadedfile']['name']);	
+     $incoming_file_name = strip_tags($incoming_file_name,0);
+     $incoming_file_name = stripslashes($incoming_file_name);
+     
    	
      if ($ENABLE_URL_UPLOAD == 1 && (strlen($_POST['website'])>0))
      {
