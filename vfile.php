@@ -1,6 +1,7 @@
 <?php
  require("configuration.php");
  require("file_helpers.php");
+ require("visuals.php");
 /***************************************************************************
 * Copyright (C) 2010 by Periklis Ntanasis , Ammar Qammaz *
 * 
@@ -63,7 +64,8 @@
                 { echo "<script src=\"http://html5media.googlecode.com/svn/trunk/src/html5media.min.js\"></script>"; }
             
             echo " </head>
-                   <body>
+                   <body>".header_bar()."                   
+                   
                      <center>"; 
             echo "<br> <a href=\"index.php\">Return to MyLoader!</a><br><br>";
             $web_file_server=$SCRIPT_WEB_BASE."file.php?i=".urlencode($file);

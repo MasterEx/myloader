@@ -22,7 +22,8 @@
         $time_enter=microtime(true); 
 		require("configuration.php"); 
         require("stat_keeper.php");
-		require("cleaning_support.php");  
+		require("cleaning_support.php");   
+        require("visuals.php");  
         require("footer.php");  
 ?>
 <!DOCTYPE html>
@@ -37,7 +38,7 @@
 <link rel="stylesheet" type="text/css" href="myloader.css" />
 <?php echo $HEAD_HTML_INJECTION; ?>
 </head>
-<body>
+<body><?php  header_bar(); ?>
 <center>
 <?php
 	if ( $WILL_CHECK_IF_UPLOAD_DIR_NEEDS_CLEANING==1 ) 

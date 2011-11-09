@@ -1,7 +1,8 @@
 <?php
  require("configuration.php");
- require("file_helpers.php");
-
+ require("file_helpers.php"); 
+ require("visuals.php");
+ 
 /***************************************************************************
 * Copyright (C) 2010 by Periklis Ntanasis , Ammar Qammaz *
 * 
@@ -87,7 +88,7 @@
                                      
 			echo 	 $HEAD_HTML_INJECTION;
             echo " </head>
-                   <body>
+                   <body>".header_bar()."   
                      <center>";
             echo "<br><a href=\"random.php\">See More Random Files!</a> &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;";
             echo "<a href=\"index.php\">Return to MyLoader!</a><br><br>";
