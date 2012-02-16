@@ -74,6 +74,25 @@ function tampered_data()
 }
 
 
+function ExtentionIsGoogleDocsViewable($ext)
+{
+  if ( ( $ext == "pdf" )||
+       ( $ext == "xls" )|| ( $ext == "xlsx" )||
+       ( $ext == "doc" )|| ( $ext == "docx" )||
+       ( $ext == "ppt" )|| ( $ext == "pptx" )||
+       ( $ext == "odt" )|| ( $ext == "ods" )||
+       ( $ext == "pages" )||
+       ( $ext == "ai" )||
+       ( $ext == "psd" )||
+       ( $ext == "tiff" )||
+       ( $ext == "dxf" )||
+       ( $ext == "eps" )|| ( $ext == "ps" )||
+       ( $ext == "ttf" )|| ( $ext == "otf" )||
+       ( $ext == "xps" )     
+     ) return 1;
+  return 0;
+}
+
 function ExtentionIsExecutable($ext)
 {
   if ( ( $ext == "exe" )||
@@ -124,7 +143,7 @@ function ExtentionIsAudio($ext)
 
 function PrintFileInBox($weblink,$filename,$ext)
 {
-  global $HTML5_VIDEO , $HTML5_AUDIO , $FLASH_EMBEDS;
+  global $HTML5_VIDEO , $HTML5_AUDIO , $FLASH_EMBEDS , $ENABLE_GOOGLEDOCS_LINK;
  	
 	
   if ( ExtentionIsImage($ext)==1 )
@@ -187,7 +206,12 @@ function PrintFileInBox($weblink,$filename,$ext)
                  echo "<a href=\"".$weblink."\">";
                  echo "<img src=\"images/host_logo.png\">";
                  echo "</a><br><br>";
-
+                 
+                 if ( ($ENABLE_GOOGLEDOCS_LINK)&&(ExtentionIsGoogleDocsViewable($ext)) )
+                  { 
+                     echo "<a href=\"http://docs.google.com/viewer?url=".$weblink."\">";
+                     echo "File can be also viewed using Google Docs<br><br>"; 
+                  }
                  echo "<a href=\"".$weblink."\">";
                  echo $filename;
                  echo "</a><br><br>"; 
