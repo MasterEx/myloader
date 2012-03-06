@@ -6,7 +6,7 @@ if [ $# -gt 1 ]
 then
 	target=$2
 else
-	server=http://ammarkov.ath.cx
+	server=http://ammar.gr
 	target=$server/myloader
 fi
 echo "Uploading to $target"
