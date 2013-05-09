@@ -4,7 +4,7 @@ function write_nice_logo($host_name,$banner_number,$script_web_base,$banner_pref
 { 
  $num=rand(1,$banner_number);
  echo "
-        <div id=\"BannerInside\" style=\"background-image:url(".$script_web_base."images/".$banner_prefix.$num.".jpg"."); \">
+        <div id=\"BannerInside\" style=\"background-image:url(images/".$banner_prefix.$num.".jpg"."); \">
          <table id=\"BannerMask\" style=\"background-image:url(images/".$banner_prefix."mask.png\" >
            <tr>
               <td>MyLoader <span id=\"blinking\">@</span> ".$host_name."</td>

@@ -31,7 +31,7 @@
 <html>
 <head>
 <meta name="author" content="Ammar Qammaz" >
-<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="keywords" content="personal uploader" />
 <meta name="description" content="" /> 
 <title>MyLoader @ <?php echo $HOST_NAME; ?></title>
