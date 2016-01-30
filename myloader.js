@@ -17,3 +17,10 @@ function make_moreoptions_invisible()
   span_moreoptions.className="is_on";
 }
 
+
+function copyPasteLinkHTML5(data2send)
+{
+ var copyEvent = new ClipboardEvent('copy', { dataType: 'text/plain', data: data2send } );
+
+ document.dispatchEvent(copyEvent);
+}

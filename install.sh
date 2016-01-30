@@ -30,6 +30,13 @@ function createconfiguration() {
    \$WILL_CHECK_IF_UPLOAD_DIR_NEEDS_CLEANING = 0; // 1/0 Switch - This switch will enable/disable the file autodelete capability - $MAXIMUM_STAY_ON_SERVER_HOURS should have a value >0
    \$RANDOM_FILE_BUTTON_LABEL = \"R\"; // This variable changes the label on the random button , you may want to make it /b/ or something else :P
    
+   /* ------------ HTML5 CAPABILITIES  ------------ */
+   \$FLASH_EMBEDS = 1; // 1/0 Switch - This switch will enable/disable automatic embedded flash in the pages  
+   \$HTML5_VIDEO = 1; // 1/0 Switch - This switch will enable/disable video tag usage , in some years when html5 will be common place , these 3 switches may not be needed any longer :P
+   \$HTML5_AUDIO = 1; // 1/0 Switch - This switch will enable/disable audio tag usage 
+   \$HTML5_COMPATIBILITY_AUDIO_VIDEO = 1; // 1/0 Switch - This switch will enable/disable audio video compatibility ( See https://github.com/etianen/html5media )
+   \$HTML5_CLIPBOARD = 1; // 1/0 Switch - This switch will enable/disable html5 clibboard 
+
    /* MODDING VARIABLES */
    /* You can use these variables to make additions to the page i.e. javascripts,css,music embeds,w/e without altering index.php  */
    \$HEAD_HTML_INJECTION=\" \";

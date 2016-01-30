@@ -99,9 +99,9 @@
 			 echo "<h2>You provided no file to upload!</h2>";  
 		   }
 			  else    
-		   {   
-		       
-		       
+		   {    
+                    $copypastebutton1="";
+                    $copypastebutton2="";  
 				 $base_path = "./".$SCRIPT_CACHE_FOLDERNAME."/";
 				 $new_filename = $tmpdir."-".basename($incoming_file_name);
 				  
@@ -131,15 +131,31 @@
 							echo " - @<a href=\"http://docs.google.com/viewer?url=".urlencode($SCRIPT_WEB_BASE.$direct_target_path)."\">GoogleDocs</a>";
 						 }
 					 }
+
+
+
+
+                                         if ( $HTML5_CLIPBOARD == 1 )
+                                         {
+                                           $copypastebutton1="<button id=\"cpbtn1\">Copy</button>";	
+                                           $copypastebutton2="<button id=\"cpbtn2\">Copy</button>";		       
+                                           
+                                           echo "<script>"
+                                           echo "$(\"#cpbtn1\").on('click', function (e) { var clip = new ClipboardEvent('copy'); clip.clipboardData.setData('text/plain', \"".$SCRIPT_WEB_BASE.$new_target_path."\"); clip.preventDefault(); e.target.dispatchEvent(clip); }); ";
+                                           echo "$(\"#cpbtn2\").on('click', function (e) { var clip = new ClipboardEvent('copy'); clip.clipboardData.setData('text/plain', \"".$SCRIPT_WEB_BASE.$direct_target_path."\"); clip.preventDefault(); e.target.dispatchEvent(clip); }); ";
+                                           echo "</script>" 
+                                         }
+
+
 					 echo "<br/><br/> 
                      <table id=\"StayCentered\">					      
 					       <tr>
 						     <td>Link : </td>
-						     <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$new_target_path."\"></td>
+						     <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$new_target_path."\"> $copypastebutton1 </td>
 						   </tr>";
 					echo "<tr>
 						     <td>Direct Link : </td>
-						     <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$direct_target_path."\"></td>
+						     <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$direct_target_path."\"> $copypastebutton2</td>
 						   </tr>
 						  </table>
 						  </br></br>";
