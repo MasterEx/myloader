@@ -133,17 +133,18 @@
 					 }
 
 
-
+                                         $weblink=$SCRIPT_WEB_BASE.$new_target_path;
+                                         $directlink=$SCRIPT_WEB_BASE.$direct_target_path;
 
                                          if ( $HTML5_CLIPBOARD == 1 )
                                          {
-                                           $copypastebutton1="<button id=\"cpbtn1\">Copy</button>";	
-                                           $copypastebutton2="<button id=\"cpbtn2\">Copy</button>";		       
+                                           $copypastebutton1="<button id=\"cpbtn1\" onclick=\"copyPasteLinkHTML5(\"".$weblink."\");\" >Copy</button>";	
+                                           $copypastebutton2="<button id=\"cpbtn2\" onclick=\"copyPasteLinkHTML5(\"".$directlink."\");\" >Copy</button>";		       
                                            
-                                           echo "<script>";
-                                           echo "$(\"#cpbtn1\").on('click', function (e) { var clip = new ClipboardEvent('copy'); clip.clipboardData.setData('text/plain', \"".$SCRIPT_WEB_BASE.$new_target_path."\"); clip.preventDefault(); e.target.dispatchEvent(clip); }); ";
-                                           echo "$(\"#cpbtn2\").on('click', function (e) { var clip = new ClipboardEvent('copy'); clip.clipboardData.setData('text/plain', \"".$SCRIPT_WEB_BASE.$direct_target_path."\"); clip.preventDefault(); e.target.dispatchEvent(clip); }); ";
-                                           echo "</script>" ;
+                                           echo "\n<script>\n";
+                                           echo "$(\"#cpbtn1\").on('click', function (e) { var clip = new ClipboardEvent('copy'); clip.clipboardData.setData('text/plain', \"".$weblink."\"); clip.preventDefault(); e.target.dispatchEvent(clip); }); ";
+                                           echo "$(\"#cpbtn2\").on('click', function (e) { var clip = new ClipboardEvent('copy'); clip.clipboardData.setData('text/plain', \"".$directlink."\"); clip.preventDefault(); e.target.dispatchEvent(clip); }); ";
+                                           echo "\n</script>\n" ;
                                          }
 
 
@@ -151,11 +152,11 @@
                      <table id=\"StayCentered\">					      
 					       <tr>
 						     <td>Link : </td>
-						     <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$new_target_path."\"> $copypastebutton1 </td>
+						     <td><input type=\"text\" value=\"".$weblink."\"> $copypastebutton1 </td>
 						   </tr>";
 					echo "<tr>
 						     <td>Direct Link : </td>
-						     <td><input type=\"text\" value=\"".$SCRIPT_WEB_BASE.$direct_target_path."\"> $copypastebutton2</td>
+						     <td><input type=\"text\" value=\"".$directlink."\"> $copypastebutton2</td>
 						   </tr>
 						  </table>
 						  </br></br>";
