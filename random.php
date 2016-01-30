@@ -78,16 +78,23 @@
              $hash_part=$filename_parts[0];
              $filename_part=$filename_parts[1];                     
 
-            echo "<!DOCTYPE html><html>
-					<head>
+            echo "<!DOCTYPE html>
+                    <html>\n
+		     <head>\n
                      <title>".$filename_part."</title>
                      <link rel=\"stylesheet\" type=\"text/css\" href=\"myloader.css\" />";
                      
             if ( ( $HTML5_COMPATIBILITY_AUDIO_VIDEO == 1 ) && ( (ExtentionIsVideo($ext)==1 && $HTML5_VIDEO==1) || (ExtentionIsAudio($ext)==1 && $HTML5_AUDIO==1) ) )
                 { echo "<script src=\"http://html5media.googlecode.com/svn/trunk/src/html5media.min.js\"></script>"; }
-                                     
+
+
+            if ($HTML5_KEYBOARD == 1 )
+               {
+                 keyboardjs();
+               }                                     
+
 			echo 	 $HEAD_HTML_INJECTION;
-            echo " </head>
+            echo " </head>\n
                    <body>".header_bar()."   
                      <center>";
             echo "<br><a href=\"random.php\">See More Random Files!</a> &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -99,7 +106,7 @@
             echo "<br><br><br><br><a href=\"index.php\">Return to MyLoader!</a>";
             
             echo "   </center>";
-            echo " </body>
+            echo "</body>
                   </html>";
             
             break;
