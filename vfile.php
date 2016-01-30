@@ -54,7 +54,7 @@
              $hash_part=$filename_parts[0];
              $filename_part=$filename_parts[1];                     
 
-            echo "<!DOCTYPE html>
+            echo "<!DOCTYPE html> 
                   <html>
                    <head>
                      <title>".$filename_part."</title>
@@ -63,6 +63,12 @@
             if ( ( $HTML5_COMPATIBILITY_AUDIO_VIDEO == 1 ) && ( (ExtentionIsVideo($ext)==1 && $HTML5_VIDEO==1) || (ExtentionIsAudio($ext)==1 && $HTML5_AUDIO==1) ) )
                 { echo "<script src=\"http://html5media.googlecode.com/svn/trunk/src/html5media.min.js\"></script>"; }
             
+
+            if ($HTML5_KEYBOARD == 1 )
+               {
+                 keyboardjs();
+               }
+
             echo " </head>
                    <body>".header_bar()."                   
                    

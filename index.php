@@ -4,6 +4,7 @@
    require("file_helpers.php"); 
    require("cleaning_support.php");   
    require("footer.php");   
+   require("visuals.php");
 
 /***************************************************************************
 * Copyright (C) 2010 by Periklis Ntanasis , Ammar Qammaz *
@@ -41,28 +42,16 @@
 <style type="text/css">
 
 </style>
-<?php echo $HEAD_HTML_INJECTION; ?>
+<?php 
+  echo $HEAD_HTML_INJECTION; 
+     
+  if ($HTML5_KEYBOARD == 1 )
+               {
+                 keyboardjs();
+               }
+?>
 
-
-<script>   
-   function goRandomMyLoader() 
-    {
-      var randomnumber=Math.floor(Math.random()*100000);
-      window.location.href = "random.php?t="+randomnumber; 
-    } 
-
-
-  document.onkeypress = function (e) 
-  {
-    e = e || window.event;
-    
-    var keypressed=(e.keyCode || e.which);
-    if (  keypressed == 114  ) //r
-     {
-      goRandomMyLoader();  
-     }
-  };
-</script>
+ 
 
 </head>
 <body>

@@ -12,4 +12,28 @@ function header_bar()
          </table>"; 
 }
 
+function keyboardjs()
+{
+    echo "<script>\n   
+                       function goRandomMyLoader() 
+                        {
+                         var randomnumber=Math.floor(Math.random()*100000);
+                         window.location.href = \"random.php?t=\"+randomnumber; 
+    }\n 
+
+
+  document.onkeypress = function (e)\n 
+  {\n
+    e = e || window.event;\n
+    
+    var keypressed=(e.keyCode || e.which);\n
+    if (  keypressed == 114  ) //r
+     {
+      goRandomMyLoader();  
+     }\n
+  };\n
+</script>\n"; 
+
+}
+
 ?>
