@@ -149,6 +149,7 @@
 
                                          if ( $HTML5_CLIPBOARD == 1 )
                                          {
+                                           //THIS DOES NOT WORK , TODO : drop in replacement for this..!
                                            $copypastebutton1="<button id=\"cpbtn1\" onclick=\"copyPasteLinkHTML5('".$weblink."');\" >Copy</button>";	
                                            $copypastebutton2="<button id=\"cpbtn2\" onclick=\"copyPasteLinkHTML5('".$directlink."');\" >Copy</button>";		       
                                            
