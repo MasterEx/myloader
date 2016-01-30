@@ -14,13 +14,12 @@ function header_bar()
 
 function keyboardjs()
 {
-    echo "<script>\n   
-                       function goRandomMyLoader() 
-                        {
-                         var randomnumber=Math.floor(Math.random()*100000);
-                         window.location.href = \"random.php?t=\"+randomnumber; 
-    }\n 
-
+   echo "<script>\n   
+         function goRandomMyLoader() 
+          {
+           var randomnumber=Math.floor(Math.random()*100000);
+           window.location.href = \"random.php?t=\"+randomnumber; 
+          }\n 
 
   document.onkeypress = function (e)\n 
   {\n

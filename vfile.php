@@ -54,9 +54,9 @@
              $hash_part=$filename_parts[0];
              $filename_part=$filename_parts[1];                     
 
-            echo "<!DOCTYPE html> 
-                  <html>
-                   <head>
+            echo "<!DOCTYPE html>\n 
+                  <html>\n
+                   <head>\n
                      <title>".$filename_part."</title>
                      <link rel=\"stylesheet\" type=\"text/css\" href=\"myloader.css\" />";
                      
@@ -69,7 +69,7 @@
                  keyboardjs();
                }
 
-            echo " </head>
+            echo "</head>\n
                    <body>".header_bar()."                   
                    
                      <center>"; 
@@ -81,8 +81,8 @@
             echo "<br><br><br><br><a href=\"index.php\">Return to MyLoader!</a><br>";
             echo "<img src=\"images/host_logo.png\" id=\"invisible\">";
             echo "   </center>";
-            echo " </body>
-                  </html>";
+            echo " </body>\n
+                  </html>\n";
             
            } else
            { // if file not image no use in "displaying" it , better to send it at once
