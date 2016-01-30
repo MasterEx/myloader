@@ -140,10 +140,10 @@
                                            $copypastebutton1="<button id=\"cpbtn1\">Copy</button>";	
                                            $copypastebutton2="<button id=\"cpbtn2\">Copy</button>";		       
                                            
-                                           echo "<script>"
+                                           echo "<script>";
                                            echo "$(\"#cpbtn1\").on('click', function (e) { var clip = new ClipboardEvent('copy'); clip.clipboardData.setData('text/plain', \"".$SCRIPT_WEB_BASE.$new_target_path."\"); clip.preventDefault(); e.target.dispatchEvent(clip); }); ";
                                            echo "$(\"#cpbtn2\").on('click', function (e) { var clip = new ClipboardEvent('copy'); clip.clipboardData.setData('text/plain', \"".$SCRIPT_WEB_BASE.$direct_target_path."\"); clip.preventDefault(); e.target.dispatchEvent(clip); }); ";
-                                           echo "</script>" 
+                                           echo "</script>" ;
                                          }
 
 
