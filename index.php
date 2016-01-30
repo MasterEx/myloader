@@ -42,6 +42,28 @@
 
 </style>
 <?php echo $HEAD_HTML_INJECTION; ?>
+
+
+<script>   
+   function goRandomMyLoader() 
+    {
+      var randomnumber=Math.floor(Math.random()*100000);
+      window.location.href = "/random.php?t="+randomnumber; 
+    } 
+
+
+  document.onkeypress = function (e) 
+  {
+    e = e || window.event;
+    
+    var keypressed=(e.keyCode || e.which);
+    if (  keypressed == 114  ) //r
+     {
+      goRandomMyLoader();  
+     }
+  };
+</script>
+
 </head>
 <body>
 
@@ -141,10 +163,10 @@
                                            $copypastebutton1="<button id=\"cpbtn1\" onclick=\"copyPasteLinkHTML5('".$weblink."');\" >Copy</button>";	
                                            $copypastebutton2="<button id=\"cpbtn2\" onclick=\"copyPasteLinkHTML5('".$directlink."');\" >Copy</button>";		       
                                            
-                                           echo "\n<script>\n";
-                                           echo "$(\"#cpbtn1\").on('click', function (e) { var clip = new ClipboardEvent('copy'); clip.clipboardData.setData('text/plain', \"".$weblink."\"); clip.preventDefault(); e.target.dispatchEvent(clip); }); ";
-                                           echo "$(\"#cpbtn2\").on('click', function (e) { var clip = new ClipboardEvent('copy'); clip.clipboardData.setData('text/plain', \"".$directlink."\"); clip.preventDefault(); e.target.dispatchEvent(clip); }); ";
-                                           echo "\n</script>\n" ;
+                                           #echo "\n<script>\n";
+                                           #echo "$(\"#cpbtn1\").on('click', function (e) { var clip = new ClipboardEvent('copy'); clip.clipboardData.setData('text/plain', \"".$weblink."\"); clip.preventDefault(); e.target.dispatchEvent(clip); }); ";
+                                           #echo "$(\"#cpbtn2\").on('click', function (e) { var clip = new ClipboardEvent('copy'); clip.clipboardData.setData('text/plain', \"".$directlink."\"); clip.preventDefault(); e.target.dispatchEvent(clip); }); ";
+                                           #echo "\n</script>\n" ;
                                          }
 
 

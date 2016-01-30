@@ -36,7 +36,8 @@ function createconfiguration() {
    \$HTML5_AUDIO = 1; // 1/0 Switch - This switch will enable/disable audio tag usage 
    \$HTML5_COMPATIBILITY_AUDIO_VIDEO = 1; // 1/0 Switch - This switch will enable/disable audio video compatibility ( See https://github.com/etianen/html5media )
    \$HTML5_CLIPBOARD = 1; // 1/0 Switch - This switch will enable/disable html5 clibboard 
-
+   \$HTML5_KEYBOARD = 1; // 1/0 Switch - This switch will enable/disable html5 keyboard shortcuts
+   
    /* MODDING VARIABLES */
    /* You can use these variables to make additions to the page i.e. javascripts,css,music embeds,w/e without altering index.php  */
    \$HEAD_HTML_INJECTION=\" \";
