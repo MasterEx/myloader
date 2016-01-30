@@ -138,8 +138,8 @@
 
                                          if ( $HTML5_CLIPBOARD == 1 )
                                          {
-                                           $copypastebutton1="<button id=\"cpbtn1\" onclick=\"copyPasteLinkHTML5(\"".$weblink."\");\" >Copy</button>";	
-                                           $copypastebutton2="<button id=\"cpbtn2\" onclick=\"copyPasteLinkHTML5(\"".$directlink."\");\" >Copy</button>";		       
+                                           $copypastebutton1="<button id=\"cpbtn1\" onclick=\"copyPasteLinkHTML5('".$weblink."');\" >Copy</button>";	
+                                           $copypastebutton2="<button id=\"cpbtn2\" onclick=\"copyPasteLinkHTML5('".$directlink."');\" >Copy</button>";		       
                                            
                                            echo "\n<script>\n";
                                            echo "$(\"#cpbtn1\").on('click', function (e) { var clip = new ClipboardEvent('copy'); clip.clipboardData.setData('text/plain', \"".$weblink."\"); clip.preventDefault(); e.target.dispatchEvent(clip); }); ";
