@@ -21,6 +21,7 @@
    $FLASH_EMBEDS = 1; // 1/0 Switch - This switch will enable/disable automatic embedded flash in the pages  
    $HTML5_VIDEO = 1; // 1/0 Switch - This switch will enable/disable video tag usage , in some years when html5 will be common place , these 3 switches may not be needed any longer :P
    $HTML5_AUDIO = 1; // 1/0 Switch - This switch will enable/disable audio tag usage 
+   $HTML5_KEYBOARD = 1; // 1/0 Switch - This switch will enable/disable keyboard shortcuts tag usage
    $HTML5_COMPATIBILITY_AUDIO_VIDEO = 1; // 1/0 Switch - This switch will enable/disable audio video compatibility ( See https://github.com/etianen/html5media )
    $ENABLE_GOOGLEDOCS_LINK= 1; // 1/0 Switch - This switch will enable/disable the googledocs capability
    $WILL_CHECK_IF_UPLOAD_DIR_NEEDS_CLEANING = 0; // 1/0 Switch - This switch will enable/disable the file autodelete capability - $MAXIMUM_STAY_ON_SERVER_HOURS should have a value >0
