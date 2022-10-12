@@ -160,7 +160,7 @@ function PrintFileInBox($weblink,$filename,$ext)
   if ( ( ExtentionIsVideo($ext)==1 ) && ($HTML5_VIDEO==1) )
             { 
             
-                 echo "<video poster=\"images/video_logo.png\" autoplay controls>"; 
+                 echo "<video poster=\"images/video_logo.png\" autoplay=\"autoplay\" controls>"; 
                   if  ( $ext == "ogv" )  {  echo "<source src=\"".$weblink."\" type='video/ogg; codecs=\"theora, vorbis\"' />"; } else
                   if  ( $ext == "webm")  {  echo "<source src=\"".$weblink."\" type='video/webm; codecs=\"vp8, vorbis\"'  />"; } else
                   if  ( $ext == "mp4" )  {  echo "<source src=\"".$weblink."\" type='video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"' />"; }                
@@ -177,7 +177,7 @@ function PrintFileInBox($weblink,$filename,$ext)
             } else 
   if ( (ExtentionIsAudio($ext)==1) && ($HTML5_AUDIO==1) )
             { 
-                  echo"<audio autoplay controls>";
+                  echo"<audio autoplay=\"autoplay\" controls>";
                   
                   if  ( $ext == "ogg" )  {  echo "<source src=\"".$weblink."\" type=\"audio/ogg\" />"; } else
                   if  ( $ext == "wav" )  {  echo "<source src=\"".$weblink."\" type=\"audio/wav\" />"; } else
